@@ -16,7 +16,7 @@ def load():
 def save(d): STATE.write_text(json.dumps(d,indent=2))
 def td(path, key):
     url='https://api.twelvedata.com'+path+('&' if '?' in path else '?')+'apikey='+urllib.parse.quote(key)
-    req=urllib.request.Request(url,headers={'User-Agent':'TradingRadar/1.1'})
+    req=urllib.request.Request(url,headers={'User-Agent':'TradingRadar/1.2'})
     with urllib.request.urlopen(req,timeout=12) as r: return json.loads(r.read())
 
 def market(d):
@@ -24,7 +24,7 @@ def market(d):
     if not d['key']: return out
     for sym in d['watch']:
         try:
-            q=td('/time_series?symbol='+urllib.parse.quote(sym)+'&interval=1day&outputsize=30',d['key'])
+            q=td('/time_series?symbol='+urllib.parse.quote(sym)+'&interval=15min&outputsize=30',d['key'])
             vals=q.get('values',[])
             if not vals:
                 out.append({'symbol':sym,'error':q.get('message','Keine Marktdaten erhalten')[:120]})
@@ -75,7 +75,7 @@ async function load(){try{S=await api('/api/state');render(S)}catch(e){msg('Fehl
 function render(s){
  value.textContent=euro(s.value);let pp=s.value-s.start;pnl.textContent=(pp>=0?'+':'')+euro(pp)+' seit Start';pnl.className=pp>=0?'green':'red';cash.textContent=euro(s.cash);count.textContent=s.positions.length;auto.textContent=s.auto?'AN':'AUS';auto.className='big '+(s.auto?'green':'red');budget.value=s.budget;per.value=s.per_trade;lastcheck.textContent=s.last_auto_check||'Noch nie';nextcheck.textContent=s.next_auto_check||'–';
  radar.innerHTML=s.market?.length?s.market.map(x=>x.error?`<div class=trade><b>${x.symbol}</b><span class=red>Fehler</span><span>${x.error}</span></div>`:`<div class=trade><b>${x.symbol}</b><span>${euro(x.price)}</span><span class=${x.score>=75?'green':x.score>=55?'yellow':'red'}>${x.score}/100</span><span>${x.risk}</span><span><b>${x.signal}</b> ${x.signal==='KAUFEN'?`<button onclick="buy('${x.symbol}')">virtuell kaufen</button>`:''}</span></div>`).join(''):'Noch keine Marktdaten.';
- positions.innerHTML=s.position_rows.length?s.position_rows.map(x=>`<div class=trade><b>${x.symbol}</b><span>${euro(x.value)}</span><span class=${x.pnl>=0?'green':'red'}>${x.pnl>=0?'+':''}${euro(x.pnl)} (${x.pnlpct.toFixed(2)}%)</span><span>Einstieg ${euro(x.entry)}</span><span><button class=danger onclick="sell('${x.symbol}')">verkaufen</button></span></div>`).join(''):'Keine offenen virtuellen Trades.';
+ positions.innerHTML=s.position_rows.length?s.position_rows.map(x=>`<div class=trade><b>${x.symbol}</b><span>${euro(x.value)}</span><span class=${x.pnl>=0?'green':'red'}>${x.pnl>=0?'+':''}${euro(x.pnl)} (${x.pnlpct.toFixed(2)}%)</span><span>Einstieg ${euro(x.entry)} → aktuell ${euro(x.price)}</span><span><button class=danger onclick="sell('${x.symbol}')">verkaufen</button></span></div>`).join(''):'Keine offenen virtuellen Trades.';
  history.innerHTML=s.history.slice().reverse().slice(0,20).map(x=>`<div>${x.time} · ${x.text}</div>`).join('')||'Noch keine Trades.';
 }
 async function refreshMarket(){
