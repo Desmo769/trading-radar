@@ -1,12 +1,14 @@
-import json, os, math, time, urllib.parse, urllib.request
+import json, os, math, time, urllib.parse, urllib.request, copy, threading
+from datetime import datetime
+from zoneinfo import ZoneInfo
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from pathlib import Path
 
 ROOT=Path(__file__).parent
 STATE=ROOT/'state.json'
-DEFAULT={"cash":100.0,"start":100.0,"budget":100.0,"per_trade":20.0,"positions":[],"history":[],"watch":["AAPL","MSFT","NVDA","AMZN","META","BTC/USD","ETH/USD"],"key":"","auto":False}
+DEFAULT={"cash":100.0,"start":100.0,"budget":100.0,"per_trade":20.0,"positions":[],"history":[],"watch":["AAPL","MSFT","NVDA","AMZN","META","BTC/USD","ETH/USD"],"key":"","auto":False,"last_auto_check":"Noch nie","next_auto_check":"–"}
 def load():
-    if not STATE.exists(): STATE.write_text(json.dumps(DEFAULT,indent=2))
+    if not STATE.exists(): STATE.write_text(json.dumps(copy.deepcopy(DEFAULT),indent=2))
     d=json.loads(STATE.read_text())
     for k,v in DEFAULT.items(): d.setdefault(k,v)
     return d
@@ -55,7 +57,7 @@ HTML=r"""<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="
 body{font-family:system-ui;background:#07111f;color:#eaf1ff;margin:0}header{padding:18px 5%;background:#0c1b2d;position:sticky;top:0}.wrap{max-width:1100px;margin:auto;padding:22px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}.card{background:#102238;border:1px solid #203b5b;border-radius:16px;padding:16px;margin-bottom:14px}.big{font-size:28px;font-weight:800}.green{color:#42df91}.red{color:#ff6677}.yellow{color:#ffd15c}button,input{font:inherit;border-radius:10px;padding:10px;border:1px solid #34506d}button{background:#19b873;color:white;font-weight:700;cursor:pointer}.danger{background:#c53e50}.muted{color:#9db0c7}.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.trade{display:grid;grid-template-columns:1.2fr .8fr .8fr .8fr .8fr;gap:8px;padding:10px 0;border-top:1px solid #233c58}#status{margin-top:10px;font-weight:700}@media(max-width:700px){.trade{grid-template-columns:1fr 1fr}.hideM{display:none}}
 </style></head><body><header><b>⚡ Trading Radar</b> <span class="muted">Paper-Trading · kein Echtgeld</span></header><div class="wrap">
 <div class="grid"><div class="card">Virtuelles Depot<div id="value" class="big">–</div><span id="pnl"></span></div><div class="card">Freies Kapital<div id="cash" class="big">–</div></div><div class="card">Offene Trades<div id="count" class="big">–</div></div><div class="card">Automatik<div id="auto" class="big">AUS</div></div></div>
-<div class="card"><h3>Einstellungen</h3><div class="row"><input id="key" type="password" placeholder="Twelve Data API-Key"><button onclick="setKey()">API-Key speichern</button><label>Budget € <input id="budget" type="number" value="100" style="width:75px"></label><label>pro Trade € <input id="per" type="number" value="20" style="width:70px"></label><button onclick="settings()">Speichern</button><button onclick="toggleAuto()">Automatik AN/AUS</button><button class="danger" onclick="resetAll()">Test zurücksetzen</button></div><p class="muted">Die App handelt nur virtuell. Der API-Key liefert Marktdaten; er hat keinen Zugriff auf Bank oder Broker.</p><div id="status" class="muted">Bereit.</div></div>
+<div class="card"><h3>Einstellungen</h3><div class="row"><input id="key" type="password" placeholder="Twelve Data API-Key"><button onclick="setKey()">API-Key speichern</button><label>Budget € <input id="budget" type="number" value="100" style="width:75px"></label><label>pro Trade € <input id="per" type="number" value="20" style="width:70px"></label><button onclick="settings()">Speichern</button><button onclick="toggleAuto()">Automatik AN/AUS</button><button class="danger" onclick="resetAll()">Test zurücksetzen</button></div><p class="muted">Die App handelt nur virtuell. Der API-Key liefert Marktdaten; er hat keinen Zugriff auf Bank oder Broker.</p><div id="status" class="muted">Bereit.</div><p class="muted">Automatik-Zeitfenster: Mo–Fr 14:30–22:00 Uhr (Deutschland), Prüfung höchstens alle 15 Minuten. Auf dem kostenlosen Render-Tarif kann der Dienst bei Inaktivität schlafen; solange diese Seite geöffnet ist, stößt sie die Prüfung regelmäßig an.</p><div class="row"><span>Letzte automatische Prüfung: <b id="lastcheck">–</b></span><span>Nächste Prüfung: <b id="nextcheck">–</b></span></div></div>
 <div class="card"><h3>Beste Chancen jetzt</h3><div id="radar">API-Key eintragen und „Markt aktualisieren“ drücken.</div><br><button id="refreshBtn" onclick="refreshMarket()">Markt aktualisieren</button></div>
 <div class="card"><h3>Meine virtuellen Trades</h3><div id="positions"></div></div>
 <div class="card"><h3>Protokoll</h3><div id="history" class="muted"></div></div>
@@ -71,7 +73,7 @@ function euro(x){return Number(x).toLocaleString('de-DE',{style:'currency',curre
 function msg(t,bad=false){status.textContent=t;status.className=bad?'red':'green'}
 async function load(){try{S=await api('/api/state');render(S)}catch(e){msg('Fehler: '+e.message,true)}}
 function render(s){
- value.textContent=euro(s.value);let pp=s.value-s.start;pnl.textContent=(pp>=0?'+':'')+euro(pp)+' seit Start';pnl.className=pp>=0?'green':'red';cash.textContent=euro(s.cash);count.textContent=s.positions.length;auto.textContent=s.auto?'AN':'AUS';auto.className='big '+(s.auto?'green':'red');budget.value=s.budget;per.value=s.per_trade;
+ value.textContent=euro(s.value);let pp=s.value-s.start;pnl.textContent=(pp>=0?'+':'')+euro(pp)+' seit Start';pnl.className=pp>=0?'green':'red';cash.textContent=euro(s.cash);count.textContent=s.positions.length;auto.textContent=s.auto?'AN':'AUS';auto.className='big '+(s.auto?'green':'red');budget.value=s.budget;per.value=s.per_trade;lastcheck.textContent=s.last_auto_check||'Noch nie';nextcheck.textContent=s.next_auto_check||'–';
  radar.innerHTML=s.market?.length?s.market.map(x=>x.error?`<div class=trade><b>${x.symbol}</b><span class=red>Fehler</span><span>${x.error}</span></div>`:`<div class=trade><b>${x.symbol}</b><span>${euro(x.price)}</span><span class=${x.score>=75?'green':x.score>=55?'yellow':'red'}>${x.score}/100</span><span>${x.risk}</span><span><b>${x.signal}</b> ${x.signal==='KAUFEN'?`<button onclick="buy('${x.symbol}')">virtuell kaufen</button>`:''}</span></div>`).join(''):'Noch keine Marktdaten.';
  positions.innerHTML=s.position_rows.length?s.position_rows.map(x=>`<div class=trade><b>${x.symbol}</b><span>${euro(x.value)}</span><span class=${x.pnl>=0?'green':'red'}>${x.pnl>=0?'+':''}${euro(x.pnl)} (${x.pnlpct.toFixed(2)}%)</span><span>Einstieg ${euro(x.entry)}</span><span><button class=danger onclick="sell('${x.symbol}')">verkaufen</button></span></div>`).join(''):'Keine offenen virtuellen Trades.';
  history.innerHTML=s.history.slice().reverse().slice(0,20).map(x=>`<div>${x.time} · ${x.text}</div>`).join('')||'Noch keine Trades.';
@@ -86,12 +88,60 @@ async function buy(s){try{render(await api('/api/buy',{method:'POST',headers:{'C
 async function sell(s){try{render(await api('/api/sell',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({symbol:s})}));msg(s+' virtuell verkauft.')}catch(e){msg('Fehler: '+e.message,true)}}
 async function setKey(){try{render(await api('/api/key',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({key:key.value})}));key.value='';msg('API-Key gespeichert.')}catch(e){msg('Fehler: '+e.message,true)}}
 async function settings(){try{render(await api('/api/settings',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({budget:+budget.value,per_trade:+per.value})}));msg('Budget-Einstellungen gespeichert.')}catch(e){msg('Fehler: '+e.message,true)}}
-async function toggleAuto(){try{S=await api('/api/auto',{method:'POST'});render(S);msg(S.auto?'Automatik AN. Beim Markt-Update werden Kaufsignale ab 75/100 geprüft.':'Automatik AUS.')}catch(e){msg('Fehler: '+e.message,true)}}
+async function toggleAuto(){try{S=await api('/api/auto',{method:'POST'});render(S);msg(S.auto?'Automatik AN. Sie prüft im Zeitfenster höchstens alle 15 Minuten.':'Automatik AUS.')}catch(e){msg('Fehler: '+e.message,true)}}
 async function resetAll(){if(confirm('Paper-Depot wirklich auf 100 € zurücksetzen?'))try{render(await api('/api/reset',{method:'POST'}));msg('Paper-Test zurückgesetzt.')}catch(e){msg('Fehler: '+e.message,true)}}
-load();
+async function autoTick(){try{S=await api('/api/auto-check',{method:'POST'});render(S)}catch(e){console.log(e)}}
+load();setInterval(autoTick,60000);
 </script></body></html>"""
 
 CACHE=[]
+
+AUTO_INTERVAL=15*60
+AUTO_LOCK=threading.Lock()
+
+def berlin_now():
+    return datetime.now(ZoneInfo('Europe/Berlin'))
+
+def in_auto_window(now=None):
+    now=now or berlin_now()
+    mins=now.hour*60+now.minute
+    return now.weekday()<5 and (14*60+30)<=mins<=(22*60)
+
+def auto_due(d, now_ts=None):
+    now_ts=now_ts or time.time()
+    return now_ts-float(d.get('_last_auto_ts',0) or 0)>=AUTO_INTERVAL
+
+def next_check_text(d):
+    if not d.get('auto'): return 'Automatik AUS'
+    now=berlin_now()
+    if not in_auto_window(now): return 'Im nächsten Handelszeitfenster'
+    last=float(d.get('_last_auto_ts',0) or 0)
+    if not last: return 'Jetzt'
+    remain=max(0,int(AUTO_INTERVAL-(time.time()-last)))
+    return 'Jetzt' if remain<=0 else f'in ca. {max(1,(remain+59)//60)} Min.'
+
+def run_auto_check(force=False):
+    global CACHE
+    with AUTO_LOCK:
+        d=load()
+        if not d.get('auto') or not d.get('key'): return d
+        if not force and (not in_auto_window() or not auto_due(d)): 
+            d['next_auto_check']=next_check_text(d); save(d); return d
+        CACHE.clear(); CACHE.extend(market(d))
+        if CACHE:
+            auto_step(d)
+            d['_last_auto_ts']=time.time()
+            d['last_auto_check']=berlin_now().strftime('%d.%m.%Y %H:%M')
+        d['next_auto_check']=next_check_text(d)
+        save(d)
+        return d
+
+def scheduler_loop():
+    while True:
+        try: run_auto_check(False)
+        except Exception as e: print('Auto-Check:',e)
+        time.sleep(60)
+
 def view(d, refresh=False):
     global CACHE
     if refresh: CACHE=market(d)
@@ -149,14 +199,18 @@ class H(BaseHTTPRequestHandler):
     d['key']=newkey
    elif self.path=='/api/settings':
     b=self.body();d['budget']=max(0,float(b['budget']));d['per_trade']=max(1,float(b['per_trade']))
-   elif self.path=='/api/auto':d['auto']=not d['auto']
+   elif self.path=='/api/auto':
+    d['auto']=not d['auto'];d['next_auto_check']=next_check_text(d)
    elif self.path=='/api/reset':
-    key=d['key'];d={**DEFAULT,'key':key}
+    key=d['key'];d=copy.deepcopy(DEFAULT);d['key']=key
    elif self.path=='/api/refresh':
     if not d.get('key'): raise ValueError('Twelve Data API-Key fehlt.')
     CACHE.clear();CACHE.extend(market(d))
     if not CACHE: raise ValueError('Keine Marktdaten erhalten.')
-    auto_step(d)
+    if d.get('auto'):
+     auto_step(d);d['_last_auto_ts']=time.time();d['last_auto_check']=berlin_now().strftime('%d.%m.%Y %H:%M');d['next_auto_check']=next_check_text(d)
+   elif self.path=='/api/auto-check':
+    save(d);d=run_auto_check(False)
    elif self.path=='/api/buy':
     sym=self.body()['symbol'];x=next((x for x in CACHE if x.get('symbol')==sym and 'price' in x),None)
     if x:
@@ -171,4 +225,5 @@ class H(BaseHTTPRequestHandler):
 if __name__=='__main__':
  port=int(os.environ.get('PORT','10000'))
  print(f'Trading Radar läuft auf Port {port}')
+ threading.Thread(target=scheduler_loop,daemon=True).start()
  HTTPServer(('0.0.0.0',port),H).serve_forever()
