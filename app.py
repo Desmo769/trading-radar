@@ -184,9 +184,17 @@ class H(BaseHTTPRequestHandler):
  def sendj(self,o,status=200):
   b=json.dumps(o).encode();self.send_response(status);self.send_header('Content-Type','application/json');self.send_header('Content-Length',len(b));self.end_headers();self.wfile.write(b)
  def do_GET(self):
-  if self.path=='/':
-   b=HTML.encode();self.send_response(200);self.send_header('Content-Type','text/html; charset=utf-8');self.send_header('Content-Length',len(b));self.end_headers();self.wfile.write(b)
-  elif self.path=='/api/state':self.sendj(view(load()))
+  path=urllib.parse.urlparse(self.path).path.rstrip('/') or '/'
+  if path in ('/','/index.html'):
+   b=HTML.encode();self.send_response(200);self.send_header('Content-Type','text/html; charset=utf-8');self.send_header('Cache-Control','no-store');self.send_header('Content-Length',len(b));self.end_headers();self.wfile.write(b)
+  elif path=='/api/state':self.sendj(view(load()))
+  elif path=='/favicon.ico':
+   self.send_response(204);self.end_headers()
+  else:self.send_error(404)
+ def do_HEAD(self):
+  path=urllib.parse.urlparse(self.path).path.rstrip('/') or '/'
+  if path in ('/','/index.html'):
+   self.send_response(200);self.send_header('Content-Type','text/html; charset=utf-8');self.send_header('Cache-Control','no-store');self.end_headers()
   else:self.send_error(404)
  def body(self):
   n=int(self.headers.get('Content-Length',0));return json.loads(self.rfile.read(n) or b'{}')
