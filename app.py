@@ -6,12 +6,15 @@ from pathlib import Path
 
 ROOT=Path(__file__).parent
 STATE=ROOT/'state.json'
-UNIVERSE=['AAPL','MSFT','NVDA','AMZN','META','GOOGL','AVGO','TSLA','AMD','NFLX','ORCL','CRM','ADBE','INTC','QCOM','TXN','MU','AMAT','LRCX','KLAC','PANW','CRWD','NOW','PLTR','UBER','ABNB','BKNG','JPM','BAC','GS','MS','V','MA','AXP','WMT','COST','HD','LOW','NKE','MCD','SBUX','KO','PEP','PG','JNJ','LLY','MRK','ABBV','UNH','XOM','CVX','CAT','GE','BA','RTX','DE','NEE','LIN','BTC/USD','ETH/USD']
+UNIVERSE=['AAPL','MSFT','NVDA','AMZN','META','GOOGL','AVGO','TSLA','AMD','NFLX','ORCL','CRM','ADBE','INTC','QCOM','TXN','MU','AMAT','LRCX','KLAC','PANW','CRWD','NOW','PLTR','UBER','ABNB','BKNG','JPM','BAC','GS','MS','V','MA','AXP','WMT','COST','HD','LOW','NKE','MCD','SBUX','KO','PEP','PG','JNJ','LLY','MRK','ABBV','UNH','XOM','CVX','CAT','GE','BA','RTX','DE','NEE','LIN','BTC/USD','ETH/USD','MNQ1!']
 DEFAULT={"cash":100.0,"start":100.0,"budget":100.0,"per_trade":20.0,"positions":[],"history":[],"watch":UNIVERSE,"key":"","auto":False,"last_auto_check":"Noch nie","next_auto_check":"–","scan_index":0,"scan_results":{},"scanned_total":0}
 def load():
     if not STATE.exists(): STATE.write_text(json.dumps(copy.deepcopy(DEFAULT),indent=2))
     d=json.loads(STATE.read_text())
-    for k,v in DEFAULT.items(): d.setdefault(k,v)
+    for k,v in DEFAULT.items(): d.setdefault(k,copy.deepcopy(v))
+    # Neue Scanner-Werte aus Updates auch in bestehende state.json übernehmen.
+    for sym in UNIVERSE:
+        if sym not in d['watch']: d['watch'].append(sym)
     return d
 
 def save(d): STATE.write_text(json.dumps(d,indent=2))
@@ -24,8 +27,21 @@ def td(path, key):
     with urllib.request.urlopen(req,timeout=12) as r: return json.loads(r.read())
 
 def quote_symbol(sym,key):
-    q=td('/time_series?symbol='+urllib.parse.quote(sym)+'&interval=15min&outputsize=30',key)
-    vals=q.get('values',[])
+    # TradingView nennt den fortlaufenden Micro-E-mini-Nasdaq-100-Future MNQ1!.
+    # Twelve Data listet Futures derzeit nicht in seinen normalen Referenzlisten;
+    # deshalb nutzen wir fuer diesen einen Paper-Wert den Yahoo-Frontmonat MNQ=F.
+    if sym=='MNQ1!':
+        url='https://query1.finance.yahoo.com/v8/finance/chart/MNQ=F?interval=15m&range=5d'
+        req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0 TradingRadar/1.6'})
+        with urllib.request.urlopen(req,timeout=12) as r: q=json.loads(r.read())
+        try:
+            closes=[float(x) for x in q['chart']['result'][0]['indicators']['quote'][0]['close'] if x is not None]
+        except Exception:
+            return {'symbol':sym,'error':'MNQ-Marktdaten derzeit nicht verfuegbar'}
+        vals=[{'close':str(x)} for x in closes[-30:][::-1]]
+    else:
+        q=td('/time_series?symbol='+urllib.parse.quote(sym)+'&interval=15min&outputsize=30',key)
+        vals=q.get('values',[])
     if not vals: return {'symbol':sym,'error':q.get('message','Keine Marktdaten erhalten')[:120]}
     closes=[float(x['close']) for x in vals][::-1]
     if len(closes)<15: return {'symbol':sym,'error':'Zu wenige Kursdaten'}
@@ -66,36 +82,30 @@ def market(d):
 
 def portfolio(d, quotes):
     qmap={x['symbol']:x for x in quotes if 'price' in x}
-    stored=d.get('scan_results',{})
     val=d['cash']; rows=[]
     for pos in d['positions']:
-        x=qmap.get(pos['symbol']) or stored.get(pos['symbol'],{})
-        p=x.get('price',pos['entry'])
+        p=qmap.get(pos['symbol'],{}).get('price',pos['entry'])
         cur=pos['qty']*p; pnl=cur-pos['cost']; val+=cur
-        score=x.get('score')
-        seen=x.get('seen')
-        ch=(p/pos['entry']-1)
-        if score is not None and score < 45:
-            decision,reason='VERKAUFEN',f'Score {score} unter 45'
-        elif ch <= -.04:
-            decision,reason='VERKAUFEN','Stop-Loss −4 % erreicht'
-        elif ch >= .07:
-            decision,reason='VERKAUFEN','Gewinnziel +7 % erreicht'
-        else:
-            decision='HALTEN'
-            if score is None: reason='noch keine aktuelle Score-Prüfung'
-            else: reason=f'Score {score} und Kurs innerhalb der Grenzen'
-        last=datetime.fromtimestamp(seen,ZoneInfo('Europe/Berlin')).strftime('%d.%m. %H:%M') if seen else 'noch nicht'
-        rows.append({**pos,'price':p,'value':cur,'pnl':pnl,'pnlpct':ch*100,'score':score,'score_text':str(score)+'/100' if score is not None else '–','last_check':last,'decision':decision,'reason':reason})
+        pct=(p/pos['entry']-1)*100
+        q=qmap.get(pos['symbol'],{})
+        score=q.get('score')
+        if pct<=-4: decision,reason='VERKAUFEN',f'Stop-Loss erreicht ({pct:+.2f} %)'
+        elif pct>=7: decision,reason='VERKAUFEN',f'Gewinnziel erreicht ({pct:+.2f} %)'
+        elif score is not None and score<45: decision,reason='VERKAUFEN',f'Score {score} unter 45'
+        elif score is None: decision,reason='HALTEN','Noch keine aktuelle Scanner-Pruefung'
+        else: decision,reason='HALTEN',f'Score {score}, Ergebnis {pct:+.2f} %'
+        seen=q.get('seen')
+        checked=datetime.fromtimestamp(seen,ZoneInfo('Europe/Berlin')).strftime('%d.%m. %H:%M') if seen else '–'
+        rows.append({**pos,'price':p,'value':cur,'pnl':pnl,'pnlpct':pct,'score':score,'decision':decision,'reason':reason,'checked':checked})
     return val,rows
 
-HTML=r"""<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Trading Radar V6</title><style>
+HTML=r"""<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Trading Radar</title><style>
 body{font-family:system-ui;background:#07111f;color:#eaf1ff;margin:0}header{padding:18px 5%;background:#0c1b2d;position:sticky;top:0}.wrap{max-width:1100px;margin:auto;padding:22px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}.card{background:#102238;border:1px solid #203b5b;border-radius:16px;padding:16px;margin-bottom:14px}.big{font-size:28px;font-weight:800}.green{color:#42df91}.red{color:#ff6677}.yellow{color:#ffd15c}button,input{font:inherit;border-radius:10px;padding:10px;border:1px solid #34506d}button{background:#19b873;color:white;font-weight:700;cursor:pointer}.danger{background:#c53e50}.muted{color:#9db0c7}.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.trade{display:grid;grid-template-columns:1.2fr .8fr .8fr .8fr .8fr;gap:8px;padding:10px 0;border-top:1px solid #233c58}#status{margin-top:10px;font-weight:700}@media(max-width:700px){.trade{grid-template-columns:1fr 1fr}.hideM{display:none}}
-</style></head><body><header><b>⚡ Trading Radar V6</b> <span class="muted">Paper-Trading · kein Echtgeld</span></header><div class="wrap">
+</style></head><body><header><b>⚡ Trading Radar</b> <span class="muted">Paper-Trading · kein Echtgeld</span></header><div class="wrap">
 <div class="grid"><div class="card">Virtuelles Depot<div id="value" class="big">–</div><span id="pnl"></span></div><div class="card">Freies Kapital<div id="cash" class="big">–</div></div><div class="card">Offene Trades<div id="count" class="big">–</div></div><div class="card">Automatik<div id="auto" class="big">AUS</div></div></div>
 <div class="card"><h3>Einstellungen</h3><div class="row"><input id="key" type="password" placeholder="Twelve Data API-Key"><button onclick="setKey()">API-Key speichern</button><label>Budget € <input id="budget" type="number" value="100" style="width:75px"></label><label>pro Trade € <input id="per" type="number" value="20" style="width:70px"></label><button onclick="settings()">Speichern</button><button onclick="toggleAuto()">Automatik AN/AUS</button><button class="danger" onclick="resetAll()">Test zurücksetzen</button></div><p class="muted">Die App handelt nur virtuell. Tipp: Hinterlege TWELVE_DATA_API_KEY später einmal bei Render; dann bleibt der Schlüssel bei Updates erhalten. Trades werden zusätzlich in diesem Browser gesichert und nach einem Deploy automatisch wiederhergestellt.</p><div id="status" class="muted">Bereit.</div><p class="muted">Automatik-Zeitfenster: Mo–Fr 14:30–22:00 Uhr (Deutschland), Prüfung höchstens alle 15 Minuten. Auf dem kostenlosen Render-Tarif kann der Dienst bei Inaktivität schlafen; solange diese Seite geöffnet ist, stößt sie die Prüfung regelmäßig an.</p><div class="row"><span>Letzte automatische Prüfung: <b id="lastcheck">–</b></span><span>Nächste Prüfung: <b id="nextcheck">–</b></span></div></div>
 <div class="card"><h3>Markt-Scanner · Top-Chancen</h3><p class="muted">Rotierender Scanner: pro Prüfung wird ein neuer Teil der Beobachtungsliste analysiert, um das API-Limit einzuhalten. Bereits geprüfte Kandidaten bleiben im Ranking.</p><div id="scaninfo" class="muted"></div><div id="radar">API-Key eintragen und „Markt aktualisieren“ drücken.</div><br><button id="refreshBtn" onclick="refreshMarket()">Markt aktualisieren</button></div>
-<div class="card"><h3>Meine virtuellen Trades</h3><p class="muted">Automatik-Regeln: Gewinnmitnahme ab +7 % · Stop-Loss ab −4 % · Verkauf bei Score unter 45.</p><div id="positions"></div></div>
+<div class="card"><h3>Meine virtuellen Trades</h3><p class="muted">Automatische Verkaufsregeln: Gewinnmitnahme ab +7 % · Stop-Loss ab −4 % · Verkauf bei Score unter 45.</p><div id="positions"></div></div>
 <div class="card"><h3>Protokoll</h3><div id="history" class="muted"></div></div>
 </div><script>
 let S={};
@@ -113,8 +123,8 @@ function render(s){
  backupState(s);
  value.textContent=euro(s.value);let pp=s.value-s.start;pnl.textContent=(pp>=0?'+':'')+euro(pp)+' seit Start';pnl.className=pp>=0?'green':'red';cash.textContent=euro(s.cash);count.textContent=s.positions.length;auto.textContent=s.auto?'AN':'AUS';auto.className='big '+(s.auto?'green':'red');budget.value=s.budget;per.value=s.per_trade;lastcheck.textContent=s.last_auto_check||'Noch nie';nextcheck.textContent=s.next_auto_check||'–';
  scaninfo.textContent='Analysierte Werte im aktuellen Scan-Speicher: '+(s.scanned_total||0)+' / '+(s.watch?.length||0)+' · API-Key: '+(s.api_key_source||'–');
- radar.innerHTML=s.market?.length?s.market.map(x=>x.error?`<div class=trade><b>${x.symbol}</b><span class=red>Fehler</span><span>${x.error}</span></div>`:`<div class=trade><b>${x.symbol}</b><span>${euro(x.price)}</span><span class=${x.score>=75?'green':x.score>=55?'yellow':'red'}>${x.score}/100</span><span>${x.risk}</span><span><b>${x.signal}</b> ${x.signal==='KAUFEN'?(s.cash<5||s.invested>=s.budget?`<span class="yellow">– kein freies Kapital</span>`:`<button onclick="buy('${x.symbol}')">virtuell kaufen</button>`):''}</span></div>`).join(''):'Noch keine Marktdaten.';
- positions.innerHTML=s.position_rows.length?s.position_rows.map(x=>`<div class=trade><b>${x.symbol}</b><span>${euro(x.value)}<br><small class="muted">Score ${x.score_text}</small></span><span class=${x.pnl>=0?'green':'red'}>${x.pnl>=0?'+':''}${euro(x.pnl)} (${x.pnlpct.toFixed(2)}%)<br><small class="muted">Prüfung ${x.last_check}</small></span><span>Einstieg ${euro(x.entry)} → aktuell ${euro(x.price)}<br><b class=${x.decision==='VERKAUFEN'?'red':'green'}>${x.decision}</b> · ${x.reason}</span><span><button class=danger onclick="sell('${x.symbol}')">verkaufen</button></span></div>`).join(''):'Keine offenen virtuellen Trades.';
+ radar.innerHTML=s.market?.length?s.market.map(x=>x.error?`<div class=trade><b>${x.symbol}</b><span class=red>Fehler</span><span>${x.error}</span></div>`:`<div class=trade><b>${x.symbol}</b><span>${euro(x.price)}</span><span class=${x.score>=75?'green':x.score>=55?'yellow':'red'}>${x.score}/100</span><span>${x.risk}</span><span><b>${x.signal}</b> ${x.signal==='KAUFEN'?`<button onclick="buy('${x.symbol}')">virtuell kaufen</button>`:''}</span></div>`).join(''):'Noch keine Marktdaten.';
+ positions.innerHTML=s.position_rows.length?s.position_rows.map(x=>`<div class=trade><b>${x.symbol}</b><span>${euro(x.value)}</span><span class=${x.pnl>=0?'green':'red'}>${x.pnl>=0?'+':''}${euro(x.pnl)} (${x.pnlpct.toFixed(2)}%)</span><span>Einstieg ${euro(x.entry)} → aktuell ${euro(x.price)}</span><span><b class=${x.decision==='VERKAUFEN'?'red':'green'}>${x.decision}</b><br><small>${x.reason}</small><br><small>Score ${x.score??'–'}/100 · geprüft ${x.checked||'–'}</small><br><button class=danger onclick="sell('${x.symbol}')">verkaufen</button></span></div>`).join(''):'Keine offenen virtuellen Trades.';
  history.innerHTML=s.history.slice().reverse().slice(0,20).map(x=>`<div>${x.time} · ${x.text}</div>`).join('')||'Noch keine Trades.';
 }
 async function refreshMarket(){
@@ -185,7 +195,7 @@ def view(d, refresh=False):
     global CACHE
     if refresh: CACHE=market(d)
     val,rows=portfolio(d,CACHE)
-    return {**d,'key':'***' if effective_key(d) else '', 'value':val,'invested':sum(p['cost'] for p in d.get('positions',[])),'position_rows':rows,'market':CACHE,'api_key_source':'Render' if os.environ.get('TWELVE_DATA_API_KEY') else ('App' if d.get('key') else 'Fehlt')}
+    return {**d,'key':'***' if effective_key(d) else '', 'value':val,'position_rows':rows,'market':CACHE,'api_key_source':'Render' if os.environ.get('TWELVE_DATA_API_KEY') else ('App' if d.get('key') else 'Fehlt')}
 
 def auto_step(d):
     global CACHE
@@ -210,13 +220,14 @@ def execute_buy(d,sym,price,amt,src='Manuell'):
     amt=min(float(amt),d['cash'])
     if amt<=0:return
     d['positions'].append({'symbol':sym,'entry':price,'qty':amt/price,'cost':amt});d['cash']-=amt
-    d['history'].append({'time':time.strftime('%d.%m.%Y %H:%M'),'text':f'{src}: {sym} virtuell für {amt:.2f} € gekauft @ {price:.2f}'})
+    d['history'].append({'time':time.strftime('%d.%m.%Y %H:%M'),'text':f'{src}: KAUF {sym} · {amt:.2f} € @ {price:.2f}'})
 
 def execute_sell(d,sym,price,src='Manuell'):
     for p in list(d['positions']):
         if p['symbol']==sym:
             val=p['qty']*price;pnl=val-p['cost'];d['cash']+=val;d['positions'].remove(p)
-            d['history'].append({'time':time.strftime('%d.%m.%Y %H:%M'),'text':f'{src}: {sym} virtuell verkauft · Ergebnis {pnl:+.2f} €'})
+            pct=(price/p['entry']-1)*100
+            d['history'].append({'time':time.strftime('%d.%m.%Y %H:%M'),'text':f'{src}: VERKAUF {sym} @ {price:.2f} · Ergebnis {pnl:+.2f} € ({pct:+.2f} %)'})
             break
 
 class H(BaseHTTPRequestHandler):
