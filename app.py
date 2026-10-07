@@ -1,6 +1,3 @@
-
-    
-  
 import json, os, math, time, urllib.parse, urllib.request
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from pathlib import Path
@@ -97,4 +94,81 @@ load();
 CACHE=[]
 def view(d, refresh=False):
     global CACHE
+    if refresh: CACHE=market(d)
+    val,rows=portfolio(d,CACHE)
+    return {**d,'key':'***' if d['key'] else '', 'value':val,'position_rows':rows,'market':CACHE}
 
+def auto_step(d):
+    global CACHE
+    if not d['auto'] or not CACHE: return
+    q={x['symbol']:x for x in CACHE if 'price' in x}
+    for p in list(d['positions']):
+        x=q.get(p['symbol'])
+        if not x: continue
+        ch=x['price']/p['entry']-1
+        if x['score']<45 or ch<=-.04 or ch>=.07:
+            execute_sell(d,p['symbol'],x['price'],'Automatik')
+    invested=sum(p['cost'] for p in d['positions'])
+    for x in CACHE:
+        # Wichtig: dieselbe Grenze wie das sichtbare KAUFEN-Signal.
+        if x.get('score',0)>=75 and x.get('risk')!='Hoch' and not any(p['symbol']==x['symbol'] for p in d['positions']):
+            amt=min(d['per_trade'],d['cash'],max(0,d['budget']-invested))
+            if amt>=5:
+                execute_buy(d,x['symbol'],x['price'],amt,'Automatik')
+                invested+=amt
+
+def execute_buy(d,sym,price,amt,src='Manuell'):
+    amt=min(float(amt),d['cash'])
+    if amt<=0:return
+    d['positions'].append({'symbol':sym,'entry':price,'qty':amt/price,'cost':amt});d['cash']-=amt
+    d['history'].append({'time':time.strftime('%d.%m.%Y %H:%M'),'text':f'{src}: {sym} virtuell für {amt:.2f} € gekauft @ {price:.2f}'})
+
+def execute_sell(d,sym,price,src='Manuell'):
+    for p in list(d['positions']):
+        if p['symbol']==sym:
+            val=p['qty']*price;pnl=val-p['cost'];d['cash']+=val;d['positions'].remove(p)
+            d['history'].append({'time':time.strftime('%d.%m.%Y %H:%M'),'text':f'{src}: {sym} virtuell verkauft · Ergebnis {pnl:+.2f} €'})
+            break
+
+class H(BaseHTTPRequestHandler):
+ def sendj(self,o,status=200):
+  b=json.dumps(o).encode();self.send_response(status);self.send_header('Content-Type','application/json');self.send_header('Content-Length',len(b));self.end_headers();self.wfile.write(b)
+ def do_GET(self):
+  if self.path=='/':
+   b=HTML.encode();self.send_response(200);self.send_header('Content-Type','text/html; charset=utf-8');self.send_header('Content-Length',len(b));self.end_headers();self.wfile.write(b)
+  elif self.path=='/api/state':self.sendj(view(load()))
+  else:self.send_error(404)
+ def body(self):
+  n=int(self.headers.get('Content-Length',0));return json.loads(self.rfile.read(n) or b'{}')
+ def do_POST(self):
+  d=load()
+  try:
+   if self.path=='/api/key':
+    newkey=self.body().get('key','').strip()
+    if not newkey: raise ValueError('Kein API-Key eingegeben.')
+    d['key']=newkey
+   elif self.path=='/api/settings':
+    b=self.body();d['budget']=max(0,float(b['budget']));d['per_trade']=max(1,float(b['per_trade']))
+   elif self.path=='/api/auto':d['auto']=not d['auto']
+   elif self.path=='/api/reset':
+    key=d['key'];d={**DEFAULT,'key':key}
+   elif self.path=='/api/refresh':
+    if not d.get('key'): raise ValueError('Twelve Data API-Key fehlt.')
+    CACHE.clear();CACHE.extend(market(d))
+    if not CACHE: raise ValueError('Keine Marktdaten erhalten.')
+    auto_step(d)
+   elif self.path=='/api/buy':
+    sym=self.body()['symbol'];x=next((x for x in CACHE if x.get('symbol')==sym and 'price' in x),None)
+    if x:
+     invested=sum(p['cost'] for p in d['positions']);amt=min(d['per_trade'],d['cash'],max(0,d['budget']-invested));execute_buy(d,sym,x['price'],amt)
+   elif self.path=='/api/sell':
+    sym=self.body()['symbol'];x=next((x for x in CACHE if x.get('symbol')==sym and 'price' in x),None);p=next((p for p in d['positions'] if p['symbol']==sym),None);execute_sell(d,sym,x['price'] if x else p['entry']) if p else None
+   save(d);self.sendj(view(d))
+  except Exception as e:
+   self.sendj({'error':str(e),**view(d)})
+ def log_message(self,*a):pass
+
+if __name__=='__main__':
+ port=int(os.environ.get('PORT','10000'))
+ print(f'Trading Radar läuft auf Port {port}')
+ HTTPServer(('0.0.0.0',port),H).serve_forever()
