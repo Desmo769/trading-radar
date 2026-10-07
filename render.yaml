@@ -1,0 +1,8 @@
+services:
+  - type: web
+    name: trading-radar
+    runtime: python
+    plan: free
+    buildCommand: ""
+    startCommand: python app.py
+    healthCheckPath: /
