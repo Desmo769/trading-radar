@@ -1,0 +1,1 @@
+V6-MNQ Protokoll-Fix: Explizite DOM-Zugriffe beheben Konflikt mit window.history; farbige Aktuell-Kurse; Download einer Sicherung ohne API-Key; atomisches Schreiben der lokalen Zustandsdatei. WICHTIG: Render Free hat weiterhin keinen dauerhaften Speicher. Vor dem Hochladen aktuelle Sicherung herunterladen!
