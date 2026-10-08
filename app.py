@@ -7,15 +7,18 @@ from pathlib import Path
 ROOT=Path(__file__).parent
 STATE=ROOT/'state.json'
 UNIVERSE=['AAPL','MSFT','NVDA','AMZN','META','GOOGL','AVGO','TSLA','AMD','NFLX','ORCL','CRM','ADBE','INTC','QCOM','TXN','MU','AMAT','LRCX','KLAC','PANW','CRWD','NOW','PLTR','UBER','ABNB','BKNG','JPM','BAC','GS','MS','V','MA','AXP','WMT','COST','HD','LOW','NKE','MCD','SBUX','KO','PEP','PG','JNJ','LLY','MRK','ABBV','UNH','XOM','CVX','CAT','GE','BA','RTX','DE','NEE','LIN','BTC/USD','ETH/USD','MNQ1!']
-DEFAULT={"cash":100.0,"start":100.0,"budget":100.0,"per_trade":20.0,"positions":[],"history":[],"watch":UNIVERSE,"key":"","auto":False,"last_auto_check":"Noch nie","next_auto_check":"–","scan_index":0,"scan_results":{},"scanned_total":0,"version":"V6-MNQ","mnq_contracts":4,"event_log":[]}
+# Erweiterte US-Aktien-Auswahlliste. Kein Anspruch auf vollständige Börsenabdeckung.
+DISCOVERY_SYMBOLS=['ADP', 'ABT', 'ACN', 'AEP', 'AFL', 'AIG', 'ALL', 'AME', 'AMP', 'AMT', 'ANET', 'AON', 'APD', 'APO', 'APP', 'APTV', 'ARE', 'ARM', 'ASML', 'ATO', 'AVB', 'AXP', 'AZN', 'BABA', 'BAX', 'BBY', 'BDX', 'BEN', 'BIIB', 'BLK', 'BMY', 'BNTX', 'BR', 'BRK.B', 'BSX', 'C', 'CAG', 'CARR', 'CB', 'CBOE', 'CDNS', 'CEG', 'CF', 'CHD', 'CHRW', 'CHTR', 'CI', 'CL', 'CLX', 'CMCSA', 'CME', 'CMI', 'CNC', 'COF', 'COP', 'COR', 'CPB', 'CPRT', 'CRH', 'CSCO', 'CSX', 'CTAS', 'CTSH', 'CTVA', 'CVS', 'CVX', 'D', 'DAL', 'DD', 'DELL', 'DG', 'DGX', 'DHI', 'DHR', 'DIS', 'DLR', 'DLTR', 'DOCU', 'DOV', 'DOW', 'DPZ', 'DRI', 'DTE', 'DUK', 'DVN', 'DXCM', 'EA', 'EBAY', 'ECL', 'ED', 'EFX', 'EL', 'EMR', 'ENPH', 'EOG', 'EQIX', 'EQR', 'EQT', 'ERIE', 'ES', 'ESS', 'ETN', 'EW', 'EXC', 'EXPD', 'EXPE', 'F', 'FANG', 'FAST', 'FCX', 'FDX', 'FE', 'FICO', 'FIS', 'FISV', 'FITB', 'FMC', 'FOXA', 'FSLR', 'FTNT', 'GD', 'GDDY', 'GILD', 'GIS', 'GL', 'GPN', 'GRMN', 'GWW', 'HAL', 'HAS', 'HBAN', 'HCA', 'HES', 'HIG', 'HLT', 'HOLX', 'HON', 'HPQ', 'HRL', 'HSY', 'HUM', 'HWM', 'IBM', 'ICE', 'IDXX', 'IEX', 'ILMN', 'INCY', 'IP', 'IPG', 'IQV', 'IR', 'IRM', 'ISRG', 'IT', 'ITW', 'IVZ', 'J', 'JAZZ', 'JBHT', 'JCI', 'JKHY', 'K', 'KDP', 'KEY', 'KEYS', 'KHC', 'KIM', 'KKR', 'KMB', 'KMI', 'KMX', 'KR', 'KVUE', 'LEN', 'LH', 'LKQ', 'LMT', 'LNT', 'LRCX', 'LVS', 'LW', 'LYB', 'LYV', 'MAR', 'MAS', 'MCHP', 'MCK', 'MCO', 'MDB', 'MDT', 'MET', 'MGM', 'MKC', 'MKTX', 'MLM', 'MMC', 'MMM', 'MO', 'MOS', 'MPC', 'MPWR', 'MRNA', 'MSI', 'MTB', 'MTCH', 'MTD', 'NDAQ', 'NDSN', 'NEM', 'NET', 'NOC', 'NRG', 'NSC', 'NTAP', 'NTRS', 'NUE', 'NVR', 'NWSA', 'O', 'ODFL', 'OKE', 'OMC', 'ON', 'ORLY', 'OTIS', 'OXY', 'PAYC', 'PAYX', 'PCAR', 'PCG', 'PEG', 'PFE', 'PFG', 'PH', 'PHM', 'PKG', 'PNC', 'PNR', 'PPG', 'PPL', 'PRU', 'PSA', 'PTC', 'PWR', 'PYPL', 'Q', 'RCL', 'REG', 'REGN', 'RF', 'RHI', 'RMD', 'ROK', 'ROL', 'ROP', 'ROST', 'RSG', 'RTO', 'RVTY', 'SBAC', 'SCHW', 'SHW', 'SJM', 'SLB', 'SMCI', 'SNA', 'SNPS', 'SO', 'SPG', 'SPGI', 'SRE', 'STE', 'STLD', 'STT', 'STX', 'STZ', 'SWK', 'SWKS', 'SYF', 'SYK', 'SYY', 'T', 'TAP', 'TDG', 'TDY', 'TECH', 'TEL', 'TER', 'TFC', 'TGT', 'TJX', 'TMO', 'TMUS', 'TPR', 'TRGP', 'TRMB', 'TROW', 'TRV', 'TSCO', 'TSN', 'TT', 'TTC', 'TTD', 'TYL', 'UAL', 'UDR', 'UHS', 'ULTA', 'UNP', 'UPS', 'URI', 'USB', 'VICI', 'VLO', 'VMC', 'VRSK', 'VRSN', 'VRTX', 'VTR', 'VTRS', 'VZ', 'WAB', 'WAT', 'WBA', 'WBD', 'WDC', 'WELL', 'WFC', 'WM', 'WMB', 'WMT', 'WRB', 'WST', 'WTW', 'WY', 'WYNN', 'XEL', 'XYL', 'YUM', 'ZBH', 'ZBRA', 'ZS']
+DISCOVERY_UNIVERSE=list(dict.fromkeys(UNIVERSE+DISCOVERY_SYMBOLS))
+DEFAULT={"cash":100.0,"start":100.0,"budget":100.0,"per_trade":20.0,"positions":[],"history":[],"watch":DISCOVERY_UNIVERSE,"key":"","auto":False,"last_auto_check":"Noch nie","next_auto_check":"–","scan_index":0,"scan_results":{},"scanned_total":0,"version":"V7","mnq_contracts":1,"event_log":[]}
 def load():
     if not STATE.exists(): STATE.write_text(json.dumps(copy.deepcopy(DEFAULT),indent=2))
     d=json.loads(STATE.read_text())
     for k,v in DEFAULT.items(): d.setdefault(k,copy.deepcopy(v))
     # Neue Scanner-Werte aus Updates auch in bestehende state.json übernehmen.
-    for sym in UNIVERSE:
+    for sym in DISCOVERY_UNIVERSE:
         if sym not in d['watch']: d['watch'].append(sym)
-    d['version']='V6-MNQ'; d['mnq_contracts']=4
+    d['version']='V7'; d['mnq_contracts']=1
     for p in d.get('positions',[]):
         if p.get('symbol')=='MNQ1!': p.setdefault('contracts',4)
     return d
@@ -110,7 +113,7 @@ def market(d):
     key=effective_key(d)
     if not key: return []
     held=[p['symbol'] for p in d.get('positions',[])]
-    universe=d.get('watch') or UNIVERSE
+    universe=d.get('watch') or DISCOVERY_UNIVERSE
     # Basic Twelve Data accounts are easily rate-limited. Keep each cycle at max. 7 requests.
     slots=max(1,7-len(set(held)))
     i=int(d.get('scan_index',0))%len(universe)
@@ -122,7 +125,8 @@ def market(d):
     results=dict(d.get('scan_results',{}))
     for sym in symbols:
         try: results[sym]=quote_symbol(sym,key)
-        except Exception as e: results[sym]={'symbol':sym,'error':str(e)[:120],'seen':time.time()}
+        except Exception as e:
+            if sym not in results or 'price' not in results[sym]: results[sym]={'symbol':sym,'error':str(e)[:120],'seen':time.time()}
     d['scan_index']=i%len(universe); d['scan_results']=results
     d['scanned_total']=len([x for x in results.values() if 'price' in x])
     # Keep recent successful candidates; held positions always stay visible.
@@ -152,7 +156,7 @@ def portfolio(d, quotes):
 
 HTML=r"""<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Trading Radar</title><style>
 body{font-family:system-ui;background:#07111f;color:#eaf1ff;margin:0}header{padding:18px 5%;background:#0c1b2d;position:sticky;top:0}.wrap{max-width:1100px;margin:auto;padding:22px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}.card{background:#102238;border:1px solid #203b5b;border-radius:16px;padding:16px;margin-bottom:14px}.big{font-size:28px;font-weight:800}.green{color:#42df91}.red{color:#ff6677}.yellow{color:#ffd15c}button,input{font:inherit;border-radius:10px;padding:10px;border:1px solid #34506d}button{background:#19b873;color:white;font-weight:700;cursor:pointer}.danger{background:#c53e50}.muted{color:#9db0c7}.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.trade{display:grid;grid-template-columns:1.2fr .8fr .8fr .8fr .8fr;gap:8px;padding:10px 0;border-top:1px solid #233c58}#status{margin-top:10px;font-weight:700}@media(max-width:700px){.trade{grid-template-columns:1fr 1fr}.hideM{display:none}}
-.price-up{color:#22c55e;font-weight:700}.price-down{color:#ef4444;font-weight:700}.price-flat{color:inherit;font-weight:700}</style></head><body><header><b>⚡ Trading Radar V6-MNQ</b> <span class="muted">Paper-Trading · kein Echtgeld</span></header><div class="wrap">
+.price-up{color:#22c55e;font-weight:700}.price-down{color:#ef4444;font-weight:700}.price-flat{color:inherit;font-weight:700}</style></head><body><header><b>⚡ Trading Radar V7</b> <span class="muted">Paper-Trading · kein Echtgeld</span></header><div class="wrap">
 <div class="grid"><div class="card">Virtuelles Depot<div id="value" class="big">–</div><span id="pnl"></span></div><div class="card">Freies Kapital<div id="cash" class="big">–</div></div><div class="card">Offene Trades<div id="count" class="big">–</div></div><div class="card">Automatik<div id="auto" class="big">AUS</div></div></div>
 <div class="card"><h3>Einstellungen</h3><div class="row"><input id="key" type="password" placeholder="Twelve Data API-Key"><button onclick="setKey()">API-Key speichern</button><label>Budget € <input id="budget" type="number" value="100" style="width:75px"></label><label>pro Trade € <input id="per" type="number" value="20" style="width:70px"></label><button onclick="settings()">Speichern</button><button onclick="toggleAuto()">Automatik AN/AUS</button><button class="danger" onclick="resetAll()">Test zurücksetzen</button></div><p class="muted">Die App handelt nur virtuell. Tipp: Hinterlege TWELVE_DATA_API_KEY später einmal bei Render; dann bleibt der Schlüssel bei Updates erhalten. Trades werden zusätzlich in diesem Browser gesichert und nach einem Deploy automatisch wiederhergestellt.</p><div id="status" class="muted">Bereit.</div><p class="muted">Automatik-Zeitfenster: Mo–Fr 14:30–22:00 Uhr (Deutschland), Prüfung höchstens alle 15 Minuten. Auf dem kostenlosen Render-Tarif kann der Dienst bei Inaktivität schlafen; solange diese Seite geöffnet ist, stößt sie die Prüfung regelmäßig an.</p><div class="row"><span>Letzte automatische Prüfung: <b id="lastcheck">–</b></span><span>Nächste Prüfung: <b id="nextcheck">–</b></span></div></div>
 <div class="card"><h3>Virtuelles Kapital verwalten</h3>
@@ -163,7 +167,7 @@ body{font-family:system-ui;background:#07111f;color:#eaf1ff;margin:0}header{padd
 <p class="muted">Startkapital für die Gewinnberechnung anpassen, ohne offene Trades zu schließen:</p>
 <div class="row"><label>Neues Startkapital € <input id="newStart" type="number" min="0" step="0.01" value="100" style="width:115px"></label>
 <button onclick="changeCapital('start')">Startkapital ändern</button></div></div>
-<div class="card"><h3>Markt-Scanner · Top-Chancen</h3><p class="muted">Rotierender Scanner: pro Prüfung wird ein neuer Teil der Beobachtungsliste analysiert, um das API-Limit einzuhalten. Bereits geprüfte Kandidaten bleiben im Ranking. MNQ wird im Paper-Trading mit <b>4 Kontrakten</b> geführt. Frühwarnstufen: DIP → FRÜHSIGNAL → 🚀 AUSBRUCH AUS DEM KELLER.</p><div id="scaninfo" class="muted"></div><div id="radar">API-Key eintragen und „Markt aktualisieren“ drücken.</div><br><button id="refreshBtn" onclick="refreshMarket()">Markt aktualisieren</button></div>
+<div class="card"><h3>Markt-Scanner · Top-Chancen</h3><p class="muted">Rotierender Scanner: pro Prüfung wird ein neuer Teil der Beobachtungsliste analysiert, um das API-Limit einzuhalten. Bereits geprüfte Kandidaten bleiben im Ranking. MNQ wird weiterhin beobachtet. Erweiterte Aktienliste, rotierend und API-schonend; keine vollständige Echtzeit-Marktabdeckung. Frühwarnstufen: DIP → FRÜHSIGNAL → 🚀 AUSBRUCH AUS DEM KELLER.</p><div id="scaninfo" class="muted"></div><div id="radar">API-Key eintragen und „Markt aktualisieren“ drücken.</div><br><button id="refreshBtn" onclick="refreshMarket()">Markt aktualisieren</button></div>
 <div class="card"><h3>Meine virtuellen Trades</h3><p class="muted">Automatische Verkaufsregeln: Gewinnmitnahme ab +7 % · Stop-Loss ab −4 % · Verkauf bei Score unter 45.</p><div id="positions"></div></div>
 <div class="card"><h3>Protokoll</h3><div class="row"><input id="restoreFile" type="file" accept=".json,application/json"><button onclick="importBackup()">Sicherung wiederherstellen</button></div><p class="muted">Wichtig: Erst eine aktuelle Sicherung herunterladen. Wiederherstellen ersetzt Depot, Trades und Protokoll durch die ausgewählte Sicherung.</p><button onclick="exportBackup()">Sicherung herunterladen</button><p class="muted">Bitte Sicherung vor jedem Update herunterladen. Render Free speichert Daten nicht dauerhaft.</p><div id="history" class="muted"></div><hr><div id="events" class="muted"></div></div>
 </div><script>
@@ -294,7 +298,7 @@ def auto_step(d):
     invested=sum(p['cost'] for p in d['positions'])
     for x in CACHE:
         # Wichtig: dieselbe Grenze wie das sichtbare KAUFEN-Signal.
-        if x.get('score',0)>=75 and x.get('risk')!='Hoch' and not any(p['symbol']==x['symbol'] for p in d['positions']):
+        if x.get('symbol')!='MNQ1!' and time.time()-x.get('seen',0)<1800 and x.get('score',0)>=75 and x.get('risk')!='Hoch' and not any(p['symbol']==x['symbol'] for p in d['positions']):
             amt=min(d['per_trade'],d['cash'],max(0,d['budget']-invested))
             if amt>=5:
                 execute_buy(d,x['symbol'],x['price'],amt,'Automatik')
@@ -303,9 +307,9 @@ def auto_step(d):
 def execute_buy(d,sym,price,amt,src='Manuell'):
     amt=min(float(amt),d['cash'])
     if amt<=0:return
-    contracts=4 if sym=='MNQ1!' else None
+    contracts=1 if sym=='MNQ1!' else None
     d['positions'].append({'symbol':sym,'entry':price,'qty':amt/price,'cost':amt,**({'contracts':contracts} if contracts else {})});d['cash']-=amt
-    desc=f'{src}: KAUF {sym} · {amt:.2f} € @ {price:.2f}'+(' · 4 MNQ-Kontrakte (Paper)' if sym=='MNQ1!' else '')
+    desc=f'{src}: KAUF {sym} · {amt:.2f} € @ {price:.2f}'+(' · 1 MNQ-Kontrakt (Paper)' if sym=='MNQ1!' else '')
     d['history'].append({'time':time.strftime('%d.%m.%Y %H:%M'),'text':desc}); log_event(d,desc,'TRADE')
 
 def execute_sell(d,sym,price,src='Manuell'):
