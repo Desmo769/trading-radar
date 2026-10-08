@@ -1,0 +1,16 @@
+Trading Radar V6-MNQ – finaler Update-Stand
+
+- MNQ1! im Scanner
+- MNQ Paper-Trading mit 4 Kontrakten
+- vorhandene Trades/History werden bei Migration nicht gelöscht
+- API-Key wird beim Reset nicht gelöscht; Render-Umgebungsvariable TWELVE_DATA_API_KEY wird weiterhin bevorzugt
+- Browser-Sicherung erweitert
+- Protokoll für Trades, Scans und Fehler
+- DIP -> FRÜHSIGNAL -> 🚀 AUSBRUCH AUS DEM KELLER
+- offene Trades zeigen Score, letzte Prüfung, HALTEN/VERKAUFEN und Grund
+- Verkaufsregeln: +7 %, -4 %, Score <45
+- Scanner priorisiert offene Positionen und zeigt alle offenen Trades unabhängig vom Top-Ranking
+
+Wichtig: Kein API-Key und keine state.json befinden sich in dieser ZIP.
+
+- Aktuell-Kurs bei offenen Trades: grün über Einstieg, rot unter Einstieg, neutral bei Gleichstand
