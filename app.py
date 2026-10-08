@@ -165,7 +165,7 @@ body{font-family:system-ui;background:#07111f;color:#eaf1ff;margin:0}header{padd
 <button onclick="changeCapital('start')">Startkapital ändern</button></div></div>
 <div class="card"><h3>Markt-Scanner · Top-Chancen</h3><p class="muted">Rotierender Scanner: pro Prüfung wird ein neuer Teil der Beobachtungsliste analysiert, um das API-Limit einzuhalten. Bereits geprüfte Kandidaten bleiben im Ranking. MNQ wird im Paper-Trading mit <b>4 Kontrakten</b> geführt. Frühwarnstufen: DIP → FRÜHSIGNAL → 🚀 AUSBRUCH AUS DEM KELLER.</p><div id="scaninfo" class="muted"></div><div id="radar">API-Key eintragen und „Markt aktualisieren“ drücken.</div><br><button id="refreshBtn" onclick="refreshMarket()">Markt aktualisieren</button></div>
 <div class="card"><h3>Meine virtuellen Trades</h3><p class="muted">Automatische Verkaufsregeln: Gewinnmitnahme ab +7 % · Stop-Loss ab −4 % · Verkauf bei Score unter 45.</p><div id="positions"></div></div>
-<div class="card"><h3>Protokoll</h3><button onclick="exportBackup()">Sicherung herunterladen</button><p class="muted">Bitte Sicherung vor jedem Update herunterladen. Render Free speichert Daten nicht dauerhaft.</p><div id="history" class="muted"></div><hr><div id="events" class="muted"></div></div>
+<div class="card"><h3>Protokoll</h3><div class="row"><input id="restoreFile" type="file" accept=".json,application/json"><button onclick="importBackup()">Sicherung wiederherstellen</button></div><p class="muted">Wichtig: Erst eine aktuelle Sicherung herunterladen. Wiederherstellen ersetzt Depot, Trades und Protokoll durch die ausgewählte Sicherung.</p><button onclick="exportBackup()">Sicherung herunterladen</button><p class="muted">Bitte Sicherung vor jedem Update herunterladen. Render Free speichert Daten nicht dauerhaft.</p><div id="history" class="muted"></div><hr><div id="events" class="muted"></div></div>
 </div><script>
 let S={};
 async function api(path,opt){
@@ -187,6 +187,16 @@ function render(s){
  document.getElementById('history').innerHTML=(s.history||[]).slice().reverse().slice(0,40).map(x=>`<div>${x.time} · ${x.text}</div>`).join('')||'Noch keine Trades.'; document.getElementById('events').innerHTML=(s.event_log||[]).slice().reverse().slice(0,40).map(x=>`<div>${x.time} · ${x.kind} · ${x.text}</div>`).join('')||'Noch keine Systemereignisse.';
 }
 function exportBackup(){const a=document.createElement('a');const data={...S,key:undefined,market:undefined,position_rows:undefined};const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});a.href=URL.createObjectURL(blob);a.download='trading-radar-sicherung-'+new Date().toISOString().slice(0,10)+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
+async function importBackup(){
+ const f=document.getElementById('restoreFile').files[0];
+ if(!f){msg('Bitte zuerst die Wiederherstellungsdatei auswählen.',true);return}
+ if(!confirm('Depot, Trades und Protokoll durch diese Sicherung ersetzen? Vorher bitte die aktuelle Sicherung herunterladen.'))return;
+ try{
+   const b=JSON.parse(await f.text());
+   S=await api('/api/import-backup',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({backup:b})});
+   render(S);msg('Sicherung wiederhergestellt. Bitte Positionen und Kapital prüfen.');
+ }catch(e){msg('Wiederherstellung fehlgeschlagen: '+e.message,true)}
+}
 async function refreshMarket(){
  let b=document.getElementById('refreshBtn'); b.disabled=true; b.textContent='Aktualisiere …'; msg('Marktdaten werden geladen …');
  try{S=await api('/api/refresh',{method:'POST'});render(S);msg(S.auto?'Markt aktualisiert – Automatik wurde geprüft.':'Markt aktualisiert.')}
@@ -363,6 +373,26 @@ class H(BaseHTTPRequestHandler):
      auto_step(d);d['_last_auto_ts']=time.time();d['last_auto_check']=berlin_now().strftime('%d.%m.%Y %H:%M');d['next_auto_check']=next_check_text(d)
    elif self.path=='/api/auto-check':
     save(d);d=run_auto_check(False)
+   elif self.path=='/api/import-backup':
+    backup=self.body().get('backup',{})
+    if not isinstance(backup,dict): raise ValueError('Ungültige Sicherung.')
+    for k in ('cash','start','budget','per_trade','positions','history'):
+     if k not in backup: raise ValueError('Sicherung unvollständig: '+k)
+    if not isinstance(backup['positions'],list) or not isinstance(backup['history'],list): raise ValueError('Trades oder Protokoll ungültig.')
+    if len(backup['positions'])>1000 or len(backup['history'])>10000: raise ValueError('Sicherung zu groß.')
+    for k in ('cash','start','budget','per_trade'):
+     v=float(backup[k])
+     if not math.isfinite(v) or v<0 or v>100000000: raise ValueError('Ungültiges Kapital.')
+    for pos in backup['positions']:
+     if not isinstance(pos,dict) or not all(k in pos for k in ('symbol','entry','qty','cost')): raise ValueError('Ungültiger Trade.')
+     if not isinstance(pos['symbol'],str) or len(pos['symbol'])>40: raise ValueError('Ungültiges Symbol.')
+     for k in ('entry','qty','cost'):
+      v=float(pos[k])
+      if not math.isfinite(v) or v<=0 or v>100000000: raise ValueError('Ungültige Position.')
+    for k in ('cash','start','budget','per_trade','positions','history','event_log','scan_results','scan_index'):
+     if k in backup: d[k]=copy.deepcopy(backup[k])
+    d['history'].append({'time':berlin_now().strftime('%d.%m.%Y %H:%M'),'text':'Depot aus ausgewählter Sicherungsdatei wiederhergestellt.'})
+    log_event(d,'Depot aus Sicherungsdatei wiederhergestellt.','SYSTEM')
    elif self.path=='/api/restore':
     b=self.body(); backup=b.get('backup',{})
     for k in ('cash','start','budget','per_trade','positions','history','auto','event_log','scan_results','scan_index'):
