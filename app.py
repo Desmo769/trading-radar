@@ -155,6 +155,14 @@ body{font-family:system-ui;background:#07111f;color:#eaf1ff;margin:0}header{padd
 .price-up{color:#22c55e;font-weight:700}.price-down{color:#ef4444;font-weight:700}.price-flat{color:inherit;font-weight:700}</style></head><body><header><b>⚡ Trading Radar V6-MNQ</b> <span class="muted">Paper-Trading · kein Echtgeld</span></header><div class="wrap">
 <div class="grid"><div class="card">Virtuelles Depot<div id="value" class="big">–</div><span id="pnl"></span></div><div class="card">Freies Kapital<div id="cash" class="big">–</div></div><div class="card">Offene Trades<div id="count" class="big">–</div></div><div class="card">Automatik<div id="auto" class="big">AUS</div></div></div>
 <div class="card"><h3>Einstellungen</h3><div class="row"><input id="key" type="password" placeholder="Twelve Data API-Key"><button onclick="setKey()">API-Key speichern</button><label>Budget € <input id="budget" type="number" value="100" style="width:75px"></label><label>pro Trade € <input id="per" type="number" value="20" style="width:70px"></label><button onclick="settings()">Speichern</button><button onclick="toggleAuto()">Automatik AN/AUS</button><button class="danger" onclick="resetAll()">Test zurücksetzen</button></div><p class="muted">Die App handelt nur virtuell. Tipp: Hinterlege TWELVE_DATA_API_KEY später einmal bei Render; dann bleibt der Schlüssel bei Updates erhalten. Trades werden zusätzlich in diesem Browser gesichert und nach einem Deploy automatisch wiederhergestellt.</p><div id="status" class="muted">Bereit.</div><p class="muted">Automatik-Zeitfenster: Mo–Fr 14:30–22:00 Uhr (Deutschland), Prüfung höchstens alle 15 Minuten. Auf dem kostenlosen Render-Tarif kann der Dienst bei Inaktivität schlafen; solange diese Seite geöffnet ist, stößt sie die Prüfung regelmäßig an.</p><div class="row"><span>Letzte automatische Prüfung: <b id="lastcheck">–</b></span><span>Nächste Prüfung: <b id="nextcheck">–</b></span></div></div>
+<div class="card"><h3>Virtuelles Kapital verwalten</h3>
+<p class="muted">Ein- und Auszahlungen ändern nur dein freies virtuelles Kapital. Offene Trades bleiben bestehen. Das Handelsbudget wird separat eingestellt.</p>
+<div class="row"><label>Betrag € <input id="capitalAmount" type="number" min="0.01" step="0.01" value="100" style="width:115px"></label>
+<button onclick="changeCapital('deposit')">+ Einzahlen</button>
+<button onclick="changeCapital('withdraw')">− Entnehmen</button></div>
+<p class="muted">Startkapital für die Gewinnberechnung anpassen, ohne offene Trades zu schließen:</p>
+<div class="row"><label>Neues Startkapital € <input id="newStart" type="number" min="0" step="0.01" value="100" style="width:115px"></label>
+<button onclick="changeCapital('start')">Startkapital ändern</button></div></div>
 <div class="card"><h3>Markt-Scanner · Top-Chancen</h3><p class="muted">Rotierender Scanner: pro Prüfung wird ein neuer Teil der Beobachtungsliste analysiert, um das API-Limit einzuhalten. Bereits geprüfte Kandidaten bleiben im Ranking. MNQ wird im Paper-Trading mit <b>4 Kontrakten</b> geführt. Frühwarnstufen: DIP → FRÜHSIGNAL → 🚀 AUSBRUCH AUS DEM KELLER.</p><div id="scaninfo" class="muted"></div><div id="radar">API-Key eintragen und „Markt aktualisieren“ drücken.</div><br><button id="refreshBtn" onclick="refreshMarket()">Markt aktualisieren</button></div>
 <div class="card"><h3>Meine virtuellen Trades</h3><p class="muted">Automatische Verkaufsregeln: Gewinnmitnahme ab +7 % · Stop-Loss ab −4 % · Verkauf bei Score unter 45.</p><div id="positions"></div></div>
 <div class="card"><h3>Protokoll</h3><button onclick="exportBackup()">Sicherung herunterladen</button><p class="muted">Bitte Sicherung vor jedem Update herunterladen. Render Free speichert Daten nicht dauerhaft.</p><div id="history" class="muted"></div><hr><div id="events" class="muted"></div></div>
@@ -172,7 +180,7 @@ function backupState(s){try{localStorage.setItem('tradingRadarBackupV6',JSON.str
 async function load(){try{S=await api('/api/state');let raw=localStorage.getItem('tradingRadarBackupV6');if(raw&&S.positions.length===0&&S.history.length===0){let b=JSON.parse(raw);if((b.positions&&b.positions.length)||(b.history&&b.history.length)){S=await api('/api/restore',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({backup:b})})}}render(S);backupState(S)}catch(e){msg('Fehler: '+e.message,true)}}
 function render(s){
  backupState(s);
- value.textContent=euro(s.value);let pp=s.value-s.start;pnl.textContent=(pp>=0?'+':'')+euro(pp)+' seit Start';pnl.className=pp>=0?'green':'red';cash.textContent=euro(s.cash);count.textContent=s.positions.length;auto.textContent=s.auto?'AN':'AUS';auto.className='big '+(s.auto?'green':'red');budget.value=s.budget;per.value=s.per_trade;lastcheck.textContent=s.last_auto_check||'Noch nie';nextcheck.textContent=s.next_auto_check||'–';
+ value.textContent=euro(s.value);let pp=s.value-s.start;pnl.textContent=(pp>=0?'+':'')+euro(pp)+' seit Start';pnl.className=pp>=0?'green':'red';cash.textContent=euro(s.cash);count.textContent=s.positions.length;auto.textContent=s.auto?'AN':'AUS';auto.className='big '+(s.auto?'green':'red');budget.value=s.budget;per.value=s.per_trade;document.getElementById('newStart').value=s.start;lastcheck.textContent=s.last_auto_check||'Noch nie';nextcheck.textContent=s.next_auto_check||'–';
  scaninfo.textContent='Analysierte Werte im aktuellen Scan-Speicher: '+(s.scanned_total||0)+' / '+(s.watch?.length||0)+' · API-Key: '+(s.api_key_source||'–');
  radar.innerHTML=s.market?.length?s.market.map(x=>x.error?`<div class=trade><b>${x.symbol}</b><span class=red>Fehler</span><span>${x.error}</span></div>`:`<div class=trade><b>${x.symbol}</b><span>${euro(x.price)}</span><span class=${x.score>=75?'green':x.score>=55?'yellow':'red'}>${x.score}/100</span><span>${x.risk}</span><span><b>${x.signal}</b>${x.stage?`<br><small>${x.stage}</small>`:''} ${x.signal==='KAUFEN'?`<button onclick="buy('${x.symbol}')">virtuell kaufen</button>`:''}</span></div>`).join(''):'Noch keine Marktdaten.';
  positions.innerHTML=s.position_rows.length?s.position_rows.map(x=>`<div class=trade><b>${x.symbol}${x.contracts?` · ${x.contracts} Kontrakte`:''}</b><span>${euro(x.value)}</span><span class=${x.pnl>=0?'green':'red'}>${x.pnl>=0?'+':''}${euro(x.pnl)} (${x.pnlpct.toFixed(2)}%)</span><span>Einstieg ${euro(x.entry)} → aktuell <b class=${x.price>x.entry?'green':x.price<x.entry?'red':''}>${euro(x.price)}</b></span><span><b class=${x.decision==='VERKAUFEN'?'red':'green'}>${x.decision}</b><br><small>${x.reason}</small><br><small>Score ${x.score??'–'}/100 · geprüft ${x.checked||'–'}</small><br><button class=danger onclick="sell('${x.symbol}')">verkaufen</button></span></div>`).join(''):'Keine offenen virtuellen Trades.';
@@ -189,6 +197,16 @@ async function buy(s){try{render(await api('/api/buy',{method:'POST',headers:{'C
 async function sell(s){try{render(await api('/api/sell',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({symbol:s})}));msg(s+' virtuell verkauft.')}catch(e){msg('Fehler: '+e.message,true)}}
 async function setKey(){try{render(await api('/api/key',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({key:key.value})}));key.value='';msg('API-Key gespeichert.')}catch(e){msg('Fehler: '+e.message,true)}}
 async function settings(){try{render(await api('/api/settings',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({budget:+budget.value,per_trade:+per.value})}));msg('Budget-Einstellungen gespeichert.')}catch(e){msg('Fehler: '+e.message,true)}}
+async function changeCapital(action){
+  const amount=Number(action==='start'?document.getElementById('newStart').value:document.getElementById('capitalAmount').value);
+  if(!Number.isFinite(amount)||(action==='start'?amount<0:amount<=0)){msg('Bitte einen gültigen Betrag eingeben.',true);return}
+  const label=action==='deposit'?'einzahlen':action==='withdraw'?'entnehmen':'als neues Startkapital setzen';
+  if(!confirm(euro(amount)+' virtuell '+label+'?'))return;
+  try{
+    S=await api('/api/capital',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action,amount})});
+    render(S);msg('Kapitaländerung gespeichert.');
+  }catch(e){msg('Fehler: '+e.message,true)}
+}
 async function toggleAuto(){try{S=await api('/api/auto',{method:'POST'});render(S);msg(S.auto?'Automatik AN. Sie prüft im Zeitfenster höchstens alle 15 Minuten.':'Automatik AUS.')}catch(e){msg('Fehler: '+e.message,true)}}
 async function resetAll(){if(confirm('Paper-Depot wirklich auf 100 € zurücksetzen?'))try{render(await api('/api/reset',{method:'POST'}));msg('Paper-Test zurückgesetzt.')}catch(e){msg('Fehler: '+e.message,true)}}
 async function autoTick(){try{S=await api('/api/auto-check',{method:'POST'});render(S)}catch(e){console.log(e)}}
@@ -315,6 +333,24 @@ class H(BaseHTTPRequestHandler):
     d['key']=newkey
    elif self.path=='/api/settings':
     b=self.body();d['budget']=max(0,float(b['budget']));d['per_trade']=max(1,float(b['per_trade']))
+   elif self.path=='/api/capital':
+     b=self.body();action=b.get('action');amount=float(b.get('amount',0))
+     if not math.isfinite(amount) or amount<0 or amount>100000000: raise ValueError('Ungültiger Betrag.')
+     if action in ('deposit','withdraw') and amount<0.01: raise ValueError('Betrag muss mindestens 0,01 € sein.')
+     if action=='deposit':
+      d['cash']=round(d['cash']+amount,2);d['start']=round(d['start']+amount,2)
+      desc=f'Virtuelle Einzahlung +{amount:.2f} €'
+     elif action=='withdraw':
+      if amount>d['cash']+0.000001: raise ValueError('Nicht genügend freies Kapital. Offene Trades werden nicht verkauft.')
+      d['cash']=round(d['cash']-amount,2);d['start']=round(d['start']-amount,2)
+      desc=f'Virtuelle Entnahme -{amount:.2f} €'
+     elif action=='start':
+      # Startkapital ist die Bezugsgröße der Gewinnanzeige, kein zusätzlicher Geldfluss.
+      d['start']=round(amount,2)
+      desc=f'Startkapital-Bezugswert auf {amount:.2f} € gesetzt (kein Geldfluss)'
+     else: raise ValueError('Unbekannte Kapitalaktion.')
+     d['history'].append({'time':berlin_now().strftime('%d.%m.%Y %H:%M'),'text':desc})
+     log_event(d,desc,'KAPITAL')
    elif self.path=='/api/auto':
     d['auto']=not d['auto'];d['next_auto_check']=next_check_text(d)
    elif self.path=='/api/reset':
