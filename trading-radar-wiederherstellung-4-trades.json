@@ -1,0 +1,398 @@
+{
+  "cash": 120,
+  "start": 200,
+  "budget": 200,
+  "per_trade": 20,
+  "positions": [
+    {
+      "symbol": "AVGO",
+      "entry": 376.26999,
+      "qty": 0.05315332216635188,
+      "cost": 20
+    },
+    {
+      "symbol": "TXN",
+      "entry": 288.95001,
+      "qty": 0.06921612496223828,
+      "cost": 20
+    },
+    {
+      "symbol": "LRCX",
+      "entry": 329.32999,
+      "qty": 0.060729361452930536,
+      "cost": 20
+    },
+    {
+      "symbol": "LRCX",
+      "entry": 329.32999,
+      "qty": 0.060729361452930536,
+      "cost": 20
+    }
+  ],
+  "history": [
+    {
+      "time": "08.10.2026 07:26",
+      "text": "Automatik: KAUF AVGO · 20.00 € @ 376.27"
+    },
+    {
+      "time": "08.10.2026 07:58",
+      "text": "Browser-Sicherung nach Update wiederhergestellt."
+    },
+    {
+      "time": "08.10.2026 08:44",
+      "text": "Automatik: KAUF TXN · 20.00 € @ 288.95"
+    },
+    {
+      "time": "08.10.2026 08:44",
+      "text": "Automatik: KAUF LRCX · 20.00 € @ 329.33"
+    },
+    {
+      "time": "08.10.2026 08:57",
+      "text": "Manuell: KAUF LRCX · 20.00 € @ 329.33"
+    },
+    {
+      "time": "08.10.2026 11:37",
+      "text": "Virtuelle Einzahlung +100.00 €"
+    }
+  ],
+  "watch": [
+    "AAPL",
+    "MSFT",
+    "NVDA",
+    "AMZN",
+    "META",
+    "GOOGL",
+    "AVGO",
+    "TSLA",
+    "AMD",
+    "NFLX",
+    "ORCL",
+    "CRM",
+    "ADBE",
+    "INTC",
+    "QCOM",
+    "TXN",
+    "MU",
+    "AMAT",
+    "LRCX",
+    "KLAC",
+    "PANW",
+    "CRWD",
+    "NOW",
+    "PLTR",
+    "UBER",
+    "ABNB",
+    "BKNG",
+    "JPM",
+    "BAC",
+    "GS",
+    "MS",
+    "V",
+    "MA",
+    "AXP",
+    "WMT",
+    "COST",
+    "HD",
+    "LOW",
+    "NKE",
+    "MCD",
+    "SBUX",
+    "KO",
+    "PEP",
+    "PG",
+    "JNJ",
+    "LLY",
+    "MRK",
+    "ABBV",
+    "UNH",
+    "XOM",
+    "CVX",
+    "CAT",
+    "GE",
+    "BA",
+    "RTX",
+    "DE",
+    "NEE",
+    "LIN",
+    "BTC/USD",
+    "ETH/USD",
+    "MNQ1!"
+  ],
+  "auto": true,
+  "last_auto_check": "08.10.2026 11:34",
+  "next_auto_check": "Im nächsten Handelszeitfenster",
+  "scan_index": 7,
+  "scan_results": {
+    "AVGO": {
+      "symbol": "AVGO",
+      "price": 376.26999,
+      "score": 75,
+      "risk": "Niedrig",
+      "signal": "KAUFEN",
+      "mom": 0.68,
+      "vol": 0.32,
+      "seen": 1791452040.137039,
+      "stage": "DIP",
+      "recovery": 0.89
+    },
+    "AAPL": {
+      "symbol": "AAPL",
+      "price": 336.62,
+      "score": 50,
+      "risk": "Niedrig",
+      "signal": "MEIDEN",
+      "mom": 0.05,
+      "vol": 0.15,
+      "seen": 1791452039.3989215,
+      "stage": "DIP",
+      "recovery": 0.43
+    },
+    "MSFT": {
+      "symbol": "MSFT",
+      "price": 529.53998,
+      "score": 49,
+      "risk": "Niedrig",
+      "signal": "MEIDEN",
+      "mom": -0.27,
+      "vol": 0.17,
+      "seen": 1791452039.521596,
+      "stage": "DIP",
+      "recovery": 0.33
+    },
+    "NVDA": {
+      "symbol": "NVDA",
+      "price": 237.36,
+      "score": 74,
+      "risk": "Niedrig",
+      "signal": "BEOBACHTEN",
+      "mom": 0.2,
+      "vol": 0.17,
+      "seen": 1791452039.6384764,
+      "stage": "DIP",
+      "recovery": 0.24
+    },
+    "AMZN": {
+      "symbol": "AMZN",
+      "price": 259.88,
+      "score": 74,
+      "risk": "Niedrig",
+      "signal": "BEOBACHTEN",
+      "mom": 0.19,
+      "vol": 0.28,
+      "seen": 1791452039.7547581,
+      "stage": "DIP",
+      "recovery": 0.49
+    },
+    "META": {
+      "symbol": "META",
+      "price": 721.15002,
+      "score": 24,
+      "risk": "Niedrig",
+      "signal": "MEIDEN",
+      "mom": -0.59,
+      "vol": 0.37,
+      "seen": 1791452039.897254,
+      "stage": "",
+      "recovery": 0
+    },
+    "GOOGL": {
+      "symbol": "GOOGL",
+      "price": 350.37,
+      "score": 74,
+      "risk": "Niedrig",
+      "signal": "BEOBACHTEN",
+      "mom": 0.48,
+      "vol": 0.28,
+      "seen": 1791452040.021898,
+      "stage": "",
+      "recovery": 1.42
+    },
+    "TSLA": {
+      "symbol": "TSLA",
+      "price": 377.62,
+      "score": 74,
+      "risk": "Niedrig",
+      "signal": "BEOBACHTEN",
+      "mom": 0.24,
+      "vol": 0.2,
+      "seen": 1791447955.250494,
+      "stage": "DIP",
+      "recovery": 0.52
+    },
+    "AMD": {
+      "symbol": "AMD",
+      "price": 645.83002,
+      "score": 49,
+      "risk": "Niedrig",
+      "signal": "MEIDEN",
+      "mom": 0.03,
+      "vol": 0.36,
+      "seen": 1791447955.3625453,
+      "stage": "DIP",
+      "recovery": 0.83
+    },
+    "NFLX": {
+      "symbol": "NFLX",
+      "price": 69.69,
+      "score": 74,
+      "risk": "Niedrig",
+      "signal": "BEOBACHTEN",
+      "mom": 0.26,
+      "vol": 0.21,
+      "seen": 1791447955.4863815,
+      "stage": "",
+      "recovery": 0.62
+    },
+    "ORCL": {
+      "symbol": "ORCL",
+      "price": 143.56,
+      "score": 24,
+      "risk": "Niedrig",
+      "signal": "MEIDEN",
+      "mom": -0.45,
+      "vol": 0.34,
+      "seen": 1791447955.6008134,
+      "stage": "",
+      "recovery": 0
+    },
+    "CRM": {
+      "symbol": "CRM",
+      "price": 224.545,
+      "score": 48,
+      "risk": "Niedrig",
+      "signal": "MEIDEN",
+      "mom": -0.78,
+      "vol": 0.27,
+      "seen": 1791447955.7178628,
+      "stage": "",
+      "recovery": 0.01
+    },
+    "ADBE": {
+      "symbol": "ADBE",
+      "price": 232.7,
+      "score": 48,
+      "risk": "Niedrig",
+      "signal": "MEIDEN",
+      "mom": -0.08,
+      "vol": 0.75,
+      "seen": 1791447955.8365922,
+      "stage": "",
+      "recovery": 0.47
+    },
+    "INTC": {
+      "symbol": "INTC",
+      "price": 113.059998,
+      "score": 50,
+      "risk": "Niedrig",
+      "signal": "MEIDEN",
+      "mom": 0.32,
+      "vol": 0.39,
+      "seen": 1791449069.4134505,
+      "stage": "",
+      "recovery": 0.6
+    },
+    "QCOM": {
+      "symbol": "QCOM",
+      "price": 177.12,
+      "score": 74,
+      "risk": "Niedrig",
+      "signal": "BEOBACHTEN",
+      "mom": 0.45,
+      "vol": 0.42,
+      "seen": 1791449069.5587046,
+      "stage": "",
+      "recovery": 0.69
+    },
+    "TXN": {
+      "symbol": "TXN",
+      "price": 288.95001,
+      "score": 75,
+      "risk": "Niedrig",
+      "signal": "KAUFEN",
+      "mom": 1.18,
+      "vol": 0.61,
+      "seen": 1791449069.6836877,
+      "stage": "",
+      "recovery": 1.35
+    },
+    "MU": {
+      "symbol": "MU",
+      "price": 1087.83496,
+      "score": 65,
+      "risk": "Niedrig",
+      "signal": "BEOBACHTEN",
+      "mom": 0.08,
+      "vol": 0.56,
+      "seen": 1791449069.8286505,
+      "stage": "FRÜHSIGNAL",
+      "recovery": 1.03
+    },
+    "AMAT": {
+      "symbol": "AMAT",
+      "price": 520.65002,
+      "score": 50,
+      "risk": "Niedrig",
+      "signal": "MEIDEN",
+      "mom": 0.35,
+      "vol": 0.47,
+      "seen": 1791449069.9401984,
+      "stage": "DIP",
+      "recovery": 0.47
+    },
+    "LRCX": {
+      "symbol": "LRCX",
+      "price": 329.32999,
+      "score": 75,
+      "risk": "Niedrig",
+      "signal": "KAUFEN",
+      "mom": 0.9,
+      "vol": 0.59,
+      "seen": 1791449070.0636065,
+      "stage": "FRÜHSIGNAL",
+      "recovery": 1.09
+    }
+  },
+  "scanned_total": 19,
+  "version": "V6-MNQ",
+  "mnq_contracts": 4,
+  "event_log": [
+    {
+      "time": "08.10.2026 10:02:56",
+      "kind": "SCAN",
+      "text": "Markt manuell aktualisiert."
+    },
+    {
+      "time": "08.10.2026 10:25:55",
+      "kind": "SCAN",
+      "text": "Markt manuell aktualisiert."
+    },
+    {
+      "time": "08.10.2026 10:44:30",
+      "kind": "SCAN",
+      "text": "Markt manuell aktualisiert."
+    },
+    {
+      "time": "08.10.2026 10:44:30",
+      "kind": "TRADE",
+      "text": "Automatik: KAUF TXN · 20.00 € @ 288.95"
+    },
+    {
+      "time": "08.10.2026 10:44:30",
+      "kind": "TRADE",
+      "text": "Automatik: KAUF LRCX · 20.00 € @ 329.33"
+    },
+    {
+      "time": "08.10.2026 10:57:35",
+      "kind": "TRADE",
+      "text": "Manuell: KAUF LRCX · 20.00 € @ 329.33"
+    },
+    {
+      "time": "08.10.2026 11:37:14",
+      "kind": "KAPITAL",
+      "text": "Virtuelle Einzahlung +100.00 €"
+    }
+  ],
+  "_last_auto_ts": 1791452040.1371703,
+  "value": 200,
+  "api_key_source": "App"
+}
