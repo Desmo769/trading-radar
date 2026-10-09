@@ -222,7 +222,17 @@ nav.tabs{display:flex;gap:9px;overflow-x:auto;margin:18px 0 14px;padding-bottom:
 </div><script>
 let S={}; let SEARCH=null; let activeTab='depot';
 function showTab(t){activeTab=t;document.querySelectorAll('[data-tab]').forEach(e=>e.classList.toggle('visible',e.dataset.tab===t));document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.getAttribute('onclick')==="showTab('"+t+"')"));}
-function countdownTick(){const el=document.getElementById('countdown');if(!el)return;if(!S.auto){el.textContent='AUS';return}if(!S._last_auto_ts){el.textContent='00:00';return}const remain=Math.max(0,Math.ceil((S._last_auto_ts+900)*1000-Date.now())/1000);const secs=Math.ceil(remain);el.textContent=String(Math.floor(secs/60)).padStart(2,'0')+':'+String(secs%60).padStart(2,'0');}
+let autoCheckRunning=false, lastCheckAttempt=0;
+function countdownTick(){
+ const el=document.getElementById('countdown');if(!el)return;
+ if(!S.auto){el.textContent='AUS';return}
+ if(autoCheckRunning){el.textContent='Prüfung läuft …';return}
+ if(S.next_auto_check==='Im nächsten Handelszeitfenster'){el.textContent='Außerhalb Handelszeit';return}
+ if(!S._last_auto_ts){el.textContent='Prüfung bereit';return}
+ const seconds=Math.max(0,Math.ceil(S._last_auto_ts+900-Date.now()/1000));
+ if(seconds===0){el.textContent='Prüfung fällig';return}
+ el.textContent=String(Math.floor(seconds/60)).padStart(2,'0')+':'+String(seconds%60).padStart(2,'0');
+}
 setInterval(countdownTick,1000);
 async function api(path,opt){
   let r=await fetch(path,opt);
@@ -317,8 +327,29 @@ async function changeCapital(action){
 }
 async function toggleAuto(){try{S=await api('/api/auto',{method:'POST'});render(S);msg(S.auto?'Automatik AN. Sie prüft im Zeitfenster höchstens alle 15 Minuten.':'Automatik AUS.')}catch(e){msg('Fehler: '+e.message,true)}}
 async function resetAll(){if(confirm('Paper-Depot wirklich auf 100 € zurücksetzen?'))try{render(await api('/api/reset',{method:'POST'}));msg('Paper-Test zurückgesetzt.')}catch(e){msg('Fehler: '+e.message,true)}}
-async function autoTick(){try{S=await api('/api/auto-check',{method:'POST'});render(S)}catch(e){console.log(e)}}
-load();setInterval(autoTick,60000);
+async function autoTick(){
+ if(autoCheckRunning || !S.auto)return;
+ const now=Date.now();
+ if(now-lastCheckAttempt<15000)return;
+ // Ask the server for the authoritative schedule. It enforces the trading window
+ // and 15-minute interval, so tab changes cannot create duplicate orders.
+ lastCheckAttempt=now;autoCheckRunning=true;countdownTick();
+ try{
+   const next=await api('/api/auto-check',{method:'POST'});
+   S=next;render(S);
+   if(S._last_auto_ts && Date.now()/1000-S._last_auto_ts<30)msg('Automatische Prüfung abgeschlossen.');
+   else if(!S._last_auto_ts)msg('Prüfung noch nicht durchgeführt: Handelszeitfenster oder API-Schlüssel prüfen.');
+ }catch(e){msg('Automatische Prüfung fehlgeschlagen: '+e.message,true)}
+ finally{autoCheckRunning=false;countdownTick()}
+}
+load();
+setInterval(()=>{
+ if(!S.auto||autoCheckRunning)return;
+ const due=!S._last_auto_ts || Date.now()/1000>=Number(S._last_auto_ts)+900;
+ if(due)autoTick();
+},5000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden){countdownTick();if(S.auto)autoTick()}});
+
 </script></body></html>"""
 
 CACHE=[]
