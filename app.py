@@ -12,26 +12,56 @@ UNIVERSE=['AAPL','MSFT','NVDA','AMZN','META','GOOGL','AVGO','TSLA','AMD','NFLX',
 DISCOVERY_SYMBOLS=['ADP', 'ABT', 'ACN', 'AEP', 'AFL', 'AIG', 'ALL', 'AME', 'AMP', 'AMT', 'ANET', 'AON', 'APD', 'APO', 'APP', 'APTV', 'ARE', 'ARM', 'ASML', 'ATO', 'AVB', 'AXP', 'AZN', 'BABA', 'BAX', 'BBY', 'BDX', 'BEN', 'BIIB', 'BLK', 'BMY', 'BNTX', 'BR', 'BRK.B', 'BSX', 'C', 'CAG', 'CARR', 'CB', 'CBOE', 'CDNS', 'CEG', 'CF', 'CHD', 'CHRW', 'CHTR', 'CI', 'CL', 'CLX', 'CMCSA', 'CME', 'CMI', 'CNC', 'COF', 'COP', 'COR', 'CPB', 'CPRT', 'CRH', 'CSCO', 'CSX', 'CTAS', 'CTSH', 'CTVA', 'CVS', 'CVX', 'D', 'DAL', 'DD', 'DELL', 'DG', 'DGX', 'DHI', 'DHR', 'DIS', 'DLR', 'DLTR', 'DOCU', 'DOV', 'DOW', 'DPZ', 'DRI', 'DTE', 'DUK', 'DVN', 'DXCM', 'EA', 'EBAY', 'ECL', 'ED', 'EFX', 'EL', 'EMR', 'ENPH', 'EOG', 'EQIX', 'EQR', 'EQT', 'ERIE', 'ES', 'ESS', 'ETN', 'EW', 'EXC', 'EXPD', 'EXPE', 'F', 'FANG', 'FAST', 'FCX', 'FDX', 'FE', 'FICO', 'FIS', 'FISV', 'FITB', 'FMC', 'FOXA', 'FSLR', 'FTNT', 'GD', 'GDDY', 'GILD', 'GIS', 'GL', 'GPN', 'GRMN', 'GWW', 'HAL', 'HAS', 'HBAN', 'HCA', 'HES', 'HIG', 'HLT', 'HOLX', 'HON', 'HPQ', 'HRL', 'HSY', 'HUM', 'HWM', 'IBM', 'ICE', 'IDXX', 'IEX', 'ILMN', 'INCY', 'IP', 'IPG', 'IQV', 'IR', 'IRM', 'ISRG', 'IT', 'ITW', 'IVZ', 'J', 'JAZZ', 'JBHT', 'JCI', 'JKHY', 'K', 'KDP', 'KEY', 'KEYS', 'KHC', 'KIM', 'KKR', 'KMB', 'KMI', 'KMX', 'KR', 'KVUE', 'LEN', 'LH', 'LKQ', 'LMT', 'LNT', 'LRCX', 'LVS', 'LW', 'LYB', 'LYV', 'MAR', 'MAS', 'MCHP', 'MCK', 'MCO', 'MDB', 'MDT', 'MET', 'MGM', 'MKC', 'MKTX', 'MLM', 'MMC', 'MMM', 'MO', 'MOS', 'MPC', 'MPWR', 'MRNA', 'MSI', 'MTB', 'MTCH', 'MTD', 'NDAQ', 'NDSN', 'NEM', 'NET', 'NOC', 'NRG', 'NSC', 'NTAP', 'NTRS', 'NUE', 'NVR', 'NWSA', 'O', 'ODFL', 'OKE', 'OMC', 'ON', 'ORLY', 'OTIS', 'OXY', 'PAYC', 'PAYX', 'PCAR', 'PCG', 'PEG', 'PFE', 'PFG', 'PH', 'PHM', 'PKG', 'PNC', 'PNR', 'PPG', 'PPL', 'PRU', 'PSA', 'PTC', 'PWR', 'PYPL', 'Q', 'RCL', 'REG', 'REGN', 'RF', 'RHI', 'RMD', 'ROK', 'ROL', 'ROP', 'ROST', 'RSG', 'RTO', 'RVTY', 'SBAC', 'SCHW', 'SHW', 'SJM', 'SLB', 'SMCI', 'SNA', 'SNPS', 'SO', 'SPG', 'SPGI', 'SRE', 'STE', 'STLD', 'STT', 'STX', 'STZ', 'SWK', 'SWKS', 'SYF', 'SYK', 'SYY', 'T', 'TAP', 'TDG', 'TDY', 'TECH', 'TEL', 'TER', 'TFC', 'TGT', 'TJX', 'TMO', 'TMUS', 'TPR', 'TRGP', 'TRMB', 'TROW', 'TRV', 'TSCO', 'TSN', 'TT', 'TTC', 'TTD', 'TYL', 'UAL', 'UDR', 'UHS', 'ULTA', 'UNP', 'UPS', 'URI', 'USB', 'VICI', 'VLO', 'VMC', 'VRSK', 'VRSN', 'VRTX', 'VTR', 'VTRS', 'VZ', 'WAB', 'WAT', 'WBA', 'WBD', 'WDC', 'WELL', 'WFC', 'WM', 'WMB', 'WMT', 'WRB', 'WST', 'WTW', 'WY', 'WYNN', 'XEL', 'XYL', 'YUM', 'ZBH', 'ZBRA', 'ZS']
 DISCOVERY_UNIVERSE=list(dict.fromkeys(UNIVERSE+DISCOVERY_SYMBOLS))
 KNOWN_NAMES={'AAPL': 'Apple Inc.', 'MSFT': 'Microsoft Corporation', 'NVDA': 'NVIDIA Corporation', 'AMZN': 'Amazon.com Inc.', 'META': 'Meta Platforms Inc.', 'GOOGL': 'Alphabet Inc.', 'AVGO': 'Broadcom Inc.', 'TSLA': 'Tesla Inc.', 'AMD': 'Advanced Micro Devices Inc.', 'NFLX': 'Netflix Inc.', 'ORCL': 'Oracle Corporation', 'CRM': 'Salesforce Inc.', 'ADBE': 'Adobe Inc.', 'INTC': 'Intel Corporation', 'QCOM': 'Qualcomm Inc.', 'TXN': 'Texas Instruments Inc.', 'MU': 'Micron Technology Inc.', 'AMAT': 'Applied Materials Inc.', 'LRCX': 'Lam Research Corporation', 'KLAC': 'KLA Corporation', 'PANW': 'Palo Alto Networks Inc.', 'CRWD': 'CrowdStrike Holdings Inc.', 'NOW': 'ServiceNow Inc.', 'PLTR': 'Palantir Technologies Inc.', 'UBER': 'Uber Technologies Inc.', 'ABNB': 'Airbnb Inc.', 'BKNG': 'Booking Holdings Inc.', 'JPM': 'JPMorgan Chase & Co.', 'BAC': 'Bank of America Corporation', 'GS': 'Goldman Sachs Group Inc.', 'MS': 'Morgan Stanley', 'V': 'Visa Inc.', 'MA': 'Mastercard Incorporated', 'AXP': 'American Express Company', 'WMT': 'Walmart Inc.', 'COST': 'Costco Wholesale Corporation', 'HD': 'Home Depot Inc.', 'LOW': "Lowe's Companies Inc.", 'NKE': 'Nike Inc.', 'MCD': "McDonald's Corporation", 'SBUX': 'Starbucks Corporation', 'KO': 'Coca-Cola Company', 'PEP': 'PepsiCo Inc.', 'PG': 'Procter & Gamble Company', 'JNJ': 'Johnson & Johnson', 'LLY': 'Eli Lilly and Company', 'MRK': 'Merck & Co. Inc.', 'ABBV': 'AbbVie Inc.', 'UNH': 'UnitedHealth Group Incorporated', 'XOM': 'Exxon Mobil Corporation', 'CVX': 'Chevron Corporation', 'CAT': 'Caterpillar Inc.', 'GE': 'GE Aerospace', 'BA': 'Boeing Company', 'RTX': 'RTX Corporation', 'DE': 'Deere & Company', 'NEE': 'NextEra Energy Inc.', 'LIN': 'Linde plc', 'BTC/USD': 'Bitcoin / US-Dollar', 'ETH/USD': 'Ethereum / US-Dollar', 'MNQ1!': 'Micro E-mini Nasdaq-100 Future'}
-DEFAULT={"cash":100.0,"start":100.0,"budget":100.0,"per_trade":20.0,"positions":[],"history":[],"watch":DISCOVERY_UNIVERSE,"key":"","auto":False,"last_auto_check":"Noch nie","next_auto_check":"–","scan_index":0,"scan_results":{},"scanned_total":0,"version":"V8.3.3","weak_trend_checks":{},"rocket_cooldown":{},"mnq_contracts":1,"event_log":[],"favorites":[],"names":KNOWN_NAMES.copy(),"alerts":[]}
+DEFAULT={"cash":100.0,"start":100.0,"budget":100.0,"per_trade":20.0,"positions":[],"history":[],"watch":DISCOVERY_UNIVERSE,"key":"","auto":False,"last_auto_check":"Noch nie","next_auto_check":"–","scan_index":0,"scan_results":{},"scanned_total":0,"version":"V8.3.4","weak_trend_checks":{},"rocket_cooldown":{},"mnq_contracts":1,"event_log":[],"favorites":[],"names":KNOWN_NAMES.copy(),"alerts":[]}
+# Supabase ist die maßgebliche Speicherung, wenn beide Render-Variablen gesetzt sind.
+# Bei Netzwerkfehlern niemals stillschweigend auf einen leeren lokalen Zustand zurückfallen.
+SUPABASE_URL=os.environ.get('SUPABASE_URL','').strip().rstrip('/')
+SUPABASE_SECRET_KEY=os.environ.get('SUPABASE_SECRET_KEY','').strip()
+REMOTE_ENABLED=bool(SUPABASE_URL and SUPABASE_SECRET_KEY)
+if bool(SUPABASE_URL)!=bool(SUPABASE_SECRET_KEY):
+    raise RuntimeError('SUPABASE_URL und SUPABASE_SECRET_KEY müssen beide gesetzt sein')
+
+def remote_request(method, payload=None):
+    url=SUPABASE_URL+'/rest/v1/trading_radar_state'
+    if method=='GET': url+='?id=eq.1&select=data'
+    else: url+='?on_conflict=id'
+    headers={'apikey':SUPABASE_SECRET_KEY,'Authorization':'Bearer '+SUPABASE_SECRET_KEY,
+             'Content-Type':'application/json','Accept':'application/json'}
+    if method!='GET': headers['Prefer']='resolution=merge-duplicates,return=minimal'
+    body=None if payload is None else json.dumps(payload,ensure_ascii=False).encode('utf-8')
+    req=urllib.request.Request(url,data=body,headers=headers,method=method)
+    with urllib.request.urlopen(req,timeout=15) as response:
+        return json.loads(response.read() or b'null') if method=='GET' else None
+
 def load():
-    if not STATE.exists(): STATE.write_text(json.dumps(copy.deepcopy(DEFAULT),indent=2))
-    d=json.loads(STATE.read_text())
+    if REMOTE_ENABLED:
+        rows=remote_request('GET')
+        if not isinstance(rows,list): raise RuntimeError('Supabase-Antwort ungültig')
+        # Neue Datenbank: erst ein Backup über die vorhandene Import-Funktion laden.
+        d=copy.deepcopy(rows[0]['data']) if rows else copy.deepcopy(DEFAULT)
+        d['_remote_initialized']=bool(rows)
+    else:
+        if not STATE.exists(): STATE.write_text(json.dumps(copy.deepcopy(DEFAULT),indent=2))
+        d=json.loads(STATE.read_text())
     for k,v in DEFAULT.items(): d.setdefault(k,copy.deepcopy(v))
-    # Neue Scanner-Werte aus Updates auch in bestehende state.json übernehmen.
     for sym in DISCOVERY_UNIVERSE:
         if sym not in d['watch']: d['watch'].append(sym)
     d.setdefault('names',{}).update({k:v for k,v in KNOWN_NAMES.items() if k not in d.get('names',{})})
-    d['version']='V8.3.3'; d['mnq_contracts']=1
-    for p in d.get('positions',[]):
-        if p.get('symbol')=='MNQ1!': p.setdefault('contracts',4)
+    d['version']='V8.3.4';d['mnq_contracts']=4
+    for pos in d.get('positions',[]):
+        if pos.get('symbol')=='MNQ1!': pos.setdefault('contracts',4)
     return d
 
 def save(d):
-    tmp=STATE.with_suffix('.json.tmp')
-    tmp.write_text(json.dumps(d,indent=2),encoding='utf-8')
-    tmp.replace(STATE)
+    data={k:v for k,v in d.items() if k!='_remote_initialized'}
+    if REMOTE_ENABLED:
+        remote_request('POST',[{'id':1,'data':data}])
+    else:
+        tmp=STATE.with_suffix('.json.tmp')
+        tmp.write_text(json.dumps(data,indent=2),encoding='utf-8')
+        tmp.replace(STATE)
 def effective_key(d):
-    return os.environ.get('TWELVE_DATA_API_KEY','').strip() or d.get('key','').strip()
+    return (os.environ.get('TWELVE_DATA_API_KEY','').strip() or os.environ.get('twelve_data_api_key','').strip() or d.get('key','').strip())
 
 def td(path, key):
     url='https://api.twelvedata.com'+path+('&' if '?' in path else '?')+'apikey='+urllib.parse.quote(key)
@@ -47,7 +77,7 @@ def quote_symbol(sym,key):
         req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0 TradingRadar/1.6'})
         with urllib.request.urlopen(req,timeout=12) as r: q=json.loads(r.read())
         try:
-            closes=[float(x) for x in q['chart']['result'][0]['indicators']['quote'][0]['close'] if x is not None]
+            result=q['chart']['result'][0]; raw=result['indicators']['quote'][0]['close']; ticks=result.get('timestamp',[]); valid=[(t,float(v)) for t,v in zip(ticks,raw) if v is not None]; closes=[v for _,v in valid]; mnq_candle_ts=valid[-1][0] if valid else None
         except Exception:
             return {'symbol':sym,'error':'MNQ-Marktdaten derzeit nicht verfuegbar'}
         vals=[{'close':str(x)} for x in closes[-30:][::-1]]
@@ -67,8 +97,8 @@ def quote_symbol(sym,key):
             candle_ts=candle_ts.timestamp()
         except (KeyError,ValueError,TypeError,OverflowError): pass
     else:
-        # MNQ ist nur Beobachtungswert, ohne geprüfte Kerzenzeit.
-        candle_ts=None
+        # Originalzeit der letzten tatsächlich gelieferten MNQ-Kerze.
+        candle_ts=mnq_candle_ts
     p=closes[-1]; ma5=sum(closes[-5:])/5; ma15=sum(closes[-15:])/15
     mom=(p/closes[-6]-1)*100
     rets=[closes[i]/closes[i-1]-1 for i in range(1,len(closes))]
@@ -125,19 +155,44 @@ def add_momentum_labels(x, closes):
             x['signal'] = 'BEOBACHTEN'
     return x
 
+def extend_universe(d,key):
+    # Symbolkatalog gelegentlich aktualisieren; bei API-Limit/Fehler bleibt die bestehende Liste.
+    if time.time()-float(d.get('universe_updated_at',0) or 0)<7*86400: return
+    d['universe_updated_at']=time.time()
+    try:
+        result=td('/stocks?country=United%20States&format=JSON',key)
+        entries=result.get('data',[]) if isinstance(result,dict) else []
+        symbols=[x.get('symbol','').upper() for x in entries if isinstance(x,dict)
+                 and x.get('type','Common Stock') in ('Common Stock','Common Stocks','Equity')]
+        symbols=[x for x in symbols if re.fullmatch(r'[A-Z][A-Z0-9.]{0,9}',x)]
+        if len(symbols)>500:
+            watch=d.setdefault('watch',[])
+            existing=set(watch)
+            for sym in symbols:
+                if sym not in existing: watch.append(sym);existing.add(sym)
+            d['universe_updated_at']=time.time()
+    except Exception:
+        pass
+
 def market(d):
     key=effective_key(d)
     if not key: return []
-    held=[p['symbol'] for p in d.get('positions',[])]
+    extend_universe(d,key)
+    held=list(dict.fromkeys(p['symbol'] for p in d.get('positions',[])))
+    if len(held)>7:
+        h=int(d.get('held_scan_index',0))%len(held)
+        held=held[h:]+held[:h]
+        d['held_scan_index']=(h+7)%len(held)
     universe=d.get('watch') or DISCOVERY_UNIVERSE
     # Basic Twelve Data accounts are easily rate-limited. Keep each cycle at max. 7 requests.
-    slots=max(0,8-len(set(held)))
+    slots=max(1,8-min(7,len(set(held))))
     i=int(d.get('scan_index',0))%len(universe)
     batch=[]
     while len(batch)<slots and len(batch)<len(universe):
         s=universe[i%len(universe)]; i+=1
         if s not in held and s not in batch: batch.append(s)
-    symbols=list(dict.fromkeys(held+batch))[:8]
+    symbols=list(dict.fromkeys(held[:7]+batch))[:8]
+    if 'MNQ1!' in universe and 'MNQ1!' not in symbols: symbols.append('MNQ1!')
     results=dict(d.get('scan_results',{}))
     for sym in symbols:
         try:
@@ -159,8 +214,21 @@ def market(d):
     # Keep recent successful candidates; held positions always stay visible.
     vals=list(results.values())
     good=[x for x in vals if 'price' in x]
-    errs=[x for x in vals if 'error' in x and x.get('symbol') in symbols]
+    errs=[{'symbol':x.get('symbol'),'error':x.get('fetch_error')} for x in vals if x.get('fetch_error') and x.get('symbol') in symbols]
     return sorted(good,key=lambda x:(x.get('seen',0)>time.time()-1800,x.get('stage')=='🚀 AUSBRUCH AUS DEM KELLER',x.get('stage')=='FRÜHSIGNAL',x.get('mom',0),x.get('score',-1)),reverse=True)[:25]+errs
+
+def usd_eur_rate(d):
+    rate=float(d.get('usd_eur_rate',0) or 0)
+    if rate>0 and time.time()-float(d.get('usd_eur_rate_ts',0) or 0)<3600:return rate
+    q=td('/exchange_rate?symbol=USD/EUR',effective_key(d))
+    rate=float(q.get('rate',0) or 0)
+    if not .5<rate<1.5: raise ValueError('USD/EUR-Umrechnung nicht verfügbar')
+    d['usd_eur_rate']=rate;d['usd_eur_rate_ts']=time.time()
+    return rate
+
+def mnq_value(d,pos,price):
+    # MNQ: 2 USD je Indexpunkt und Kontrakt, 4 Kontrakte.
+    return float(pos['cost'])+(price-float(pos['entry']))*2*int(pos.get('contracts',4))*usd_eur_rate(d)
 
 def portfolio(d, quotes):
     qmap={x['symbol']:x for x in quotes if 'price' in x}
@@ -177,11 +245,12 @@ def portfolio(d, quotes):
         age=int(max(0,time.time()-float(q.get('seen',0) or 0))) if q.get('seen') else None
         candle_age=int(max(0,time.time()-float(q.get('candle_ts',0) or 0))) if q.get('candle_ts') else None
         reliable=age is not None and age<=900 and candle_age is not None and candle_age<=1800 and not q.get('fetch_error')
-        cur=pos['qty']*price if sym!='MNQ1!' else pos['cost']
+        if sym=='MNQ1!' and (not d.get('usd_eur_rate') or time.time()-float(d.get('usd_eur_rate_ts',0) or 0)>3600): reliable=False
+        cur=pos['qty']*price if sym!='MNQ1!' else pos['cost']+(price-entry)*2*int(next((p.get('contracts',4) for p in d['positions'] if p['symbol']==sym),4))*float(d.get('usd_eur_rate',0) or 0)
         pnl=cur-pos['cost'];val+=cur
-        pct=(cur/pos['cost']-1)*100 if pos['cost'] and sym!='MNQ1!' else 0
+        pct=(cur/pos['cost']-1)*100 if pos['cost'] else 0
         score=q.get('score')
-        if sym=='MNQ1!':decision,reason='HALTEN','MNQ-Abrechnung ausgesetzt'
+        if sym=='MNQ1!' and not d.get('usd_eur_rate'):decision,reason='DATEN FEHLEN','USD/EUR-Kurs fehlt'
         elif not reliable:decision,reason='DATEN FEHLEN','Keine ausreichend frischen Börsenkurse – Automatik gesperrt'
         elif pct<=-4:decision,reason='VERKAUFEN',f'Stop-Loss erreicht ({pct:+.2f} %)'
         elif pct>=7:decision,reason='VERKAUFEN',f'Gewinnziel erreicht ({pct:+.2f} %)'
@@ -198,12 +267,12 @@ def portfolio(d, quotes):
 
 HTML=r"""<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Trading Radar</title><style>
 body{font-family:system-ui;background:#07111f;color:#eaf1ff;margin:0}header{padding:18px 5%;background:#0c1b2d;position:sticky;top:0}.wrap{max-width:1550px;margin:auto;padding:22px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}.card{background:#102238;border:1px solid #203b5b;border-radius:16px;padding:16px;margin-bottom:14px}.big{font-size:28px;font-weight:800}.green{color:#42df91}.red{color:#ff6677}.yellow{color:#ffd15c}button,input{font:inherit;border-radius:10px;padding:10px;border:1px solid #34506d}button{background:#19b873;color:white;font-weight:700;cursor:pointer}.danger{background:#c53e50}.muted{color:#9db0c7}.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.trade{display:grid;grid-template-columns:1.2fr .8fr .8fr .8fr .8fr;gap:8px;padding:10px 0;border-top:1px solid #233c58}#status{margin-top:10px;font-weight:700}@media(max-width:700px){.trade{grid-template-columns:1fr 1fr}.hideM{display:none}}
-nav.tabs{display:flex;gap:9px;overflow-x:auto;margin:18px 0 14px;padding-bottom:6px}button.tab{background:#14263b;color:#c3d4e7;border:1px solid #2c4661;white-space:nowrap;padding:13px 17px}button.tab.active{background:#0869d5;border-color:#27d39a;color:#fff}.controlbar{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:#10283d}.controlbar strong{font-size:23px;color:#42df91;font-variant-numeric:tabular-nums}.statusline{padding:10px 14px;margin:10px 0 14px;background:#0f2134;border-radius:10px}.kpis .card{background:linear-gradient(145deg,#142c46,#0e1d30);min-height:86px}.kpis .big{margin-top:8px}header{z-index:10;border-bottom:1px solid #294560}button:hover{filter:brightness(1.13)}[data-tab]{display:none}[data-tab].visible{display:block}.trade{line-height:1.5}@media(max-width:700px){.wrap{padding:12px}.controlbar{justify-content:flex-start}.tabs{position:sticky;top:56px;background:#07111f;z-index:9}}.price-up{color:#22c55e;font-weight:700}.price-down{color:#ef4444;font-weight:700}.price-flat{color:inherit;font-weight:700}</style><style>.kpis{grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}.kpis .card{margin-bottom:0}.dashboard-grid{grid-template-columns:minmax(0,2.1fr) minmax(290px,1fr);gap:16px;align-items:start}.dashboard-grid.visible{display:grid}.dash-main,.dash-side{min-width:0}.panel-title{display:flex;justify-content:space-between;align-items:center;gap:12px}.panel-title h3{margin:4px 0 14px}.panel-title select{background:#132a43;color:#eaf1ff;border:1px solid #35516c;border-radius:9px;padding:8px}.holdings{width:100%;border-collapse:collapse;font-size:13px;white-space:nowrap}.holdings th{text-align:left;font-size:12px;color:#c6d4e8;font-weight:500;padding:13px 9px;border-bottom:1px solid #29435b}.holdings td{padding:13px 9px;border-bottom:1px solid #29435b;vertical-align:middle}.holdings small{display:block;color:#9db0c7}.holdings button{padding:8px 9px;font-size:12px;background:#0869d5}.holdings button.danger{background:#c83c4d}.holdings .signal{border-radius:7px;background:#145c43;padding:7px;color:#d6ffe7;display:inline-block}.holdings .signal.warning{background:#775a1e;color:#ffe6a2}.holdings .signal.sell{background:#8c273b;color:#fff}.table-scroll{overflow-x:auto}.fine{font-size:12px}.dash-bottom{display:grid;grid-template-columns:1fr 1fr;gap:14px}.quick-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}.quick-actions button{font-size:13px;padding:13px 8px}button.secondary{background:#182e49;border:1px solid #365574}.linkbutton{background:transparent;color:#55a9ff;font-weight:500;padding:5px;border:0}.preview-row{display:grid;grid-template-columns:1.2fr .9fr .5fr auto;gap:8px;align-items:center;padding:12px 0;border-bottom:1px solid #29435b;font-size:13px}.preview-row small{color:#9db0c7;display:block}.preview-row button{font-size:12px;padding:8px;background:#0b9b59}.activity-row{padding:11px 0;border-bottom:1px solid #29435b;font-size:12px}.activity-row .green,.activity-row .red{font-weight:700}@media(max-width:1050px){.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}.dashboard-grid.visible{grid-template-columns:1fr}}@media(max-width:620px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.dash-bottom{grid-template-columns:1fr}.panel-title{flex-wrap:wrap}}</style></head><body><header><b>📈 Trading Radar V8.3.3</b> <span class="muted">Paper-Trading · kein Echtgeld</span></header><div class="wrap">
+nav.tabs{display:flex;gap:9px;overflow-x:auto;margin:18px 0 14px;padding-bottom:6px}button.tab{background:#14263b;color:#c3d4e7;border:1px solid #2c4661;white-space:nowrap;padding:13px 17px}button.tab.active{background:#0869d5;border-color:#27d39a;color:#fff}.controlbar{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:#10283d}.controlbar strong{font-size:23px;color:#42df91;font-variant-numeric:tabular-nums}.statusline{padding:10px 14px;margin:10px 0 14px;background:#0f2134;border-radius:10px}.kpis .card{background:linear-gradient(145deg,#142c46,#0e1d30);min-height:86px}.kpis .big{margin-top:8px}header{z-index:10;border-bottom:1px solid #294560}button:hover{filter:brightness(1.13)}[data-tab]{display:none}[data-tab].visible{display:block}.trade{line-height:1.5}@media(max-width:700px){.wrap{padding:12px}.controlbar{justify-content:flex-start}.tabs{position:sticky;top:56px;background:#07111f;z-index:9}}.price-up{color:#22c55e;font-weight:700}.price-down{color:#ef4444;font-weight:700}.price-flat{color:inherit;font-weight:700}</style><style>.kpis{grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}.kpis .card{margin-bottom:0}.dashboard-grid{grid-template-columns:minmax(0,2.1fr) minmax(290px,1fr);gap:16px;align-items:start}.dashboard-grid.visible{display:grid}.dash-main,.dash-side{min-width:0}.panel-title{display:flex;justify-content:space-between;align-items:center;gap:12px}.panel-title h3{margin:4px 0 14px}.panel-title select{background:#132a43;color:#eaf1ff;border:1px solid #35516c;border-radius:9px;padding:8px}.holdings{width:100%;border-collapse:collapse;font-size:13px;white-space:nowrap}.holdings th{text-align:left;font-size:12px;color:#c6d4e8;font-weight:500;padding:13px 9px;border-bottom:1px solid #29435b}.holdings td{padding:13px 9px;border-bottom:1px solid #29435b;vertical-align:middle}.holdings small{display:block;color:#9db0c7}.holdings button{padding:8px 9px;font-size:12px;background:#0869d5}.holdings button.danger{background:#c83c4d}.holdings .signal{border-radius:7px;background:#145c43;padding:7px;color:#d6ffe7;display:inline-block}.holdings .signal.warning{background:#775a1e;color:#ffe6a2}.holdings .signal.sell{background:#8c273b;color:#fff}.table-scroll{overflow-x:auto}.fine{font-size:12px}.dash-bottom{display:grid;grid-template-columns:1fr 1fr;gap:14px}.quick-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}.quick-actions button{font-size:13px;padding:13px 8px}button.secondary{background:#182e49;border:1px solid #365574}.linkbutton{background:transparent;color:#55a9ff;font-weight:500;padding:5px;border:0}.preview-row{display:grid;grid-template-columns:1.2fr .9fr .5fr auto;gap:8px;align-items:center;padding:12px 0;border-bottom:1px solid #29435b;font-size:13px}.preview-row small{color:#9db0c7;display:block}.preview-row button{font-size:12px;padding:8px;background:#0b9b59}.activity-row{padding:11px 0;border-bottom:1px solid #29435b;font-size:12px}.activity-row .green,.activity-row .red{font-weight:700}@media(max-width:1050px){.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}.dashboard-grid.visible{grid-template-columns:1fr}}@media(max-width:620px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.dash-bottom{grid-template-columns:1fr}.panel-title{flex-wrap:wrap}}</style></head><body><header><b>📈 Trading Radar V8.3.4</b> <span class="muted">Paper-Trading · kein Echtgeld</span></header><div class="wrap">
 <nav class="tabs" aria-label="Bereiche"><button class="tab active" onclick="showTab('depot')">📊 Depot</button><button class="tab" onclick="showTab('scanner')">🔎 Top-Chancen</button><button class="tab" onclick="showTab('rocket')">🚀 Raketen-Radar</button><button class="tab" onclick="showTab('log')">📋 Protokoll</button><button class="tab" onclick="showTab('settings')">⚙️ Einstellungen</button></nav>
 <div class="card controlbar"><span>Automatik: <b id="quickAuto">AUS</b></span><button onclick="toggleAuto()">Automatik AN / AUS</button><span>Prüfung in <strong id="countdown">--:--</strong></span><span id="freshness">Kurse noch nicht geprüft</span><span id="quickScan">Scanner –</span></div>
 <div id="status" class="muted statusline">Bereit.</div>
 <div class="grid kpis"><div class="card">Depotwert<div id="value" class="big">–</div><span id="pnl"></span></div><div class="card">Freies Kapital<div id="cash" class="big">–</div></div><div class="card">Offene Positionen<div id="count" class="big">–</div></div><div class="card">Gesamtergebnis<div id="totalResult" class="big">–</div></div><div class="card">Automatik<div id="auto" class="big">AUS</div><small id="nextMini">–</small></div></div>
-<div class="card" data-tab="settings"><h3>Einstellungen</h3><div class="row"><input id="key" type="password" placeholder="Twelve Data API-Key"><button onclick="setKey()">API-Key speichern</button><label>Budget € <input id="budget" type="number" value="100" style="width:75px"></label><label>pro Trade € <input id="per" type="number" value="20" style="width:70px"></label><button onclick="settings()">Speichern</button><button onclick="toggleAuto()">Automatik AN/AUS</button><button class="danger" onclick="resetAll()">Test zurücksetzen</button></div><p class="muted">Die App handelt nur virtuell. Tipp: Hinterlege TWELVE_DATA_API_KEY später einmal bei Render; dann bleibt der Schlüssel bei Updates erhalten. Trades werden zusätzlich in diesem Browser gesichert und nach einem Deploy automatisch wiederhergestellt.</p><p class="muted">Automatik-Scanner: rund um die Uhr, alle 15 Minuten. Aktienorders nur mit ausreichend frischen Kursdaten; außerhalb der Börsenzeiten können Kursdaten fehlen. Auf dem kostenlosen Render-Tarif kann der Dienst bei Inaktivität schlafen; solange diese Seite geöffnet ist, stößt sie die Prüfung regelmäßig an.</p><div class="row"><span>Letzte automatische Prüfung: <b id="lastcheck">–</b></span><span>Nächste Prüfung: <b id="nextcheck">–</b></span></div></div>
+<div class="card" data-tab="settings"><h3>Einstellungen</h3><div class="row"><input id="key" type="password" placeholder="Twelve Data API-Key"><button onclick="setKey()">API-Key speichern</button><label>Budget € <input id="budget" type="number" value="100" style="width:75px"></label><label>pro Trade € <input id="per" type="number" value="20" style="width:70px"></label><button onclick="settings()">Speichern</button><button onclick="toggleAuto()">Automatik AN/AUS</button><button class="danger" onclick="resetAll()">Test zurücksetzen</button></div><p class="muted">Die App handelt nur virtuell. Tipp: Hinterlege TWELVE_DATA_API_KEY später einmal bei Render; dann bleibt der Schlüssel bei Updates erhalten. Trades werden zusätzlich in diesem Browser gesichert und nach einem Deploy automatisch wiederhergestellt.</p><p class="muted">Automatik-Scanner: rund um die Uhr, alle 15 Minuten. Automatische Orders nur Mo–Fr 14:30–22:00 Uhr und mit ausreichend frischen Kursdaten; außerhalb der Börsenzeiten können Kursdaten fehlen. Auf dem kostenlosen Render-Tarif kann der Dienst bei Inaktivität schlafen; solange diese Seite geöffnet ist, stößt sie die Prüfung regelmäßig an.</p><div class="row"><span>Letzte automatische Prüfung: <b id="lastcheck">–</b></span><span>Nächste Prüfung: <b id="nextcheck">–</b></span></div></div>
 <div class="card" data-tab="settings"><h3>Virtuelles Kapital verwalten</h3>
 <p class="muted">Ein- und Auszahlungen ändern nur dein freies virtuelles Kapital. Offene Trades bleiben bestehen. Das Handelsbudget wird separat eingestellt.</p>
 <div class="row"><label>Betrag € <input id="capitalAmount" type="number" min="0.01" step="0.01" value="100" style="width:115px"></label>
@@ -212,7 +281,7 @@ nav.tabs{display:flex;gap:9px;overflow-x:auto;margin:18px 0 14px;padding-bottom:
 <p class="muted">Startkapital für die Gewinnberechnung anpassen, ohne offene Trades zu schließen:</p>
 <div class="row"><label>Neues Startkapital € <input id="newStart" type="number" min="0" step="0.01" value="100" style="width:115px"></label>
 <button onclick="changeCapital('start')">Startkapital ändern</button></div></div>
-<div class="card" data-tab="scanner"><h3>Markt-Scanner · Top-Chancen</h3><p class="muted">Rotierender Scanner: pro Prüfung wird ein neuer Teil der Beobachtungsliste analysiert, um das API-Limit einzuhalten. Bereits geprüfte Kandidaten bleiben im Ranking. MNQ wird weiterhin beobachtet. Erweiterte Aktienliste, rotierend und API-schonend; keine vollständige Echtzeit-Marktabdeckung. Frühwarnstufen: DIP → FRÜHSIGNAL → 🚀 AUSBRUCH AUS DEM KELLER.</p><div id="scaninfo" class="muted"></div><div id="radar">API-Key eintragen und „Markt aktualisieren“ drücken.</div><br><button id="refreshBtn" onclick="refreshMarket()">Markt aktualisieren</button></div>
+<div class="card" data-tab="scanner"><h3>Markt-Scanner · Top-Chancen</h3><p class="muted">Rotierender Scanner: pro Prüfung wird ein neuer Teil der Beobachtungsliste analysiert, um das API-Limit einzuhalten. Bereits geprüfte Kandidaten bleiben im Ranking. MNQ: vier Kontrakte ausschließlich Paper-Trading; USD/EUR-Umrechnung erforderlich. Erweiterte Aktienliste, rotierend und API-schonend; keine vollständige Echtzeit-Marktabdeckung. Frühwarnstufen: DIP → FRÜHSIGNAL → 🚀 AUSBRUCH AUS DEM KELLER.</p><div id="scaninfo" class="muted"></div><div id="radar">API-Key eintragen und „Markt aktualisieren“ drücken.</div><br><button id="refreshBtn" onclick="refreshMarket()">Markt aktualisieren</button></div>
 <div class="card" data-tab="scanner"><h3>Aktie suchen und virtuell kaufen</h3><p class="muted">Kürzel oder Firmenname suchen; Kauf nur mit verfügbaren Kursdaten. Keine Echtgeld-Orders.</p><div class="row"><input id="stockSearch" placeholder="z. B. NVDA oder NVIDIA" style="min-width:220px"><button onclick="searchStock()">Suchen</button></div><div id="searchResult" class="muted"></div></div>
 <div class="card" data-tab="scanner"><h3>⭐ Meine Beobachtungsliste</h3><div id="favorites"></div></div>
 <div class="card" data-tab="rocket"><h3>🚀 Raketen-Radar und Frühwarnungen</h3><p class="muted">Heuristische Hinweise, keine zuverlässige Vorhersage. Kursveränderungen basieren auf 15-Minuten-Kerzen.</p><div id="alerts"></div></div>
@@ -249,7 +318,7 @@ function render(s){
  value.textContent=euro(s.value);let pp=s.value-s.start;pnl.textContent=(pp>=0?'+':'')+euro(pp)+' seit Start';pnl.className=pp>=0?'green':'red';cash.textContent=euro(s.cash);count.textContent=s.position_rows.length;auto.textContent=s.auto?'AN':'AUS';auto.className='big '+(s.auto?'green':'red');budget.value=s.budget;per.value=s.per_trade;document.getElementById('newStart').value=s.start;lastcheck.textContent=s.last_auto_check||'Noch nie';nextcheck.textContent=s.next_auto_check||'–';quickAuto.textContent=s.auto?'AN':'AUS';quickAuto.className=s.auto?'green':'red';quickScan.textContent='Geprüfte Werte: '+(s.scanned_total||0)+' / '+(s.watch?.length||0);freshness.textContent=(s.position_rows||[]).some(x=>!x.data_ok)?'⚠️ Einige Kurse veraltet':'✓ Positionskurse aktuell';countdownTick();showTab(activeTab);
  scaninfo.textContent='Analysierte Werte im aktuellen Scan-Speicher: '+(s.scanned_total||0)+' / '+(s.watch?.length||0)+' · API-Key: '+(s.api_key_source||'–');
   const stocks=(s.market||[]);
-  radar.innerHTML=stocks.length?stocks.map(x=>x.error?`<div class="trade"><b>${esc(x.symbol)}</b><span class="red">Fehler</span><span>${esc(x.error)}</span></div>`:`<div class="trade"><b title="${esc((s.names||{})[x.symbol]||x.symbol)}" style="cursor:help">${esc(x.symbol)}</b><span>${euro(x.price)}</span><span class="${x.score>=75?'green':x.score>=55?'yellow':'red'}">${x.score}/100</span><span>${esc(x.risk)} · ${Number(x.mom||0).toFixed(2)}% / 75 Min.</span><span><b>${esc(x.signal)}</b><small>${esc(x.stage||'')}</small><div class="row"><button onclick="buy('${esc(x.symbol)}')" ${x.symbol==='MNQ1!'?'disabled':''}>Virtuell kaufen</button><button onclick="favorite('${esc(x.symbol)}')">${(s.favorites||[]).includes(x.symbol)?'★':'☆'}</button><button onclick="chart('${esc(x.symbol)}')">Chart</button></div></span></div>`).join(''):'Noch keine Marktdaten.';
+  radar.innerHTML=stocks.length?stocks.map(x=>x.error?`<div class="trade"><b>${esc(x.symbol)}</b><span class="red">Fehler</span><span>${esc(x.error)}</span></div>`:`<div class="trade"><b title="${esc((s.names||{})[x.symbol]||x.symbol)}" style="cursor:help">${esc(x.symbol)}</b><span>${euro(x.price)}</span><span class="${x.score>=75?'green':x.score>=55?'yellow':'red'}">${x.score}/100</span><span>${esc(x.risk)} · ${Number(x.mom||0).toFixed(2)}% / 75 Min.</span><span><b>${esc(x.signal)}</b><small>${esc(x.stage||'')}</small><div class="row"><button onclick="buy('${esc(x.symbol)}')">Virtuell kaufen</button><button onclick="favorite('${esc(x.symbol)}')">${(s.favorites||[]).includes(x.symbol)?'★':'☆'}</button><button onclick="chart('${esc(x.symbol)}')">Chart</button></div></span></div>`).join(''):'Noch keine Marktdaten.';
   favorites.innerHTML=(s.favorites||[]).map(x=>`<span style="display:inline-block;margin:5px"><b title="${esc((s.names||{})[x]||x)}">${esc(x)}</b> <button onclick="favorite('${esc(x)}')">Entfernen</button> <button onclick="chart('${esc(x)}')">Chart</button></span>`).join('')||'Noch keine Favoriten.';
   alerts.innerHTML=(s.alerts||[]).slice(-12).reverse().map(x=>`<div>${esc(x.time)} · <b>${esc(x.symbol)}</b> · ${esc(x.stage)}</div>`).join('')||'Noch keine neuen Frühwarnungen.';
   const closed=(s.history||[]).filter(x=>typeof x.pnl==='number'); const wins=closed.filter(x=>x.pnl>0);const net=closed.reduce((a,x)=>a+x.pnl,0);
@@ -284,9 +353,9 @@ async function refreshMarket(){
  catch(e){msg('Fehler beim Aktualisieren: '+e.message,true)}
  finally{b.disabled=false;b.textContent='Markt aktualisieren'}
 }
-async function buy(s){if(s==='MNQ1!'){msg('MNQ-Kauf gesperrt: Futures-Abrechnung noch nicht korrekt.',true);return}if(!confirm(s+' für bis zu '+euro(S.per_trade)+' virtuell kaufen? Bei -4 % wären das ungefähr '+euro(S.per_trade*.04)+' Verlust (ohne Gebühren).'))return;try{const old=(S.positions||[]).filter(p=>p.symbol===s).reduce((n,p)=>n+Number(p.cost||0),0);const next=await api('/api/buy',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({symbol:s})});render(next);const now=(next.positions||[]).filter(p=>p.symbol===s).reduce((n,p)=>n+Number(p.cost||0),0);msg(now>old?s+' virtuell gekauft.':s+' wurde nicht gekauft – bitte Kurs und Budget prüfen.',now<=old)}catch(e){msg('Fehler: '+e.message,true)}}
+async function buy(s){if(!confirm(s+' für bis zu '+euro(S.per_trade)+' virtuell kaufen? Bei -4 % wären das ungefähr '+euro(S.per_trade*.04)+' Verlust (ohne Gebühren).'))return;try{const old=(S.positions||[]).filter(p=>p.symbol===s).reduce((n,p)=>n+Number(p.cost||0),0);const next=await api('/api/buy',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({symbol:s})});render(next);const now=(next.positions||[]).filter(p=>p.symbol===s).reduce((n,p)=>n+Number(p.cost||0),0);msg(now>old?s+' virtuell gekauft.':s+' wurde nicht gekauft – bitte Kurs und Budget prüfen.',now<=old)}catch(e){msg('Fehler: '+e.message,true)}}
 async function favorite(s){try{S=await api('/api/favorite',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({symbol:s})});render(S)}catch(e){msg(e.message,true)}}
-function chart(s){const x=(S.market||[]).find(x=>x.symbol===s)||((S.scan_results||{})[s]);chartTitle.textContent=s+' · '+((S.names||{})[s]||'')+' · letzte bis zu 30 Kurspunkte';const a=x?.chart||[];if(a.length<2){priceChart.innerHTML='';chartTitle.textContent+=' · Noch kein Kursverlauf verfügbar';return}const lo=Math.min(...a),hi=Math.max(...a),r=hi-lo||1;const points=a.map((v,i)=>`${10+i*580/(a.length-1)},${160-(v-lo)/r*140}`).join(' ');priceChart.innerHTML=`<polyline points="${points}" fill="none" stroke="#42df91" stroke-width="3"/>`;}
+function chart(s){const x=(S.market||[]).find(x=>x.symbol===s)||((S.scan_results||{})[s]);chartTitle.textContent=s+' · '+((S.names||{})[s]||'')+' · letzte bis zu 30 Kurspunkte';const a=x?.chart||[];if(a.length<2){priceChart.innerHTML='';chartTitle.textContent+=' · Noch kein Kursverlauf verfügbar';return}const lo=Math.min(...a),hi=Math.max(...a),r=hi-lo||1;const points=a.map((v,i)=>`${50+i*535/(a.length-1)},${145-(v-lo)/r*115}`).join(' ');const step=15;priceChart.innerHTML=`<line x1="50" y1="30" x2="50" y2="145" stroke="#9db0c7"/><line x1="50" y1="145" x2="585" y2="145" stroke="#9db0c7"/><text x="2" y="34" fill="#eaf1ff" font-size="11">${hi.toFixed(2)}</text><text x="2" y="145" fill="#eaf1ff" font-size="11">${lo.toFixed(2)}</text><text x="50" y="170" fill="#eaf1ff" font-size="11">älter</text><text x="530" y="170" fill="#eaf1ff" font-size="11">aktuell</text><polyline points="${points}" fill="none" stroke="#42df91" stroke-width="3"/>`+a.map((v,i)=>`<circle cx="${50+i*535/(a.length-1)}" cy="${145-(v-lo)/r*115}" r="6" fill="transparent"><title>Kerze ${i+1}/${a.length}: ${v.toFixed(3)} · Abstand zum neuesten Punkt ${(a.length-i-1)*15} Min.</title></circle>`).join('');}
 async function searchStock(){try{let q=stockSearch.value.trim();if(!q)return;searchResult.textContent='Suche läuft …';SEARCH=await api('/api/search?q='+encodeURIComponent(q));searchResult.innerHTML=SEARCH.error?esc(SEARCH.error):`<p><b>${esc(SEARCH.symbol)}</b> – ${esc(SEARCH.name)} · Kurs ${euro(SEARCH.price)} · Score ${SEARCH.score}/100</p><button onclick="buySearch()">Für ${euro(S.per_trade)} virtuell kaufen</button><button onclick="favorite('${esc(SEARCH.symbol)}')">☆ Beobachten</button>`}catch(e){searchResult.textContent=e.message}}
 async function buySearch(){if(!SEARCH||SEARCH.error)return;await buy(SEARCH.symbol)}
 async function sell(s){
@@ -360,8 +429,9 @@ def berlin_now():
     return datetime.now(ZoneInfo('Europe/Berlin'))
 
 def in_auto_window(now=None):
-    # Scanner ist 24/7 aktiv. Order-Sicherheit regelt quote_is_fresh.
-    return True
+    # Automatische Orders ausschließlich Mo–Fr 14:30–22:00 Uhr (Berlin).
+    now=now or berlin_now()
+    return now.weekday()<5 and (14*60+30)<=now.hour*60+now.minute<22*60
 
 def auto_due(d, now_ts=None):
     now_ts=now_ts or time.time()
@@ -382,7 +452,7 @@ def run_auto_check(force=False):
         if not force and not auto_due(d): 
             d['next_auto_check']=next_check_text(d); save(d); return d
         CACHE.clear(); CACHE.extend(market(d)); log_event(d,'Automatischer Markt-Scan ausgeführt.','SCAN')
-        if CACHE:
+        if CACHE and in_auto_window():
             auto_step(d)
             d['_last_auto_ts']=time.time()
             d['last_auto_check']=berlin_now().strftime('%d.%m.%Y %H:%M')
@@ -404,7 +474,7 @@ def view(d, refresh=False):
     global CACHE
     if refresh: CACHE=market(d)
     val,rows=portfolio(d,list(d.get('scan_results',{}).values()))
-    return {**d,'key':'***' if effective_key(d) else '', 'value':val,'position_rows':rows,'market':CACHE,'server_time':time.time(),'auto_interval':AUTO_INTERVAL,'api_key_source':'Render' if os.environ.get('TWELVE_DATA_API_KEY') else ('App' if d.get('key') else 'Fehlt')}
+    return {**d,'key':'***' if effective_key(d) else '', 'value':val,'position_rows':rows,'market':CACHE,'server_time':time.time(),'auto_interval':AUTO_INTERVAL,'storage_source':'Supabase' if REMOTE_ENABLED else 'Lokal','api_key_source':'Render' if (os.environ.get('TWELVE_DATA_API_KEY') or os.environ.get('twelve_data_api_key')) else ('App' if d.get('key') else 'Fehlt')}
 
 def quote_is_fresh(x):
     if not isinstance(x,dict) or x.get('fetch_error') or 'price' not in x: return False
@@ -416,17 +486,19 @@ def quote_is_fresh(x):
 
 def auto_step(d):
     global CACHE
-    if not d['auto'] or not CACHE: return
+    if not d['auto'] or not CACHE or not in_auto_window(): return
+    try: usd_eur_rate(d)
+    except Exception: pass
     q={x['symbol']:x for x in CACHE if quote_is_fresh(x)}
     weak=d.setdefault('weak_trend_checks',{})
     cooldown=d.setdefault('rocket_cooldown',{})
     for p in list({p['symbol']:p for p in d['positions']}.values()):
         sym=p['symbol']
-        if sym=='MNQ1!': continue
+        if sym=='MNQ1!' and (not d.get('usd_eur_rate') or time.time()-float(d.get('usd_eur_rate_ts',0) or 0)>3600): continue
         x=q.get(sym)
         if not x: continue
         lots=[lot for lot in d['positions'] if lot['symbol']==sym]
-        ch=x['price']*sum(lot['qty'] for lot in lots)/sum(lot['cost'] for lot in lots)-1
+        ch=(sum((x['price']-float(lot['entry']))*2*int(lot.get('contracts',4))*float(d.get('usd_eur_rate',0)) for lot in lots)/sum(lot['cost'] for lot in lots)) if sym=='MNQ1!' else x['price']*sum(lot['qty'] for lot in lots)/sum(lot['cost'] for lot in lots)-1
         chart=x.get('chart',[])
         # Confirmation must use two distinct fresh market checks, not repeated stale observations.
         down=(x.get('score',100)<45 and len(chart)>=10 and
@@ -443,7 +515,7 @@ def auto_step(d):
     invested=sum(p['cost'] for p in d['positions'])
     for x in CACHE:
         sym=x.get('symbol')
-        if sym=='MNQ1!' or not quote_is_fresh(x) or x.get('risk')=='Hoch': continue
+        if not quote_is_fresh(x) or (sym!='MNQ1!' and x.get('risk')=='Hoch'): continue
         if any(p['symbol']==sym for p in d['positions']): continue
         rocket=(x.get('stage')=='🚀 AUSBRUCH AUS DEM KELLER' and x.get('score',0)>=80
                 and x.get('mom',0)>0 and len(x.get('chart',[]))>=15)
@@ -453,17 +525,22 @@ def auto_step(d):
         if rocket and time.time()-float(cooldown.get(sym,0))<24*3600: continue
         amt=min(d['per_trade'],d['cash'],max(0,d['budget']-invested))
         if amt>=5:
+            if sym=='MNQ1!':
+                try: usd_eur_rate(d)
+                except Exception: continue
             execute_buy(d,sym,x['price'],amt,'Raketen-Radar' if rocket else 'Automatik')
             if rocket: cooldown[sym]=time.time()
             invested+=amt
 
 def execute_buy(d,sym,price,amt,src='Manuell'):
-    if sym=='MNQ1!': raise ValueError('MNQ-Käufe sind bis zur korrekten Futures-Abrechnung gesperrt.')
+    if sym=='MNQ1!':
+        if not in_auto_window(): raise ValueError('MNQ-Handel nur Mo–Fr 14:30–22:00 Uhr')
+        if amt<5: raise ValueError('MNQ-Sicherheitsbetrag zu klein')
     amt=min(float(amt),d['cash'])
     if amt<=0:return
-    contracts=1 if sym=='MNQ1!' else None
+    contracts=4 if sym=='MNQ1!' else None
     d['positions'].append({'symbol':sym,'entry':price,'qty':amt/price,'cost':amt,**({'contracts':contracts} if contracts else {})});d['cash']-=amt
-    desc=f'{src}: KAUF {sym} · {amt:.2f} € @ {price:.2f}'+(' · 1 MNQ-Kontrakt (Paper)' if sym=='MNQ1!' else '')
+    desc=f'{src}: KAUF {sym} · {amt:.2f} € @ {price:.2f}'+(' · 4 MNQ-Kontrakte (Paper, 2 USD/Punkt/Kontrakt)' if sym=='MNQ1!' else '')
     d['history'].append({'time':time.strftime('%d.%m.%Y %H:%M'),'text':desc}); log_event(d,desc,'TRADE')
 
 def execute_sell(d,sym,price,src='Manuell',fraction=1.0,reason=None):
@@ -476,7 +553,11 @@ def execute_sell(d,sym,price,src='Manuell',fraction=1.0,reason=None):
     sold_qty=total_qty*fraction
     sold_cost=total_cost*fraction
     proceeds=sold_qty*price
-    pnl=proceeds-sold_cost
+    if sym=='MNQ1!':
+        pnl=sum((price-float(p['entry']))*2*int(p.get('contracts',4))*usd_eur_rate(d) for p in lots)*fraction
+        proceeds=sold_cost+pnl
+    else:
+        pnl=proceeds-sold_cost
     if fraction>=1-1e-10:
         d['positions']=[p for p in d['positions'] if p['symbol']!=sym]
     else:
@@ -512,7 +593,7 @@ class H(BaseHTTPRequestHandler):
      items=data.get('data',[]) if isinstance(data,dict) else []
      if not items: raise ValueError('Keine passende Aktie gefunden. Versuche das Börsenkürzel.')
      symbol=items[0]['symbol'];name=items[0].get('instrument_name',symbol)
-    if symbol=='MNQ1!': raise ValueError('MNQ kann nur beobachtet werden')
+    # MNQ-Suche für Paper-Trading erlaubt
     x=quote_symbol(symbol,key)
     if 'error' in x: raise ValueError(x['error'])
     d.setdefault('names',{})[symbol]=name
@@ -570,7 +651,7 @@ class H(BaseHTTPRequestHandler):
     if not effective_key(d): raise ValueError('Twelve Data API-Key fehlt.')
     CACHE.clear();CACHE.extend(market(d));log_event(d,'Markt manuell aktualisiert.','SCAN')
     if not CACHE: raise ValueError('Keine Marktdaten erhalten.')
-    if d.get('auto'):
+    if d.get('auto') and in_auto_window():
      auto_step(d);d['_last_auto_ts']=time.time();d['last_auto_check']=berlin_now().strftime('%d.%m.%Y %H:%M');d['next_auto_check']=next_check_text(d)
    elif self.path=='/api/auto-check':
     d=run_auto_check(False)
@@ -610,10 +691,11 @@ class H(BaseHTTPRequestHandler):
     if not x: raise ValueError('Kein ausreichend frischer Börsenkurs. Bitte später erneut prüfen.')
     invested=sum(p['cost'] for p in d['positions']);amt=min(d['per_trade'],d['cash'],max(0,d['budget']-invested))
     if amt<1: raise ValueError('Nicht genügend freies Kapital oder Budget.')
+    if sym=='MNQ1!': usd_eur_rate(d)
     execute_buy(d,sym,x['price'],amt)
    elif self.path=='/api/sell':
     b=self.body();sym=b['symbol'];percent=float(b.get('percent',100));x=next((x for x in CACHE if x.get('symbol')==sym and 'price' in x and quote_is_fresh(x)),None);p=next((p for p in d['positions'] if p['symbol']==sym),None);
-    if sym=='MNQ1!': raise ValueError('MNQ-Verkauf ausgesetzt: Kontraktabrechnung ungeklärt.')
+    if sym=='MNQ1!' and not in_auto_window(): raise ValueError('MNQ-Handel nur Mo–Fr 14:30–22:00 Uhr')
     if p and not x: raise ValueError('Kein frischer Kurs für den Verkauf. Bitte Markt aktualisieren.')
     execute_sell(d,sym,x['price'],fraction=percent/100) if p else None
    save(d);self.sendj(view(d))
