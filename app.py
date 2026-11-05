@@ -356,7 +356,7 @@ function renderMonitor(s){
   const fresh=age!==null&&age<=900&&!x.fetch_error;
   const mom=Number(x.mom||0);
   const sym=JSON.stringify(String(x.symbol)).replace(/"/g,'&quot;');
-  return '<tr><td><button class="pro-link" onclick="openMonitorChart('+sym+')"><b>'+esc(x.symbol)+'</b></button><small>'+esc((s.names||{})[x.symbol]||'')+'</small></td><td>'+euro(x.price)+'</td><td class="'+(mom>=0?'green':'red')+'">'+(mom>=0?'+':'')+mom.toFixed(2)+' %</td><td>'+esc(x.score??'–')+'</td><td>'+esc(x.signal||'–')+'</td><td class="'+(fresh?'green':'yellow')+'">'+(age===null?'Unbekannt':Math.floor(age/60)+' Min.')+(fresh?'':' ⚠ veraltet')+'</td><td><button class="secondary" onclick="openMonitorChart('+sym+')">Chart</button></td></tr>';
+  return '<tr><td><button class="pro-link" onclick="openMonitorChart('+sym+')"><b>'+esc(x.symbol)+'</b></button><small>'+esc((s.names||{})[x.symbol]||'')+'</small></td><td>'+(l?euro(l.price)+' <small class="green">IEX LIVE</small>':euro(x.price))+'</td><td class="'+(mom>=0?'green':'red')+'">'+(mom>=0?'+':'')+mom.toFixed(2)+' %</td><td>'+esc(x.score??'–')+'</td><td>'+esc(x.signal||'–')+'</td><td class="'+(fresh?'green':'yellow')+'">'+(age===null?'Unbekannt':Math.floor(age/60)+' Min.')+(fresh?'':' ⚠ veraltet')+'</td><td><button class="secondary" onclick="openMonitorChart('+sym+')">Chart</button></td></tr>';
  }).join('')||'<tr><td colspan="7">Keine passenden Kursdaten. Starte eine Marktprüfung.</td></tr>';
 }
 function openMonitorChart(sym){showTab('scanner');chart(sym);document.getElementById('priceChart')?.scrollIntoView({behavior:'smooth',block:'center'})}
@@ -529,14 +529,14 @@ def alpaca_stream_loop():
             raw=socket.create_connection(('stream.data.alpaca.markets',443),timeout=15)
             sock=ssl.create_default_context().wrap_socket(raw,server_hostname='stream.data.alpaca.markets')
             token=base64.b64encode(os.urandom(16)).decode()
-            req=('GET /v2/iex HTTP/1.1\\r\\nHost: stream.data.alpaca.markets\\r\\n'
-                 'Upgrade: websocket\\r\\nConnection: Upgrade\\r\\n'
-                 'Sec-WebSocket-Key: '+token+'\\r\\nSec-WebSocket-Version: 13\\r\\n\\r\\n')
+            req=('GET /v2/iex HTTP/1.1\r\nHost: stream.data.alpaca.markets\r\n'
+                 'Upgrade: websocket\r\nConnection: Upgrade\r\n'
+                 'Sec-WebSocket-Key: '+token+'\r\nSec-WebSocket-Version: 13\r\n\r\n')
             sock.sendall(req.encode())
             hdr=bytearray()
-            while b'\\r\\n\\r\\n' not in hdr and len(hdr)<8192:
+            while b'\r\n\r\n' not in hdr and len(hdr)<8192:
                 hdr.extend(sock.recv(1))
-            if b' 101 ' not in bytes(hdr).split(b'\\r\\n',1)[0]:
+            if b' 101 ' not in bytes(hdr).split(b'\r\n',1)[0]:
                 raise ConnectionError('Alpaca WebSocket Handshake fehlgeschlagen')
             expected=base64.b64encode(hashlib.sha1((token+'258EAFA5-E914-47DA-95CA-C5AB0DC85B11').encode()).digest())
             if expected.lower() not in bytes(hdr).lower(): raise ConnectionError('WebSocket-Antwort ungültig')
@@ -551,8 +551,7 @@ def alpaca_stream_loop():
                 try:
                     op,data=ws_recv(sock)
                 except socket.timeout:
-                    ws_send(sock,{'action':'ping'})
-                    continue
+                    raise ConnectionError('IEX-Verbindung ohne neue Nachrichten')
                 if op==8: raise ConnectionError('Alpaca hat Verbindung beendet')
                 if op==9:
                     sock.sendall(bytes([0x8A,0x80])+os.urandom(4))
