@@ -12,7 +12,7 @@ UNIVERSE=['AAPL','MSFT','NVDA','AMZN','META','GOOGL','AVGO','TSLA','AMD','NFLX',
 DISCOVERY_SYMBOLS=['ADP', 'ABT', 'ACN', 'AEP', 'AFL', 'AIG', 'ALL', 'AME', 'AMP', 'AMT', 'ANET', 'AON', 'APD', 'APO', 'APP', 'APTV', 'ARE', 'ARM', 'ASML', 'ATO', 'AVB', 'AXP', 'AZN', 'BABA', 'BAX', 'BBY', 'BDX', 'BEN', 'BIIB', 'BLK', 'BMY', 'BNTX', 'BR', 'BRK.B', 'BSX', 'C', 'CAG', 'CARR', 'CB', 'CBOE', 'CDNS', 'CEG', 'CF', 'CHD', 'CHRW', 'CHTR', 'CI', 'CL', 'CLX', 'CMCSA', 'CME', 'CMI', 'CNC', 'COF', 'COP', 'COR', 'CPB', 'CPRT', 'CRH', 'CSCO', 'CSX', 'CTAS', 'CTSH', 'CTVA', 'CVS', 'CVX', 'D', 'DAL', 'DD', 'DELL', 'DG', 'DGX', 'DHI', 'DHR', 'DIS', 'DLR', 'DLTR', 'DOCU', 'DOV', 'DOW', 'DPZ', 'DRI', 'DTE', 'DUK', 'DVN', 'DXCM', 'EA', 'EBAY', 'ECL', 'ED', 'EFX', 'EL', 'EMR', 'ENPH', 'EOG', 'EQIX', 'EQR', 'EQT', 'ERIE', 'ES', 'ESS', 'ETN', 'EW', 'EXC', 'EXPD', 'EXPE', 'F', 'FANG', 'FAST', 'FCX', 'FDX', 'FE', 'FICO', 'FIS', 'FISV', 'FITB', 'FMC', 'FOXA', 'FSLR', 'FTNT', 'GD', 'GDDY', 'GILD', 'GIS', 'GL', 'GPN', 'GRMN', 'GWW', 'HAL', 'HAS', 'HBAN', 'HCA', 'HES', 'HIG', 'HLT', 'HOLX', 'HON', 'HPQ', 'HRL', 'HSY', 'HUM', 'HWM', 'IBM', 'ICE', 'IDXX', 'IEX', 'ILMN', 'INCY', 'IP', 'IPG', 'IQV', 'IR', 'IRM', 'ISRG', 'IT', 'ITW', 'IVZ', 'J', 'JAZZ', 'JBHT', 'JCI', 'JKHY', 'K', 'KDP', 'KEY', 'KEYS', 'KHC', 'KIM', 'KKR', 'KMB', 'KMI', 'KMX', 'KR', 'KVUE', 'LEN', 'LH', 'LKQ', 'LMT', 'LNT', 'LRCX', 'LVS', 'LW', 'LYB', 'LYV', 'MAR', 'MAS', 'MCHP', 'MCK', 'MCO', 'MDB', 'MDT', 'MET', 'MGM', 'MKC', 'MKTX', 'MLM', 'MMC', 'MMM', 'MO', 'MOS', 'MPC', 'MPWR', 'MRNA', 'MSI', 'MTB', 'MTCH', 'MTD', 'NDAQ', 'NDSN', 'NEM', 'NET', 'NOC', 'NRG', 'NSC', 'NTAP', 'NTRS', 'NUE', 'NVR', 'NWSA', 'O', 'ODFL', 'OKE', 'OMC', 'ON', 'ORLY', 'OTIS', 'OXY', 'PAYC', 'PAYX', 'PCAR', 'PCG', 'PEG', 'PFE', 'PFG', 'PH', 'PHM', 'PKG', 'PNC', 'PNR', 'PPG', 'PPL', 'PRU', 'PSA', 'PTC', 'PWR', 'PYPL', 'Q', 'RCL', 'REG', 'REGN', 'RF', 'RHI', 'RMD', 'ROK', 'ROL', 'ROP', 'ROST', 'RSG', 'RTO', 'RVTY', 'SBAC', 'SCHW', 'SHW', 'SJM', 'SLB', 'SMCI', 'SNA', 'SNPS', 'SO', 'SPG', 'SPGI', 'SRE', 'STE', 'STLD', 'STT', 'STX', 'STZ', 'SWK', 'SWKS', 'SYF', 'SYK', 'SYY', 'T', 'TAP', 'TDG', 'TDY', 'TECH', 'TEL', 'TER', 'TFC', 'TGT', 'TJX', 'TMO', 'TMUS', 'TPR', 'TRGP', 'TRMB', 'TROW', 'TRV', 'TSCO', 'TSN', 'TT', 'TTC', 'TTD', 'TYL', 'UAL', 'UDR', 'UHS', 'ULTA', 'UNP', 'UPS', 'URI', 'USB', 'VICI', 'VLO', 'VMC', 'VRSK', 'VRSN', 'VRTX', 'VTR', 'VTRS', 'VZ', 'WAB', 'WAT', 'WBA', 'WBD', 'WDC', 'WELL', 'WFC', 'WM', 'WMB', 'WMT', 'WRB', 'WST', 'WTW', 'WY', 'WYNN', 'XEL', 'XYL', 'YUM', 'ZBH', 'ZBRA', 'ZS']
 DISCOVERY_UNIVERSE=list(dict.fromkeys(UNIVERSE+DISCOVERY_SYMBOLS))
 KNOWN_NAMES={'AAPL': 'Apple Inc.', 'MSFT': 'Microsoft Corporation', 'NVDA': 'NVIDIA Corporation', 'AMZN': 'Amazon.com Inc.', 'META': 'Meta Platforms Inc.', 'GOOGL': 'Alphabet Inc.', 'AVGO': 'Broadcom Inc.', 'TSLA': 'Tesla Inc.', 'AMD': 'Advanced Micro Devices Inc.', 'NFLX': 'Netflix Inc.', 'ORCL': 'Oracle Corporation', 'CRM': 'Salesforce Inc.', 'ADBE': 'Adobe Inc.', 'INTC': 'Intel Corporation', 'QCOM': 'Qualcomm Inc.', 'TXN': 'Texas Instruments Inc.', 'MU': 'Micron Technology Inc.', 'AMAT': 'Applied Materials Inc.', 'LRCX': 'Lam Research Corporation', 'KLAC': 'KLA Corporation', 'PANW': 'Palo Alto Networks Inc.', 'CRWD': 'CrowdStrike Holdings Inc.', 'NOW': 'ServiceNow Inc.', 'PLTR': 'Palantir Technologies Inc.', 'UBER': 'Uber Technologies Inc.', 'ABNB': 'Airbnb Inc.', 'BKNG': 'Booking Holdings Inc.', 'JPM': 'JPMorgan Chase & Co.', 'BAC': 'Bank of America Corporation', 'GS': 'Goldman Sachs Group Inc.', 'MS': 'Morgan Stanley', 'V': 'Visa Inc.', 'MA': 'Mastercard Incorporated', 'AXP': 'American Express Company', 'WMT': 'Walmart Inc.', 'COST': 'Costco Wholesale Corporation', 'HD': 'Home Depot Inc.', 'LOW': "Lowe's Companies Inc.", 'NKE': 'Nike Inc.', 'MCD': "McDonald's Corporation", 'SBUX': 'Starbucks Corporation', 'KO': 'Coca-Cola Company', 'PEP': 'PepsiCo Inc.', 'PG': 'Procter & Gamble Company', 'JNJ': 'Johnson & Johnson', 'LLY': 'Eli Lilly and Company', 'MRK': 'Merck & Co. Inc.', 'ABBV': 'AbbVie Inc.', 'UNH': 'UnitedHealth Group Incorporated', 'XOM': 'Exxon Mobil Corporation', 'CVX': 'Chevron Corporation', 'CAT': 'Caterpillar Inc.', 'GE': 'GE Aerospace', 'BA': 'Boeing Company', 'RTX': 'RTX Corporation', 'DE': 'Deere & Company', 'NEE': 'NextEra Energy Inc.', 'LIN': 'Linde plc', 'BTC/USD': 'Bitcoin / US-Dollar', 'ETH/USD': 'Ethereum / US-Dollar', 'MNQ1!': 'Micro E-mini Nasdaq-100 Future'}
-DEFAULT={"cash":100.0,"start":100.0,"budget":100.0,"per_trade":20.0,"positions":[],"history":[],"watch":DISCOVERY_UNIVERSE,"key":"","auto":False,"last_auto_check":"Noch nie","next_auto_check":"–","scan_index":0,"scan_results":{},"scanned_total":0,"version":"V8.3.11","weak_trend_checks":{},"rocket_cooldown":{},"mnq_contracts":1,"event_log":[],"favorites":[],"names":KNOWN_NAMES.copy(),"alerts":[]}
+DEFAULT={"cash":100.0,"start":100.0,"budget":100.0,"per_trade":20.0,"positions":[],"history":[],"watch":DISCOVERY_UNIVERSE,"key":"","auto":False,"last_auto_check":"Noch nie","next_auto_check":"–","scan_index":0,"scan_results":{},"scanned_total":0,"version":"V8.3.12","weak_trend_checks":{},"rocket_cooldown":{},"mnq_contracts":1,"event_log":[],"favorites":[],"names":KNOWN_NAMES.copy(),"alerts":[]}
 # Supabase ist die maßgebliche Speicherung, wenn beide Render-Variablen gesetzt sind.
 # Bei Netzwerkfehlern niemals stillschweigend auf einen leeren lokalen Zustand zurückfallen.
 SUPABASE_URL=os.environ.get('SUPABASE_URL','').strip().rstrip('/')
@@ -47,7 +47,7 @@ def load():
     for sym in DISCOVERY_UNIVERSE:
         if sym not in d['watch']: d['watch'].append(sym)
     d.setdefault('names',{}).update({k:v for k,v in KNOWN_NAMES.items() if k not in d.get('names',{})})
-    d['version']='V8.3.11';d['mnq_contracts']=4
+    d['version']='V8.3.12';d['mnq_contracts']=4
     for pos in d.get('positions',[]):
         if pos.get('symbol')=='MNQ1!': pos.setdefault('contracts',4)
     return d
@@ -155,7 +155,7 @@ def add_momentum_labels(x, closes):
             x['signal'] = 'BEOBACHTEN'
     return x
 
-# V8.3.11: Fail-closed product eligibility. A price alone is NOT evidence of an unleveraged instrument.
+# V8.3.12: Fail-closed product eligibility. A price alone is NOT evidence of an unleveraged instrument.
 SPOT_CRYPTO={'BTC/USD','ETH/USD'}
 CURATED_STOCKS=set(DISCOVERY_SYMBOLS)|{x for x in UNIVERSE if x not in SPOT_CRYPTO and x!='MNQ1!'}
 LEVERAGED_SYMBOLS={'MNQ1!'}
@@ -291,7 +291,7 @@ HTML=r"""<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="
 body{font-family:system-ui;background:#07111f;color:#eaf1ff;margin:0}header{padding:18px 5%;background:#0c1b2d;position:sticky;top:0}.wrap{max-width:1550px;margin:auto;padding:22px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}.card{background:#102238;border:1px solid #203b5b;border-radius:16px;padding:16px;margin-bottom:14px}.big{font-size:28px;font-weight:800}.green{color:#42df91}.red{color:#ff6677}.yellow{color:#ffd15c}button,input{font:inherit;border-radius:10px;padding:10px;border:1px solid #34506d}button{background:#19b873;color:white;font-weight:700;cursor:pointer}.danger{background:#c53e50}.muted{color:#9db0c7}.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.trade{display:grid;grid-template-columns:1.2fr .8fr .8fr .8fr .8fr;gap:8px;padding:10px 0;border-top:1px solid #233c58}#status{margin-top:10px;font-weight:700}@media(max-width:700px){.trade{grid-template-columns:1fr 1fr}.hideM{display:none}}
 nav.tabs{display:flex;gap:9px;overflow-x:auto;margin:18px 0 14px;padding-bottom:6px}button.tab{background:#14263b;color:#c3d4e7;border:1px solid #2c4661;white-space:nowrap;padding:13px 17px}button.tab.active{background:#0869d5;border-color:#27d39a;color:#fff}.controlbar{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:#10283d}.controlbar strong{font-size:23px;color:#42df91;font-variant-numeric:tabular-nums}.statusline{padding:10px 14px;margin:10px 0 14px;background:#0f2134;border-radius:10px}.kpis .card{background:linear-gradient(145deg,#142c46,#0e1d30);min-height:86px}.kpis .big{margin-top:8px}header{z-index:10;border-bottom:1px solid #294560}button:hover{filter:brightness(1.13)}[data-tab]{display:none}[data-tab].visible{display:block}.trade{line-height:1.5}@media(max-width:700px){.wrap{padding:12px}.controlbar{justify-content:flex-start}.tabs{position:sticky;top:56px;background:#07111f;z-index:9}}.price-up{color:#22c55e;font-weight:700}.price-down{color:#ef4444;font-weight:700}.price-flat{color:inherit;font-weight:700}</style><style>.kpis{grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}.kpis .card{margin-bottom:0}.dashboard-grid{grid-template-columns:minmax(0,2.1fr) minmax(290px,1fr);gap:16px;align-items:start}.dashboard-grid.visible{display:grid}.dash-main,.dash-side{min-width:0}.panel-title{display:flex;justify-content:space-between;align-items:center;gap:12px}.panel-title h3{margin:4px 0 14px}.panel-title select{background:#132a43;color:#eaf1ff;border:1px solid #35516c;border-radius:9px;padding:8px}.holdings{width:100%;border-collapse:collapse;font-size:13px;white-space:nowrap}.holdings th{text-align:left;font-size:12px;color:#c6d4e8;font-weight:500;padding:13px 9px;border-bottom:1px solid #29435b}.holdings td{padding:13px 9px;border-bottom:1px solid #29435b;vertical-align:middle}.holdings small{display:block;color:#9db0c7}.holdings button{padding:8px 9px;font-size:12px;background:#0869d5}.holdings button.danger{background:#c83c4d}.holdings .signal{border-radius:7px;background:#145c43;padding:7px;color:#d6ffe7;display:inline-block}.holdings .signal.warning{background:#775a1e;color:#ffe6a2}.holdings .signal.sell{background:#8c273b;color:#fff}.table-scroll{overflow-x:auto}.fine{font-size:12px}.dash-bottom{display:grid;grid-template-columns:1fr 1fr;gap:14px}.quick-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}.quick-actions button{font-size:13px;padding:13px 8px}button.secondary{background:#182e49;border:1px solid #365574}.linkbutton{background:transparent;color:#55a9ff;font-weight:500;padding:5px;border:0}.preview-row{display:grid;grid-template-columns:1.2fr .9fr .5fr auto;gap:8px;align-items:center;padding:12px 0;border-bottom:1px solid #29435b;font-size:13px}.preview-row small{color:#9db0c7;display:block}.preview-row button{font-size:12px;padding:8px;background:#0b9b59}.activity-row{padding:11px 0;border-bottom:1px solid #29435b;font-size:12px}.activity-row .green,.activity-row .red{font-weight:700}@media(max-width:1050px){.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}.dashboard-grid.visible{grid-template-columns:1fr}}@media(max-width:620px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.dash-bottom{grid-template-columns:1fr}.panel-title{flex-wrap:wrap}}</style><style>
 .pro-monitor{overflow-x:auto}.pro-table{border-collapse:collapse;width:100%;font-size:13px}.pro-table th,.pro-table td{padding:10px 12px;border-bottom:1px solid #25405b;text-align:left;white-space:nowrap}.pro-table th{color:#9db0c7;font-size:11px;letter-spacing:.05em}.pro-table tbody tr:hover{background:#19314a}.pro-table button{font-size:12px;padding:7px}.pro-toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.pro-toolbar input,.pro-toolbar select{background:#0a1a2d;color:#fff;max-width:200px}.pro-link{background:none;border:0;color:#73baff;padding:2px}.pro-link:hover{text-decoration:underline}.pro-table small{display:block;color:#9db0c7}
-</style></head><body><header><b>📈 Trading Radar V8.3.11</b> <span class="muted">Paper-Trading · kein Echtgeld</span></header><div class="wrap">
+</style></head><body><header><b>📈 Trading Radar V8.3.12</b> <span class="muted">Paper-Trading · kein Echtgeld</span></header><div class="wrap">
 <nav class="tabs" aria-label="Bereiche"><button class="tab active" onclick="showTab('depot')">📊 Depot</button><button class="tab" onclick="showTab('scanner')">🔎 Top-Chancen</button><button class="tab" onclick="showTab('rocket')">🚀 Raketen-Radar</button><button class="tab" onclick="showTab('log')">📋 Protokoll</button><button class="tab" onclick="showTab('settings')">⚙️ Einstellungen</button></nav>
 <div class="card controlbar"><span>Automatik: <b id="quickAuto">AUS</b></span><span class="muted">Automatisch nach US-Börsenzeiten</span><span>Prüfung in <strong id="countdown">--:--</strong></span><span id="freshness">Kurse noch nicht geprüft</span><span id="quickScan">Scanner –</span></div>
 <div id="status" class="muted statusline">Bereit.</div>
@@ -339,16 +339,20 @@ function euro(x){return Number(x).toLocaleString('de-DE',{style:'currency',curre
 function msg(t,bad=false){const el=document.getElementById('status');if(el){el.textContent=t;el.className='statusline '+(bad?'red':'green')}}
 function backupState(s){try{localStorage.setItem('tradingRadarBackupV6',JSON.stringify({favorites:s.favorites,names:s.names,alerts:s.alerts,cash:s.cash,start:s.start,budget:s.budget,per_trade:s.per_trade,positions:s.positions,history:s.history,auto:s.auto,event_log:s.event_log,scan_results:s.scan_results,scan_index:s.scan_index}))}catch(e){}}
 async function load(){try{S=await api('/api/state');let raw=localStorage.getItem('tradingRadarBackupV6');if(raw&&S.positions.length===0&&S.history.length===0){let b=JSON.parse(raw);if((b.positions&&b.positions.length)||(b.history&&b.history.length)){S=await api('/api/restore',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({backup:b})})}}render(S);backupState(S)}catch(e){msg('Fehler: '+e.message,true)}}
+let LIVE_QUOTES_UI={};
+async function refreshLive(){try{const live=await api('/api/live');LIVE_QUOTES_UI=live.quotes||{};const info=document.getElementById('monitorInfo');if(S&&S.scan_results)renderMonitor(S);if(info)info.textContent+=' · '+(live.connected?'IEX verbunden':'IEX nicht verbunden: '+live.message)}catch(e){}}
+setInterval(refreshLive,2000);
 function renderMonitor(s){
  const q=(document.getElementById('monitorSearch')?.value||'').toLowerCase().trim();
  const sort=document.getElementById('monitorSort')?.value||'score';
  let rows=Object.values(s.scan_results||{}).filter(x=>x&&Number(x.price)>0&&isAllowedDisplay(x.symbol));
  if(q)rows=rows.filter(x=>String(x.symbol).toLowerCase().includes(q)||String((s.names||{})[x.symbol]||'').toLowerCase().includes(q));
  rows.sort((a,b)=>sort==='symbol'?a.symbol.localeCompare(b.symbol):sort==='momentum'?Number(b.mom||0)-Number(a.mom||0):Number(b.score||0)-Number(a.score||0));
- document.getElementById('monitorInfo').textContent=rows.length+' geprüfte Werte · Anzeige alle 30 Sekunden · neuer Marktscan alle 5 Minuten · Kursstand beachten';
+ document.getElementById('monitorInfo').textContent=rows.length+' geprüfte Werte · Live-Kurse: Alpaca IEX (nur Teilmarkt) · Scanner alle 5 Minuten';
  const now=Date.now()/1000;
  document.getElementById('monitorRows').innerHTML=rows.slice(0,80).map(x=>{
-  const age=x.seen?Math.max(0,now-Number(x.seen)):null;
+  const l=LIVE_QUOTES_UI[x.symbol];
+  const age=(l?.seen||x.seen)?Math.max(0,now-Number(l?.seen||x.seen)):null;
   const fresh=age!==null&&age<=900&&!x.fetch_error;
   const mom=Number(x.mom||0);
   const sym=JSON.stringify(String(x.symbol)).replace(/"/g,'&quot;');
@@ -454,7 +458,7 @@ async function autoTick(){
  }catch(e){msg('Automatische Prüfung fehlgeschlagen: '+e.message,true)}
  finally{autoCheckRunning=false;countdownTick()}
 }
-load();
+load();refreshLive();
 setInterval(()=>{
  if(!S.auto||autoCheckRunning)return;
  const due=!S._last_auto_ts || Date.now()/1000>=Number(S._last_auto_ts)+Number(S.auto_interval||300);
@@ -464,6 +468,131 @@ document.addEventListener('visibilitychange',()=>{if(!document.hidden){countdown
 setInterval(()=>{if(!document.hidden&&!autoCheckRunning)load()},30000);
 
 </script></body></html>"""
+
+
+# Alpaca IEX live stream: one server-side connection, no secrets in the browser.
+# Standard-library WebSocket client avoids extra Render dependencies.
+import socket, ssl, base64, hashlib, struct
+LIVE_QUOTES={}
+LIVE_LOCK=threading.RLock()
+LIVE_STATUS={'connected':False,'message':'Verbinde ...','updated':0}
+LIVE_MAX_SYMBOLS=30
+
+def alpaca_symbols():
+    try:
+        d=load()
+        held=[p.get('symbol') for p in d.get('positions',[])]
+        favorites=d.get('favorites',[])
+        watch=d.get('watch',[])
+        return list(dict.fromkeys(x for x in held+favorites+watch
+                                  if isinstance(x,str) and x in CURATED_STOCKS
+                                  and '/' not in x and x!='MNQ1!'))[:LIVE_MAX_SYMBOLS]
+    except Exception:
+        return ['AAPL','MSFT','NVDA','TSLA']
+
+def ws_send(sock, obj):
+    payload=json.dumps(obj,separators=(',',':')).encode()
+    mask=os.urandom(4)
+    n=len(payload)
+    head=bytes([0x81,0x80|n]) if n<126 else (bytes([0x81,0x80|126])+struct.pack('!H',n) if n<65536 else bytes([0x81,0x80|127])+struct.pack('!Q',n))
+    sock.sendall(head+mask+bytes(c^mask[i%4] for i,c in enumerate(payload)))
+
+def ws_read_exact(sock,n):
+    b=bytearray()
+    while len(b)<n:
+        part=sock.recv(n-len(b))
+        if not part: raise ConnectionError('WebSocket geschlossen')
+        b.extend(part)
+    return bytes(b)
+
+def ws_recv(sock):
+    a,b=ws_read_exact(sock,2)
+    opcode=a&15
+    n=b&127
+    if n==126: n=struct.unpack('!H',ws_read_exact(sock,2))[0]
+    if n==127: n=struct.unpack('!Q',ws_read_exact(sock,8))[0]
+    if n>2000000: raise ValueError('WebSocket-Nachricht zu groß')
+    mask=ws_read_exact(sock,4) if b&128 else None
+    data=ws_read_exact(sock,n)
+    if mask: data=bytes(c^mask[i%4] for i,c in enumerate(data))
+    return opcode,data
+
+def alpaca_stream_loop():
+    key=os.environ.get('ALPACA_API_KEY','').strip()
+    secret=os.environ.get('ALPACA_SECRET_KEY','').strip()
+    if not key or not secret:
+        LIVE_STATUS.update(connected=False,message='Alpaca-Schlüssel fehlen')
+        return
+    while True:
+        sock=None
+        try:
+            raw=socket.create_connection(('stream.data.alpaca.markets',443),timeout=15)
+            sock=ssl.create_default_context().wrap_socket(raw,server_hostname='stream.data.alpaca.markets')
+            token=base64.b64encode(os.urandom(16)).decode()
+            req=('GET /v2/iex HTTP/1.1\\r\\nHost: stream.data.alpaca.markets\\r\\n'
+                 'Upgrade: websocket\\r\\nConnection: Upgrade\\r\\n'
+                 'Sec-WebSocket-Key: '+token+'\\r\\nSec-WebSocket-Version: 13\\r\\n\\r\\n')
+            sock.sendall(req.encode())
+            hdr=bytearray()
+            while b'\\r\\n\\r\\n' not in hdr and len(hdr)<8192:
+                hdr.extend(sock.recv(1))
+            if b' 101 ' not in bytes(hdr).split(b'\\r\\n',1)[0]:
+                raise ConnectionError('Alpaca WebSocket Handshake fehlgeschlagen')
+            expected=base64.b64encode(hashlib.sha1((token+'258EAFA5-E914-47DA-95CA-C5AB0DC85B11').encode()).digest())
+            if expected.lower() not in bytes(hdr).lower(): raise ConnectionError('WebSocket-Antwort ungültig')
+            sock.settimeout(30)
+            ws_send(sock,{'action':'auth','key':key,'secret':secret})
+            symbols=alpaca_symbols()
+            ws_send(sock,{'action':'subscribe','trades':symbols})
+            subscribed=tuple(symbols)
+            LIVE_STATUS.update(connected=True,message='Alpaca IEX Live verbunden')
+            last_update=time.time()
+            while True:
+                try:
+                    op,data=ws_recv(sock)
+                except socket.timeout:
+                    ws_send(sock,{'action':'ping'})
+                    continue
+                if op==8: raise ConnectionError('Alpaca hat Verbindung beendet')
+                if op==9:
+                    sock.sendall(bytes([0x8A,0x80])+os.urandom(4))
+                    continue
+                if op!=1: continue
+                messages=json.loads(data)
+                if not isinstance(messages,list): messages=[messages]
+                for msg in messages:
+                    if msg.get('T')=='error': raise ConnectionError(str(msg.get('msg','Alpaca-Fehler')))
+                    if msg.get('T')!='t': continue
+                    sym=msg.get('S')
+                    price=msg.get('p')
+                    if not sym or not isinstance(price,(int,float)) or price<=0: continue
+                    ts=msg.get('t')
+                    try: seen=datetime.fromisoformat(ts.replace('Z','+00:00')).timestamp()
+                    except Exception: seen=time.time()
+                    with LIVE_LOCK: LIVE_QUOTES[sym]={'price':price,'seen':seen,'source':'Alpaca IEX'}
+                    LIVE_STATUS['updated']=time.time()
+                if time.time()-last_update>20:
+                    new=tuple(alpaca_symbols())
+                    if new!=subscribed:
+                        ws_send(sock,{'action':'unsubscribe','trades':list(subscribed)})
+                        ws_send(sock,{'action':'subscribe','trades':list(new)})
+                        subscribed=new
+                    last_update=time.time()
+        except Exception as e:
+            LIVE_STATUS.update(connected=False,message=str(e)[:160])
+            print('Alpaca live:',str(e)[:160],flush=True)
+        finally:
+            if sock:
+                try: sock.close()
+                except Exception: pass
+        time.sleep(5)
+
+def live_view():
+    with LIVE_LOCK:
+        quotes={k:v for k,v in LIVE_QUOTES.items() if time.time()-v['seen']<90}
+    return {'quotes':quotes,'connected':LIVE_STATUS['connected'],
+            'message':LIVE_STATUS['message'],'source':'Alpaca IEX (nur Teilmarkt)',
+            'updated':LIVE_STATUS['updated']}
 
 CACHE=[]
 
@@ -634,6 +763,7 @@ class H(BaseHTTPRequestHandler):
   if path in ('/','/index.html'):
    b=HTML.encode();self.send_response(200);self.send_header('Content-Type','text/html; charset=utf-8');self.send_header('Cache-Control','no-store');self.send_header('Content-Length',len(b));self.end_headers();self.wfile.write(b)
   elif path=='/api/state':self.sendj(view(load()))
+  elif path=='/api/live':self.sendj(live_view())
   elif path=='/api/search':
    try:
     d=load(); key=effective_key(d)
@@ -767,4 +897,5 @@ if __name__=='__main__':
  port=int(os.environ.get('PORT','10000'))
  print(f'Trading Radar läuft auf Port {port}')
  threading.Thread(target=scheduler_loop,daemon=True).start()
+ threading.Thread(target=alpaca_stream_loop,daemon=True).start()
  HTTPServer(('0.0.0.0',port),H).serve_forever()
