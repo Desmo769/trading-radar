@@ -601,6 +601,7 @@ def live_view():
 LIVE_PEAKS={}
 LIVE_SAMPLES={}
 LIVE_LAST_ACTION={}
+LIVE_LAST_TICK={}
 LIVE_BUY_COOLDOWN=3600
 LIVE_EXIT_COOLDOWN=24*3600
 
@@ -619,6 +620,10 @@ def live_paper_step():
         # A trade tick is not proof of a fresh indicator signal.
         for sym,q in quotes.items():
             if not product_is_allowed(sym,d): continue
+            # One execution per distinct market tick, never per scheduler iteration.
+            tick_ts=float(q['seen'])
+            if tick_ts<=LIVE_LAST_TICK.get(sym,0): continue
+            LIVE_LAST_TICK[sym]=tick_ts
             price=float(q['price'])
             if not math.isfinite(price) or price<=0: continue
             lots=[p for p in d.get('positions',[]) if p.get('symbol')==sym]
@@ -645,6 +650,7 @@ def live_paper_step():
             if now-LIVE_LAST_ACTION.get(sym,0)<LIVE_BUY_COOLDOWN: continue
             x=d.get('scan_results',{}).get(sym,{})
             if not quote_is_fresh(x) or x.get('risk')=='Hoch': continue
+            if not isinstance(x.get('score'),(int,float)) or not isinstance(x.get('mom'),(int,float)): continue
             # Fast breakout confirmation: two distinct IEX trades at least 10 s apart,
             # minimum 0.3% rise, in addition to a fresh high-score candle signal.
             samples=LIVE_SAMPLES.setdefault(sym,[])
