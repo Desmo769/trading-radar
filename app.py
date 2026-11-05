@@ -12,7 +12,7 @@ UNIVERSE=['AAPL','MSFT','NVDA','AMZN','META','GOOGL','AVGO','TSLA','AMD','NFLX',
 DISCOVERY_SYMBOLS=['ADP', 'ABT', 'ACN', 'AEP', 'AFL', 'AIG', 'ALL', 'AME', 'AMP', 'AMT', 'ANET', 'AON', 'APD', 'APO', 'APP', 'APTV', 'ARE', 'ARM', 'ASML', 'ATO', 'AVB', 'AXP', 'AZN', 'BABA', 'BAX', 'BBY', 'BDX', 'BEN', 'BIIB', 'BLK', 'BMY', 'BNTX', 'BR', 'BRK.B', 'BSX', 'C', 'CAG', 'CARR', 'CB', 'CBOE', 'CDNS', 'CEG', 'CF', 'CHD', 'CHRW', 'CHTR', 'CI', 'CL', 'CLX', 'CMCSA', 'CME', 'CMI', 'CNC', 'COF', 'COP', 'COR', 'CPB', 'CPRT', 'CRH', 'CSCO', 'CSX', 'CTAS', 'CTSH', 'CTVA', 'CVS', 'CVX', 'D', 'DAL', 'DD', 'DELL', 'DG', 'DGX', 'DHI', 'DHR', 'DIS', 'DLR', 'DLTR', 'DOCU', 'DOV', 'DOW', 'DPZ', 'DRI', 'DTE', 'DUK', 'DVN', 'DXCM', 'EA', 'EBAY', 'ECL', 'ED', 'EFX', 'EL', 'EMR', 'ENPH', 'EOG', 'EQIX', 'EQR', 'EQT', 'ERIE', 'ES', 'ESS', 'ETN', 'EW', 'EXC', 'EXPD', 'EXPE', 'F', 'FANG', 'FAST', 'FCX', 'FDX', 'FE', 'FICO', 'FIS', 'FISV', 'FITB', 'FMC', 'FOXA', 'FSLR', 'FTNT', 'GD', 'GDDY', 'GILD', 'GIS', 'GL', 'GPN', 'GRMN', 'GWW', 'HAL', 'HAS', 'HBAN', 'HCA', 'HES', 'HIG', 'HLT', 'HOLX', 'HON', 'HPQ', 'HRL', 'HSY', 'HUM', 'HWM', 'IBM', 'ICE', 'IDXX', 'IEX', 'ILMN', 'INCY', 'IP', 'IPG', 'IQV', 'IR', 'IRM', 'ISRG', 'IT', 'ITW', 'IVZ', 'J', 'JAZZ', 'JBHT', 'JCI', 'JKHY', 'K', 'KDP', 'KEY', 'KEYS', 'KHC', 'KIM', 'KKR', 'KMB', 'KMI', 'KMX', 'KR', 'KVUE', 'LEN', 'LH', 'LKQ', 'LMT', 'LNT', 'LRCX', 'LVS', 'LW', 'LYB', 'LYV', 'MAR', 'MAS', 'MCHP', 'MCK', 'MCO', 'MDB', 'MDT', 'MET', 'MGM', 'MKC', 'MKTX', 'MLM', 'MMC', 'MMM', 'MO', 'MOS', 'MPC', 'MPWR', 'MRNA', 'MSI', 'MTB', 'MTCH', 'MTD', 'NDAQ', 'NDSN', 'NEM', 'NET', 'NOC', 'NRG', 'NSC', 'NTAP', 'NTRS', 'NUE', 'NVR', 'NWSA', 'O', 'ODFL', 'OKE', 'OMC', 'ON', 'ORLY', 'OTIS', 'OXY', 'PAYC', 'PAYX', 'PCAR', 'PCG', 'PEG', 'PFE', 'PFG', 'PH', 'PHM', 'PKG', 'PNC', 'PNR', 'PPG', 'PPL', 'PRU', 'PSA', 'PTC', 'PWR', 'PYPL', 'Q', 'RCL', 'REG', 'REGN', 'RF', 'RHI', 'RMD', 'ROK', 'ROL', 'ROP', 'ROST', 'RSG', 'RTO', 'RVTY', 'SBAC', 'SCHW', 'SHW', 'SJM', 'SLB', 'SMCI', 'SNA', 'SNPS', 'SO', 'SPG', 'SPGI', 'SRE', 'STE', 'STLD', 'STT', 'STX', 'STZ', 'SWK', 'SWKS', 'SYF', 'SYK', 'SYY', 'T', 'TAP', 'TDG', 'TDY', 'TECH', 'TEL', 'TER', 'TFC', 'TGT', 'TJX', 'TMO', 'TMUS', 'TPR', 'TRGP', 'TRMB', 'TROW', 'TRV', 'TSCO', 'TSN', 'TT', 'TTC', 'TTD', 'TYL', 'UAL', 'UDR', 'UHS', 'ULTA', 'UNP', 'UPS', 'URI', 'USB', 'VICI', 'VLO', 'VMC', 'VRSK', 'VRSN', 'VRTX', 'VTR', 'VTRS', 'VZ', 'WAB', 'WAT', 'WBA', 'WBD', 'WDC', 'WELL', 'WFC', 'WM', 'WMB', 'WMT', 'WRB', 'WST', 'WTW', 'WY', 'WYNN', 'XEL', 'XYL', 'YUM', 'ZBH', 'ZBRA', 'ZS']
 DISCOVERY_UNIVERSE=list(dict.fromkeys(UNIVERSE+DISCOVERY_SYMBOLS))
 KNOWN_NAMES={'AAPL': 'Apple Inc.', 'MSFT': 'Microsoft Corporation', 'NVDA': 'NVIDIA Corporation', 'AMZN': 'Amazon.com Inc.', 'META': 'Meta Platforms Inc.', 'GOOGL': 'Alphabet Inc.', 'AVGO': 'Broadcom Inc.', 'TSLA': 'Tesla Inc.', 'AMD': 'Advanced Micro Devices Inc.', 'NFLX': 'Netflix Inc.', 'ORCL': 'Oracle Corporation', 'CRM': 'Salesforce Inc.', 'ADBE': 'Adobe Inc.', 'INTC': 'Intel Corporation', 'QCOM': 'Qualcomm Inc.', 'TXN': 'Texas Instruments Inc.', 'MU': 'Micron Technology Inc.', 'AMAT': 'Applied Materials Inc.', 'LRCX': 'Lam Research Corporation', 'KLAC': 'KLA Corporation', 'PANW': 'Palo Alto Networks Inc.', 'CRWD': 'CrowdStrike Holdings Inc.', 'NOW': 'ServiceNow Inc.', 'PLTR': 'Palantir Technologies Inc.', 'UBER': 'Uber Technologies Inc.', 'ABNB': 'Airbnb Inc.', 'BKNG': 'Booking Holdings Inc.', 'JPM': 'JPMorgan Chase & Co.', 'BAC': 'Bank of America Corporation', 'GS': 'Goldman Sachs Group Inc.', 'MS': 'Morgan Stanley', 'V': 'Visa Inc.', 'MA': 'Mastercard Incorporated', 'AXP': 'American Express Company', 'WMT': 'Walmart Inc.', 'COST': 'Costco Wholesale Corporation', 'HD': 'Home Depot Inc.', 'LOW': "Lowe's Companies Inc.", 'NKE': 'Nike Inc.', 'MCD': "McDonald's Corporation", 'SBUX': 'Starbucks Corporation', 'KO': 'Coca-Cola Company', 'PEP': 'PepsiCo Inc.', 'PG': 'Procter & Gamble Company', 'JNJ': 'Johnson & Johnson', 'LLY': 'Eli Lilly and Company', 'MRK': 'Merck & Co. Inc.', 'ABBV': 'AbbVie Inc.', 'UNH': 'UnitedHealth Group Incorporated', 'XOM': 'Exxon Mobil Corporation', 'CVX': 'Chevron Corporation', 'CAT': 'Caterpillar Inc.', 'GE': 'GE Aerospace', 'BA': 'Boeing Company', 'RTX': 'RTX Corporation', 'DE': 'Deere & Company', 'NEE': 'NextEra Energy Inc.', 'LIN': 'Linde plc', 'BTC/USD': 'Bitcoin / US-Dollar', 'ETH/USD': 'Ethereum / US-Dollar', 'MNQ1!': 'Micro E-mini Nasdaq-100 Future'}
-DEFAULT={"cash":100.0,"start":100.0,"budget":100.0,"per_trade":20.0,"positions":[],"history":[],"watch":DISCOVERY_UNIVERSE,"key":"","auto":False,"last_auto_check":"Noch nie","next_auto_check":"–","scan_index":0,"scan_results":{},"scanned_total":0,"version":"V8.3.13","weak_trend_checks":{},"rocket_cooldown":{},"mnq_contracts":1,"event_log":[],"favorites":[],"names":KNOWN_NAMES.copy(),"alerts":[]}
+DEFAULT={"cash":100.0,"start":100.0,"budget":100.0,"per_trade":20.0,"positions":[],"history":[],"watch":DISCOVERY_UNIVERSE,"key":"","auto":False,"last_auto_check":"Noch nie","next_auto_check":"–","scan_index":0,"scan_results":{},"scanned_total":0,"version":"V8.3.14","weak_trend_checks":{},"rocket_cooldown":{},"mnq_contracts":1,"event_log":[],"favorites":[],"names":KNOWN_NAMES.copy(),"alerts":[]}
 # Supabase ist die maßgebliche Speicherung, wenn beide Render-Variablen gesetzt sind.
 # Bei Netzwerkfehlern niemals stillschweigend auf einen leeren lokalen Zustand zurückfallen.
 SUPABASE_URL=os.environ.get('SUPABASE_URL','').strip().rstrip('/')
@@ -340,7 +340,8 @@ function msg(t,bad=false){const el=document.getElementById('status');if(el){el.t
 function backupState(s){try{localStorage.setItem('tradingRadarBackupV6',JSON.stringify({favorites:s.favorites,names:s.names,alerts:s.alerts,cash:s.cash,start:s.start,budget:s.budget,per_trade:s.per_trade,positions:s.positions,history:s.history,auto:s.auto,event_log:s.event_log,scan_results:s.scan_results,scan_index:s.scan_index}))}catch(e){}}
 async function load(){try{S=await api('/api/state');let raw=localStorage.getItem('tradingRadarBackupV6');if(raw&&S.positions.length===0&&S.history.length===0){let b=JSON.parse(raw);if((b.positions&&b.positions.length)||(b.history&&b.history.length)){S=await api('/api/restore',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({backup:b})})}}render(S);backupState(S)}catch(e){msg('Fehler: '+e.message,true)}}
 let LIVE_QUOTES_UI={};
-async function refreshLive(){try{const live=await api('/api/live');LIVE_QUOTES_UI=live.quotes||{};const info=document.getElementById('monitorInfo');if(S&&S.scan_results)renderMonitor(S);if(info)info.textContent+=' · '+(live.connected?'IEX verbunden':'IEX nicht verbunden: '+live.message)}catch(e){}}
+async let LIVE_STATUS_UI={};
+function refreshLive(){try{const live=await api('/api/live');LIVE_QUOTES_UI=live.quotes||{};LIVE_STATUS_UI=live;if(S&&S.scan_results)renderMonitor(S)}catch(e){LIVE_STATUS_UI={connected:false,message:'Live-Abfrage fehlgeschlagen'};if(S&&S.scan_results)renderMonitor(S)}}
 setInterval(refreshLive,2000);
 function renderMonitor(s){
  const q=(document.getElementById('monitorSearch')?.value||'').toLowerCase().trim();
@@ -348,15 +349,19 @@ function renderMonitor(s){
  let rows=Object.values(s.scan_results||{}).filter(x=>x&&Number(x.price)>0&&isAllowedDisplay(x.symbol));
  if(q)rows=rows.filter(x=>String(x.symbol).toLowerCase().includes(q)||String((s.names||{})[x.symbol]||'').toLowerCase().includes(q));
  rows.sort((a,b)=>sort==='symbol'?a.symbol.localeCompare(b.symbol):sort==='momentum'?Number(b.mom||0)-Number(a.mom||0):Number(b.score||0)-Number(a.score||0));
- document.getElementById('monitorInfo').textContent=rows.length+' geprüfte Werte · Live-Paper-Handel bei neuen IEX-Kursen · Signalanalyse alle 5 Minuten';
+ const live=LIVE_STATUS_UI;
+ const sub=Number(live.subscribed_count||0),fresh=Number(live.fresh_count||0);
+ const status=live.connected?'IEX verbunden':'IEX getrennt: '+(live.message||'Unbekannt');
+ document.getElementById('monitorInfo').textContent=rows.length+' gespeicherte Scannerwerte · '+status+' · '+sub+' abonniert · '+fresh+' frische Live-Kurse (max. 20 Sek.) · Analyse alle 5 Minuten';
  const now=Date.now()/1000;
  document.getElementById('monitorRows').innerHTML=rows.slice(0,80).map(x=>{
   const l=LIVE_QUOTES_UI[x.symbol];
   const age=(l?.seen||x.seen)?Math.max(0,now-Number(l?.seen||x.seen)):null;
   const fresh=l?age!==null&&age<=20:age!==null&&age<=900&&!x.fetch_error;
+  const signalFresh=Number(x.seen)>0&&now-Number(x.seen)<=900&&Number(x.candle_ts)>0&&now-Number(x.candle_ts)<=1800&&!x.fetch_error;
   const mom=Number(x.mom||0);
   const sym=JSON.stringify(String(x.symbol)).replace(/"/g,'&quot;');
-  return '<tr><td><button class="pro-link" onclick="openMonitorChart('+sym+')"><b>'+esc(x.symbol)+'</b></button><small>'+esc((s.names||{})[x.symbol]||'')+'</small></td><td>'+(l?euro(l.price)+' <small class="green">IEX LIVE</small>':euro(x.price))+'</td><td class="'+(mom>=0?'green':'red')+'">'+(mom>=0?'+':'')+mom.toFixed(2)+' %</td><td>'+esc(x.score??'–')+'</td><td>'+esc(x.signal||'–')+'</td><td class="'+(fresh?'green':'yellow')+'">'+(age===null?'Unbekannt':Math.floor(age/60)+' Min.')+(fresh?'':' ⚠ veraltet')+'</td><td><button class="secondary" onclick="openMonitorChart('+sym+')">Chart</button></td></tr>';
+  return '<tr><td><button class="pro-link" onclick="openMonitorChart('+sym+')"><b>'+esc(x.symbol)+'</b></button><small>'+esc((s.names||{})[x.symbol]||'')+'</small></td><td>'+(l?euro(l.price)+' <small class="green">IEX LIVE</small>':euro(x.price))+'</td><td class="'+(mom>=0?'green':'red')+'">'+(mom>=0?'+':'')+mom.toFixed(2)+' %</td><td>'+esc(x.score??'–')+'</td><td>'+(signalFresh?esc(x.signal||'–'):esc(x.signal||'–')+' <small class="yellow">(alt, kein Handelssignal)</small>')+'</td><td class="'+(fresh?'green':'yellow')+'">'+(age===null?'Unbekannt':Math.floor(age/60)+' Min.')+(fresh?'':' ⚠ veraltet')+'</td><td><button class="secondary" onclick="openMonitorChart('+sym+')">Chart</button></td></tr>';
  }).join('')||'<tr><td colspan="7">Keine passenden Kursdaten. Starte eine Marktprüfung.</td></tr>';
 }
 function openMonitorChart(sym){showTab('scanner');chart(sym);document.getElementById('priceChart')?.scrollIntoView({behavior:'smooth',block:'center'})}
@@ -477,6 +482,7 @@ LIVE_QUOTES={}
 LIVE_LOCK=threading.RLock()
 LIVE_STATUS={'connected':False,'message':'Verbinde ...','updated':0}
 LIVE_MAX_SYMBOLS=30
+LIVE_SUBSCRIBED=[]
 
 def alpaca_symbols():
     try:
@@ -485,8 +491,8 @@ def alpaca_symbols():
         favorites=d.get('favorites',[])
         watch=d.get('watch',[])
         return list(dict.fromkeys(x for x in held+favorites+watch
-                                  if isinstance(x,str) and x in CURATED_STOCKS
-                                  and '/' not in x and x!='MNQ1!'))[:LIVE_MAX_SYMBOLS]
+                                  if isinstance(x,str) and product_is_allowed(x,d)
+                                  and '/' not in x and x!='MNQ1!' and x not in SPOT_CRYPTO))[:LIVE_MAX_SYMBOLS]
     except Exception:
         return ['AAPL','MSFT','NVDA','TSLA']
 
@@ -545,6 +551,7 @@ def alpaca_stream_loop():
             symbols=alpaca_symbols()
             ws_send(sock,{'action':'subscribe','trades':symbols})
             subscribed=tuple(symbols)
+            with LIVE_LOCK: LIVE_SUBSCRIBED[:]=symbols
             LIVE_STATUS.update(connected=False,message='IEX-Authentifizierung läuft')
             last_update=time.time()
             while True:
@@ -578,9 +585,11 @@ def alpaca_stream_loop():
                         ws_send(sock,{'action':'unsubscribe','trades':list(subscribed)})
                         ws_send(sock,{'action':'subscribe','trades':list(new)})
                         subscribed=new
+                        with LIVE_LOCK: LIVE_SUBSCRIBED[:]=new
                     last_update=time.time()
         except Exception as e:
             LIVE_STATUS.update(connected=False,message=str(e)[:160])
+            with LIVE_LOCK: LIVE_SUBSCRIBED.clear()
             print('Alpaca live:',str(e)[:160],flush=True)
         finally:
             if sock:
@@ -589,11 +598,15 @@ def alpaca_stream_loop():
         time.sleep(5)
 
 def live_view():
+    now=time.time()
     with LIVE_LOCK:
-        quotes={k:v for k,v in LIVE_QUOTES.items() if time.time()-v['seen']<90}
+        quotes={k:dict(v) for k,v in LIVE_QUOTES.items() if 0<=now-float(v.get('seen',0))<=20}
+        subscribed=list(LIVE_SUBSCRIBED)
     return {'quotes':quotes,'connected':LIVE_STATUS['connected'],
             'message':LIVE_STATUS['message'],'source':'Alpaca IEX (nur Teilmarkt)',
-            'updated':LIVE_STATUS['updated']}
+            'updated':LIVE_STATUS['updated'],'subscribed':subscribed,
+            'subscribed_count':len(subscribed),'fresh_count':len(quotes),
+            'last_trade_age_seconds':round(now-LIVE_STATUS['updated']) if LIVE_STATUS['updated'] else None}
 
 
 # V8.3.13: Trade decisions use only fresh, authenticated IEX trades.
