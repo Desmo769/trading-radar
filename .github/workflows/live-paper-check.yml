@@ -23,6 +23,6 @@ jobs:
           assert callable(app.live_paper_step)
           assert callable(app.alpaca_stream_loop)
           assert app.LIVE_MAX_SYMBOLS <= 30
-          assert 'V8.3.14' in app.HTML
+          assert app.load()['version']=='V8.3.14'
           print('Import and live-paper wiring OK')
           PY
