@@ -14,6 +14,8 @@ jobs:
           python-version: '3.11'
       - name: Python syntax
         run: python -m py_compile app.py
+      - name: Run simulated live paper trade tests
+        run: python -m unittest -v test_live_paper.py
       - name: Import and inspect live logic
         run: |
           python - <<'PY'
