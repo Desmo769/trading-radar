@@ -340,8 +340,8 @@ function msg(t,bad=false){const el=document.getElementById('status');if(el){el.t
 function backupState(s){try{localStorage.setItem('tradingRadarBackupV6',JSON.stringify({favorites:s.favorites,names:s.names,alerts:s.alerts,cash:s.cash,start:s.start,budget:s.budget,per_trade:s.per_trade,positions:s.positions,history:s.history,auto:s.auto,event_log:s.event_log,scan_results:s.scan_results,scan_index:s.scan_index}))}catch(e){}}
 async function load(){try{S=await api('/api/state');let raw=localStorage.getItem('tradingRadarBackupV6');if(raw&&S.positions.length===0&&S.history.length===0){let b=JSON.parse(raw);if((b.positions&&b.positions.length)||(b.history&&b.history.length)){S=await api('/api/restore',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({backup:b})})}}render(S);backupState(S)}catch(e){msg('Fehler: '+e.message,true)}}
 let LIVE_QUOTES_UI={};
-async let LIVE_STATUS_UI={};
-function refreshLive(){try{const live=await api('/api/live');LIVE_QUOTES_UI=live.quotes||{};LIVE_STATUS_UI=live;if(S&&S.scan_results)renderMonitor(S)}catch(e){LIVE_STATUS_UI={connected:false,message:'Live-Abfrage fehlgeschlagen'};if(S&&S.scan_results)renderMonitor(S)}}
+let LIVE_STATUS_UI={};
+async function refreshLive(){try{const live=await api('/api/live');LIVE_QUOTES_UI=live.quotes||{};LIVE_STATUS_UI=live;if(S&&S.scan_results)renderMonitor(S)}catch(e){LIVE_STATUS_UI={connected:false,message:'Live-Abfrage fehlgeschlagen'};if(S&&S.scan_results)renderMonitor(S)}}
 setInterval(refreshLive,2000);
 function renderMonitor(s){
  const q=(document.getElementById('monitorSearch')?.value||'').toLowerCase().trim();
