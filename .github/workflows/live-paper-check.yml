@@ -1,0 +1,26 @@
+name: Validate Trading Radar live paper changes
+on:
+  push:
+    branches: [feature/live-paper-v8-3-13]
+  pull_request:
+    branches: [main]
+jobs:
+  syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Python syntax
+        run: python -m py_compile app.py
+      - name: Import and inspect live logic
+        run: |
+          python - <<'PY'
+          import app
+          assert callable(app.live_paper_step)
+          assert callable(app.alpaca_stream_loop)
+          assert app.LIVE_MAX_SYMBOLS <= 30
+          assert 'V8.3.13' in app.load()['version']
+          print('Import and live-paper wiring OK')
+          PY
