@@ -12,7 +12,7 @@ UNIVERSE=['AAPL','MSFT','NVDA','AMZN','META','GOOGL','AVGO','TSLA','AMD','NFLX',
 DISCOVERY_SYMBOLS=['ADP', 'ABT', 'ACN', 'AEP', 'AFL', 'AIG', 'ALL', 'AME', 'AMP', 'AMT', 'ANET', 'AON', 'APD', 'APO', 'APP', 'APTV', 'ARE', 'ARM', 'ASML', 'ATO', 'AVB', 'AXP', 'AZN', 'BABA', 'BAX', 'BBY', 'BDX', 'BEN', 'BIIB', 'BLK', 'BMY', 'BNTX', 'BR', 'BRK.B', 'BSX', 'C', 'CAG', 'CARR', 'CB', 'CBOE', 'CDNS', 'CEG', 'CF', 'CHD', 'CHRW', 'CHTR', 'CI', 'CL', 'CLX', 'CMCSA', 'CME', 'CMI', 'CNC', 'COF', 'COP', 'COR', 'CPB', 'CPRT', 'CRH', 'CSCO', 'CSX', 'CTAS', 'CTSH', 'CTVA', 'CVS', 'CVX', 'D', 'DAL', 'DD', 'DELL', 'DG', 'DGX', 'DHI', 'DHR', 'DIS', 'DLR', 'DLTR', 'DOCU', 'DOV', 'DOW', 'DPZ', 'DRI', 'DTE', 'DUK', 'DVN', 'DXCM', 'EA', 'EBAY', 'ECL', 'ED', 'EFX', 'EL', 'EMR', 'ENPH', 'EOG', 'EQIX', 'EQR', 'EQT', 'ERIE', 'ES', 'ESS', 'ETN', 'EW', 'EXC', 'EXPD', 'EXPE', 'F', 'FANG', 'FAST', 'FCX', 'FDX', 'FE', 'FICO', 'FIS', 'FISV', 'FITB', 'FMC', 'FOXA', 'FSLR', 'FTNT', 'GD', 'GDDY', 'GILD', 'GIS', 'GL', 'GPN', 'GRMN', 'GWW', 'HAL', 'HAS', 'HBAN', 'HCA', 'HES', 'HIG', 'HLT', 'HOLX', 'HON', 'HPQ', 'HRL', 'HSY', 'HUM', 'HWM', 'IBM', 'ICE', 'IDXX', 'IEX', 'ILMN', 'INCY', 'IP', 'IPG', 'IQV', 'IR', 'IRM', 'ISRG', 'IT', 'ITW', 'IVZ', 'J', 'JAZZ', 'JBHT', 'JCI', 'JKHY', 'K', 'KDP', 'KEY', 'KEYS', 'KHC', 'KIM', 'KKR', 'KMB', 'KMI', 'KMX', 'KR', 'KVUE', 'LEN', 'LH', 'LKQ', 'LMT', 'LNT', 'LRCX', 'LVS', 'LW', 'LYB', 'LYV', 'MAR', 'MAS', 'MCHP', 'MCK', 'MCO', 'MDB', 'MDT', 'MET', 'MGM', 'MKC', 'MKTX', 'MLM', 'MMC', 'MMM', 'MO', 'MOS', 'MPC', 'MPWR', 'MRNA', 'MSI', 'MTB', 'MTCH', 'MTD', 'NDAQ', 'NDSN', 'NEM', 'NET', 'NOC', 'NRG', 'NSC', 'NTAP', 'NTRS', 'NUE', 'NVR', 'NWSA', 'O', 'ODFL', 'OKE', 'OMC', 'ON', 'ORLY', 'OTIS', 'OXY', 'PAYC', 'PAYX', 'PCAR', 'PCG', 'PEG', 'PFE', 'PFG', 'PH', 'PHM', 'PKG', 'PNC', 'PNR', 'PPG', 'PPL', 'PRU', 'PSA', 'PTC', 'PWR', 'PYPL', 'Q', 'RCL', 'REG', 'REGN', 'RF', 'RHI', 'RMD', 'ROK', 'ROL', 'ROP', 'ROST', 'RSG', 'RTO', 'RVTY', 'SBAC', 'SCHW', 'SHW', 'SJM', 'SLB', 'SMCI', 'SNA', 'SNPS', 'SO', 'SPG', 'SPGI', 'SRE', 'STE', 'STLD', 'STT', 'STX', 'STZ', 'SWK', 'SWKS', 'SYF', 'SYK', 'SYY', 'T', 'TAP', 'TDG', 'TDY', 'TECH', 'TEL', 'TER', 'TFC', 'TGT', 'TJX', 'TMO', 'TMUS', 'TPR', 'TRGP', 'TRMB', 'TROW', 'TRV', 'TSCO', 'TSN', 'TT', 'TTC', 'TTD', 'TYL', 'UAL', 'UDR', 'UHS', 'ULTA', 'UNP', 'UPS', 'URI', 'USB', 'VICI', 'VLO', 'VMC', 'VRSK', 'VRSN', 'VRTX', 'VTR', 'VTRS', 'VZ', 'WAB', 'WAT', 'WBA', 'WBD', 'WDC', 'WELL', 'WFC', 'WM', 'WMB', 'WMT', 'WRB', 'WST', 'WTW', 'WY', 'WYNN', 'XEL', 'XYL', 'YUM', 'ZBH', 'ZBRA', 'ZS']
 DISCOVERY_UNIVERSE=list(dict.fromkeys(UNIVERSE+DISCOVERY_SYMBOLS))
 KNOWN_NAMES={'AAPL': 'Apple Inc.', 'MSFT': 'Microsoft Corporation', 'NVDA': 'NVIDIA Corporation', 'AMZN': 'Amazon.com Inc.', 'META': 'Meta Platforms Inc.', 'GOOGL': 'Alphabet Inc.', 'AVGO': 'Broadcom Inc.', 'TSLA': 'Tesla Inc.', 'AMD': 'Advanced Micro Devices Inc.', 'NFLX': 'Netflix Inc.', 'ORCL': 'Oracle Corporation', 'CRM': 'Salesforce Inc.', 'ADBE': 'Adobe Inc.', 'INTC': 'Intel Corporation', 'QCOM': 'Qualcomm Inc.', 'TXN': 'Texas Instruments Inc.', 'MU': 'Micron Technology Inc.', 'AMAT': 'Applied Materials Inc.', 'LRCX': 'Lam Research Corporation', 'KLAC': 'KLA Corporation', 'PANW': 'Palo Alto Networks Inc.', 'CRWD': 'CrowdStrike Holdings Inc.', 'NOW': 'ServiceNow Inc.', 'PLTR': 'Palantir Technologies Inc.', 'UBER': 'Uber Technologies Inc.', 'ABNB': 'Airbnb Inc.', 'BKNG': 'Booking Holdings Inc.', 'JPM': 'JPMorgan Chase & Co.', 'BAC': 'Bank of America Corporation', 'GS': 'Goldman Sachs Group Inc.', 'MS': 'Morgan Stanley', 'V': 'Visa Inc.', 'MA': 'Mastercard Incorporated', 'AXP': 'American Express Company', 'WMT': 'Walmart Inc.', 'COST': 'Costco Wholesale Corporation', 'HD': 'Home Depot Inc.', 'LOW': "Lowe's Companies Inc.", 'NKE': 'Nike Inc.', 'MCD': "McDonald's Corporation", 'SBUX': 'Starbucks Corporation', 'KO': 'Coca-Cola Company', 'PEP': 'PepsiCo Inc.', 'PG': 'Procter & Gamble Company', 'JNJ': 'Johnson & Johnson', 'LLY': 'Eli Lilly and Company', 'MRK': 'Merck & Co. Inc.', 'ABBV': 'AbbVie Inc.', 'UNH': 'UnitedHealth Group Incorporated', 'XOM': 'Exxon Mobil Corporation', 'CVX': 'Chevron Corporation', 'CAT': 'Caterpillar Inc.', 'GE': 'GE Aerospace', 'BA': 'Boeing Company', 'RTX': 'RTX Corporation', 'DE': 'Deere & Company', 'NEE': 'NextEra Energy Inc.', 'LIN': 'Linde plc', 'BTC/USD': 'Bitcoin / US-Dollar', 'ETH/USD': 'Ethereum / US-Dollar', 'MNQ1!': 'Micro E-mini Nasdaq-100 Future'}
-DEFAULT={"cash":100.0,"start":100.0,"budget":100.0,"per_trade":20.0,"positions":[],"history":[],"watch":DISCOVERY_UNIVERSE,"key":"","auto":False,"last_auto_check":"Noch nie","next_auto_check":"–","scan_index":0,"scan_results":{},"scanned_total":0,"version":"V8.3.15","weak_trend_checks":{},"rocket_cooldown":{},"mnq_contracts":1,"event_log":[],"favorites":[],"names":KNOWN_NAMES.copy(),"alerts":[]}
+DEFAULT={"cash":100.0,"start":100.0,"budget":100.0,"per_trade":20.0,"positions":[],"history":[],"watch":DISCOVERY_UNIVERSE,"key":"","auto":False,"last_auto_check":"Noch nie","next_auto_check":"–","scan_index":0,"scan_results":{},"scanned_total":0,"version":"V8.3.16","weak_trend_checks":{},"rocket_cooldown":{},"mnq_contracts":1,"event_log":[],"favorites":[],"names":KNOWN_NAMES.copy(),"alerts":[]}
 # Supabase ist die maßgebliche Speicherung, wenn beide Render-Variablen gesetzt sind.
 # Bei Netzwerkfehlern niemals stillschweigend auf einen leeren lokalen Zustand zurückfallen.
 SUPABASE_URL=os.environ.get('SUPABASE_URL','').strip().rstrip('/')
@@ -47,7 +47,7 @@ def load():
     for sym in DISCOVERY_UNIVERSE:
         if sym not in d['watch']: d['watch'].append(sym)
     d.setdefault('names',{}).update({k:v for k,v in KNOWN_NAMES.items() if k not in d.get('names',{})})
-    d['version']='V8.3.15';d['mnq_contracts']=4
+    d['version']='V8.3.16';d['mnq_contracts']=4
     for pos in d.get('positions',[]):
         if pos.get('symbol')=='MNQ1!': pos.setdefault('contracts',4)
     return d
@@ -259,7 +259,7 @@ def portfolio(d, quotes):
         sym=pos['symbol']
         if sym not in grouped:
             grouped[sym]={'symbol':sym,'qty':0.0,'cost':0.0,'buys':0}
-        g=grouped[sym];g['qty']+=pos['qty'];g['cost']+=pos['cost'];g['buys']+=1
+        g=grouped[sym];g['qty']+=pos['qty'];g['cost']+=pos['cost'];g['buys']+=1;g['auto_qty']=g.get('auto_qty',0)+ (pos['qty'] if pos.get('auto_manage',pos.get('source','Automatik')!='Manuell') else 0)
     for sym,pos in grouped.items():
         entry=pos['cost']/pos['qty'] if pos['qty'] else 0
         q=qmap.get(sym,{})
@@ -283,7 +283,7 @@ def portfolio(d, quotes):
         else:decision,reason='HALTEN',f'Score {score}, Ergebnis {pct:+.2f} %'
         seen=q.get('seen')
         checked=datetime.fromtimestamp(seen,ZoneInfo('Europe/Berlin')).strftime('%d.%m. %H:%M') if seen else '–'
-        rows.append({**pos,'entry':entry,'price':price,'value':cur,'pnl':pnl,'pnlpct':pct,'score':score,'decision':decision,'reason':reason,'checked':checked,'cost':pos['cost'],'data_ok':reliable,'age_seconds':age,'candle_age_seconds':candle_age,'fetch_error':q.get('fetch_error'),'has_quote':bool(q)})
+        rows.append({**pos,'entry':entry,'price':price,'value':cur,'pnl':pnl,'pnlpct':pct,'score':score,'decision':decision,'reason':reason,'checked':checked,'cost':pos['cost'],'data_ok':reliable,'age_seconds':age,'candle_age_seconds':candle_age,'fetch_error':q.get('fetch_error'),'has_quote':bool(q),'auto_manage':pos.get('auto_qty',0)>0,'manual_qty':pos['qty']-pos.get('auto_qty',0)})
     rows.sort(key=lambda x:x['pnlpct'],reverse=True)
     return val,rows
 
@@ -291,7 +291,7 @@ HTML=r"""<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="
 body{font-family:system-ui;background:#07111f;color:#eaf1ff;margin:0}header{padding:18px 5%;background:#0c1b2d;position:sticky;top:0}.wrap{max-width:1550px;margin:auto;padding:22px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}.card{background:#102238;border:1px solid #203b5b;border-radius:16px;padding:16px;margin-bottom:14px}.big{font-size:28px;font-weight:800}.green{color:#42df91}.red{color:#ff6677}.yellow{color:#ffd15c}button,input{font:inherit;border-radius:10px;padding:10px;border:1px solid #34506d}button{background:#19b873;color:white;font-weight:700;cursor:pointer}.danger{background:#c53e50}.muted{color:#9db0c7}.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.trade{display:grid;grid-template-columns:1.2fr .8fr .8fr .8fr .8fr;gap:8px;padding:10px 0;border-top:1px solid #233c58}#status{margin-top:10px;font-weight:700}@media(max-width:700px){.trade{grid-template-columns:1fr 1fr}.hideM{display:none}}
 nav.tabs{display:flex;gap:9px;overflow-x:auto;margin:18px 0 14px;padding-bottom:6px}button.tab{background:#14263b;color:#c3d4e7;border:1px solid #2c4661;white-space:nowrap;padding:13px 17px}button.tab.active{background:#0869d5;border-color:#27d39a;color:#fff}.controlbar{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:#10283d}.controlbar strong{font-size:23px;color:#42df91;font-variant-numeric:tabular-nums}.statusline{padding:10px 14px;margin:10px 0 14px;background:#0f2134;border-radius:10px}.kpis .card{background:linear-gradient(145deg,#142c46,#0e1d30);min-height:86px}.kpis .big{margin-top:8px}header{z-index:10;border-bottom:1px solid #294560}button:hover{filter:brightness(1.13)}[data-tab]{display:none}[data-tab].visible{display:block}.trade{line-height:1.5}@media(max-width:700px){.wrap{padding:12px}.controlbar{justify-content:flex-start}.tabs{position:sticky;top:56px;background:#07111f;z-index:9}}.price-up{color:#22c55e;font-weight:700}.price-down{color:#ef4444;font-weight:700}.price-flat{color:inherit;font-weight:700}</style><style>.kpis{grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}.kpis .card{margin-bottom:0}.dashboard-grid{grid-template-columns:minmax(0,2.1fr) minmax(290px,1fr);gap:16px;align-items:start}.dashboard-grid.visible{display:grid}.dash-main,.dash-side{min-width:0}.panel-title{display:flex;justify-content:space-between;align-items:center;gap:12px}.panel-title h3{margin:4px 0 14px}.panel-title select{background:#132a43;color:#eaf1ff;border:1px solid #35516c;border-radius:9px;padding:8px}.holdings{width:100%;border-collapse:collapse;font-size:13px;white-space:nowrap}.holdings th{text-align:left;font-size:12px;color:#c6d4e8;font-weight:500;padding:13px 9px;border-bottom:1px solid #29435b}.holdings td{padding:13px 9px;border-bottom:1px solid #29435b;vertical-align:middle}.holdings small{display:block;color:#9db0c7}.holdings button{padding:8px 9px;font-size:12px;background:#0869d5}.holdings button.danger{background:#c83c4d}.holdings .signal{border-radius:7px;background:#145c43;padding:7px;color:#d6ffe7;display:inline-block}.holdings .signal.warning{background:#775a1e;color:#ffe6a2}.holdings .signal.sell{background:#8c273b;color:#fff}.table-scroll{overflow-x:auto}.fine{font-size:12px}.dash-bottom{display:grid;grid-template-columns:1fr 1fr;gap:14px}.quick-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}.quick-actions button{font-size:13px;padding:13px 8px}button.secondary{background:#182e49;border:1px solid #365574}.linkbutton{background:transparent;color:#55a9ff;font-weight:500;padding:5px;border:0}.preview-row{display:grid;grid-template-columns:1.2fr .9fr .5fr auto;gap:8px;align-items:center;padding:12px 0;border-bottom:1px solid #29435b;font-size:13px}.preview-row small{color:#9db0c7;display:block}.preview-row button{font-size:12px;padding:8px;background:#0b9b59}.activity-row{padding:11px 0;border-bottom:1px solid #29435b;font-size:12px}.activity-row .green,.activity-row .red{font-weight:700}@media(max-width:1050px){.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}.dashboard-grid.visible{grid-template-columns:1fr}}@media(max-width:620px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.dash-bottom{grid-template-columns:1fr}.panel-title{flex-wrap:wrap}}</style><style>
 .pro-monitor{overflow-x:auto}.pro-table{border-collapse:collapse;width:100%;font-size:13px}.pro-table th,.pro-table td{padding:10px 12px;border-bottom:1px solid #25405b;text-align:left;white-space:nowrap}.pro-table th{color:#9db0c7;font-size:11px;letter-spacing:.05em}.pro-table tbody tr:hover{background:#19314a}.pro-table button{font-size:12px;padding:7px}.pro-toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.pro-toolbar input,.pro-toolbar select{background:#0a1a2d;color:#fff;max-width:200px}.pro-link{background:none;border:0;color:#73baff;padding:2px}.pro-link:hover{text-decoration:underline}.pro-table small{display:block;color:#9db0c7}
-</style></head><body><header><b>📈 Trading Radar V8.3.15</b> <span class="muted">Paper-Trading · kein Echtgeld</span></header><div class="wrap">
+</style></head><body><header><b>📈 Trading Radar V8.3.16</b> <span class="muted">Paper-Trading · kein Echtgeld</span></header><div class="wrap">
 <nav class="tabs" aria-label="Bereiche" style="position:sticky;top:0;z-index:100;background:#081525;padding:8px 0;overflow-x:auto;flex-wrap:nowrap"><button class="tab active" onclick="showTab('depot')">📊 Depot</button><button class="tab" onclick="showTab('scanner')">🔎 Top-Chancen</button><button class="tab" onclick="showTab('rocket')">🚀 Raketen-Radar</button><button class="tab" onclick="showTab('log')">📋 Protokoll</button><button class="tab" onclick="showTab('settings')">⚙️ Einstellungen</button></nav>
 <div class="card controlbar"><span>Automatik: <b id="quickAuto">AUS</b></span><span class="muted">Automatisch nach US-Börsenzeiten</span><span>Prüfung in <strong id="countdown">--:--</strong></span><span id="freshness">Kurse noch nicht geprüft</span><span id="quickScan">Scanner –</span></div>
 <div id="status" class="muted statusline">Bereit.</div>
@@ -657,6 +657,8 @@ def live_paper_step():
             if not math.isfinite(price) or price<=0: continue
             lots=[p for p in d.get('positions',[]) if p.get('symbol')==sym]
             if lots:
+                lots=[p for p in lots if p.get('auto_manage',p.get('source','Automatik')!='Manuell')]
+                if not lots: continue
                 cost=sum(float(p['cost']) for p in lots)
                 qty=sum(float(p['qty']) for p in lots)
                 if cost<=0 or qty<=0: continue
@@ -669,7 +671,7 @@ def live_paper_step():
                         'Gewinnziel bei +7 %' if change>=.07 else
                         'Trailing-Stop: 3 % unter Hoch' if trailing else None)
                 if reason:
-                    execute_sell(d,sym,price,'IEX Live-Automatik',1.0,reason=reason)
+                    execute_sell(d,sym,price,'IEX Live-Automatik',1.0,reason=reason,auto_only=True)
                     cooldown[sym]=now
                     LIVE_LAST_ACTION[sym]=now
                     LIVE_PEAKS.pop(sym,None)
@@ -791,7 +793,8 @@ def auto_step(d):
         if sym=='MNQ1!' and (not d.get('usd_eur_rate') or time.time()-float(d.get('usd_eur_rate_ts',0) or 0)>3600): continue
         x=q.get(sym)
         if not x: continue
-        lots=[lot for lot in d['positions'] if lot['symbol']==sym]
+        lots=[lot for lot in d['positions'] if lot['symbol']==sym and lot.get('auto_manage',lot.get('source','Automatik')!='Manuell')]
+        if not lots: continue
         ch=(sum((x['price']-float(lot['entry']))*2*int(lot.get('contracts',4))*float(d.get('usd_eur_rate',0)) for lot in lots)/sum(lot['cost'] for lot in lots)) if sym=='MNQ1!' else x['price']*sum(lot['qty'] for lot in lots)/sum(lot['cost'] for lot in lots)-1
         chart=x.get('chart',[])
         # Confirmation must use two distinct fresh market checks, not repeated stale observations.
@@ -804,7 +807,7 @@ def auto_step(d):
         elif ch>=.07: reason='Gewinnziel bei +7 %'
         elif weak[sym]>=2: reason='Score unter 45 und Abwärtstrend zweimal bestätigt'
         if reason:
-            execute_sell(d,sym,x['price'],'Automatik',1.0,reason=reason)
+            execute_sell(d,sym,x['price'],'Automatik',1.0,reason=reason,auto_only=True)
             weak.pop(sym,None)
     invested=sum(p['cost'] for p in d['positions'])
     for x in CACHE:
@@ -832,18 +835,19 @@ def auto_step(d):
 def execute_buy(d,sym,price,amt,src='Manuell'):
     if not product_is_allowed(sym,d):
         raise ValueError('Kauf gesperrt: Hebelprodukt oder nicht eindeutig als ungehebelte Aktie/Spot-Krypto geprüft.')
+    if not math.isfinite(float(price)) or float(price)<=0: raise ValueError('Ungültiger Kaufkurs.')
     amt=min(float(amt),d['cash'])
     if amt<=0:return
     contracts=4 if sym=='MNQ1!' else None
-    d['positions'].append({'symbol':sym,'entry':price,'qty':amt/price,'cost':amt,**({'contracts':contracts} if contracts else {})});d['cash']-=amt
+    d['positions'].append({'symbol':sym,'entry':price,'qty':amt/price,'cost':amt,'source':src,'auto_manage':src!='Manuell',**({'contracts':contracts} if contracts else {})});d['cash']-=amt
     desc=f'{src}: KAUF {sym} · {amt:.2f} € @ {price:.2f}'+(' · 4 MNQ-Kontrakte (Paper, 2 USD/Punkt/Kontrakt)' if sym=='MNQ1!' else '')
     d['history'].append({'time':time.strftime('%d.%m.%Y %H:%M'),'text':desc}); log_event(d,desc,'TRADE')
 
-def execute_sell(d,sym,price,src='Manuell',fraction=1.0,reason=None):
+def execute_sell(d,sym,price,src='Manuell',fraction=1.0,reason=None,auto_only=False):
     if not math.isfinite(price) or price<=0: raise ValueError('Ungültiger Verkaufskurs.')
     if not math.isfinite(fraction) or not 0<fraction<=1: raise ValueError('Verkaufsanteil muss über 0 und höchstens 100 % sein.')
-    lots=[p for p in d['positions'] if p['symbol']==sym]
-    if not lots: raise ValueError('Keine offene Position für '+sym)
+    lots=[p for p in d['positions'] if p['symbol']==sym and (not auto_only or p.get('auto_manage',p.get('source','Automatik')!='Manuell'))]
+    if not lots: raise ValueError('Keine für diesen Verkauf freigegebene Position für '+sym)
     total_cost=sum(p['cost'] for p in lots)
     total_qty=sum(p['qty'] for p in lots)
     sold_qty=total_qty*fraction
@@ -855,7 +859,7 @@ def execute_sell(d,sym,price,src='Manuell',fraction=1.0,reason=None):
     else:
         pnl=proceeds-sold_cost
     if fraction>=1-1e-10:
-        d['positions']=[p for p in d['positions'] if p['symbol']!=sym]
+        d['positions']=[p for p in d['positions'] if p not in lots]
     else:
         for p in lots:
             p['qty']*=1-fraction
@@ -983,6 +987,13 @@ class H(BaseHTTPRequestHandler):
     fav=d.setdefault('favorites',[])
     if sym in fav: fav.remove(sym)
     else: fav.append(sym)
+   elif self.path=='/api/management':
+    b=self.body();sym=str(b.get('symbol','')).upper();enabled=b.get('enabled')
+    if not isinstance(enabled,bool): raise ValueError('Ungültige Verwaltungseinstellung.')
+    lots=[p for p in d['positions'] if p['symbol']==sym]
+    if not lots: raise ValueError('Position nicht gefunden.')
+    for p in lots:p['auto_manage']=enabled
+    log_event(d,('Automatik freigegeben' if enabled else 'Selbstverwaltung aktiviert')+' für '+sym,'SYSTEM')
    elif self.path=='/api/buy':
     sym=self.body()['symbol'];x=next((x for x in CACHE if x.get('symbol')==sym and 'price' in x and quote_is_fresh(x)),None)
     if not x:
