@@ -376,7 +376,7 @@ function render(s){
   favorites.innerHTML=(s.favorites||[]).map(x=>`<span style="display:inline-block;margin:5px"><b title="${esc((s.names||{})[x]||x)}">${esc(x)}</b> <button onclick="favorite('${esc(x)}')">Entfernen</button> <button onclick="chart('${esc(x)}')">Chart</button></span>`).join('')||'Noch keine Favoriten.';
   alerts.innerHTML=(s.alerts||[]).slice(-12).reverse().map(x=>`<div>${esc(x.time)} · <b>${esc(x.symbol)}</b> · ${esc(x.stage)}</div>`).join('')||'Noch keine neuen Frühwarnungen.';
   const closed=(s.history||[]).filter(x=>typeof x.pnl==='number'); const wins=closed.filter(x=>x.pnl>0);const net=closed.reduce((a,x)=>a+x.pnl,0);
-  stats.textContent=closed.length?`${closed.length} abgeschlossene Trades · ${wins.length} Gewinne · Trefferquote ${(100*wins.length/closed.length).toFixed(1)} % · Ergebnis ${euro(net)}`:'Noch keine abgeschlossenen Trades mit Ergebnisdaten.';
+  const today=new Date().toLocaleDateString('de-DE');const todays=closed.filter(x=>x.time&&x.time.startsWith(today));const dailyNet=todays.reduce((a,x)=>a+x.pnl,0);const dailyWins=todays.filter(x=>x.pnl>0).length;const dailyInfo='Heute: '+todays.length+' Verkäufe · '+dailyWins+' Gewinne · '+(todays.length?(100*dailyWins/todays.length).toFixed(1):'–')+' % Trefferquote · '+euro(dailyNet)+' | ';stats.textContent=dailyInfo+(closed.length?`${closed.length} abgeschlossene Trades · ${wins.length} Gewinne · Trefferquote ${(100*wins.length/closed.length).toFixed(1)} % · Ergebnis ${euro(net)}`:'Noch keine abgeschlossenen Trades mit Ergebnisdaten.');
 
  const rows=[...(s.position_rows||[])]; const sortBy=document.getElementById('depotSort').value;
  if(sortBy==='name')rows.sort((a,b)=>a.symbol.localeCompare(b.symbol)); else if(sortBy==='score')rows.sort((a,b)=>(b.score??-1)-(a.score??-1));else rows.sort((a,b)=>b.pnlpct-a.pnlpct);
@@ -773,7 +773,9 @@ def quote_is_fresh(x):
     try:
         return (time.time()-float(x.get('seen',0))<=900 and
                 time.time()-float(x.get('candle_ts',0))<=1800 and
-                float(x['price'])>0)
+                math.isfinite(float(x['price'])) and float(x['price'])>0 and
+                (not x.get('chart') or (all(math.isfinite(float(v)) and float(v)>0 for v in x['chart'][-5:]) and
+                0.5<=float(x['price'])/float(x['chart'][-1])<=1.5)))
     except (TypeError,ValueError,OverflowError): return False
 
 def auto_step(d):
@@ -812,7 +814,9 @@ def auto_step(d):
         if any(p['symbol']==sym for p in d['positions']): continue
         rocket=(x.get('stage')=='🚀 AUSBRUCH AUS DEM KELLER' and x.get('score',0)>=80
                 and x.get('mom',0)>0 and len(x.get('chart',[]))>=15)
-        standard=x.get('score',0)>=75
+        standard=(x.get('score',0)>=75 and float(x.get('mom',0) or 0)>0 and
+                  len(x.get('chart',[]))>=10 and
+                  x['chart'][-1]>sum(x['chart'][-5:])/5>sum(x['chart'][-10:])/10)
         if not (rocket or standard): continue
         # Do not immediately repurchase a rocket repeatedly after an automatic exit.
         if rocket and time.time()-float(cooldown.get(sym,0))<24*3600: continue
@@ -981,6 +985,13 @@ class H(BaseHTTPRequestHandler):
     else: fav.append(sym)
    elif self.path=='/api/buy':
     sym=self.body()['symbol'];x=next((x for x in CACHE if x.get('symbol')==sym and 'price' in x and quote_is_fresh(x)),None)
+    if not x:
+     with LIVE_LOCK:
+      live=dict(LIVE_QUOTES.get(sym,{ }))
+     if (product_is_allowed(sym,d) and live and
+         0<=time.time()-float(live.get('seen',0))<=20 and
+         math.isfinite(float(live.get('price',0))) and float(live['price'])>0):
+      x=live
     if not x: raise ValueError('Kein ausreichend frischer Börsenkurs. Bitte später erneut prüfen.')
     invested=sum(p['cost'] for p in d['positions']);amt=min(d['per_trade'],d['cash'],max(0,d['budget']-invested))
     if amt<1: raise ValueError('Nicht genügend freies Kapital oder Budget.')
