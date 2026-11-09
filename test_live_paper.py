@@ -42,7 +42,8 @@ class LivePaperTests(unittest.TestCase):
         self.tick(108.0)
         self.assertEqual(len(self.data['positions']),1)
         self.assertEqual(self.data['positions'][0]['peak_price'],108.0)
-        self.tick(104.0,seconds=1)
+        time.sleep(0.02)
+        self.tick(104.0)
         self.assertEqual(self.data['positions'],[])
     def test_no_trade_on_disconnected(self):
         self.hold()
