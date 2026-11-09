@@ -685,9 +685,10 @@ def live_paper_step():
                 qty=sum(float(p['qty']) for p in lots)
                 if cost<=0 or qty<=0: continue
                 entry=cost/qty
+                prior_peaks=[p.get('peak_price') for p in lots]
                 reason=trailing_exit(lots,price)
-                # Persist highs even if no transaction occurs.
-                changed=True
+                # Save only when the high-water mark advances, not on every tick.
+                if any(p.get('peak_price')!=old for p,old in zip(lots,prior_peaks)): changed=True
                 if reason:
                     execute_sell(d,sym,price,'IEX Live-Automatik',1.0,reason=reason,auto_only=True)
                     cooldown[sym]=now
