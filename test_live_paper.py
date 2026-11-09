@@ -29,7 +29,7 @@ class LivePaperTests(unittest.TestCase):
         app.LIVE_QUOTES[symbol]={'price':price,'seen':time.time()+seconds}
         app.live_paper_step()
     def hold(self,entry=100.0):
-        self.data['positions']=[{'symbol':'AAPL','entry':entry,'qty':1.0,'cost':entry}]
+        self.data['positions']=[{'symbol':'AAPL','entry':entry,'peak_price':entry,'qty':1.0,'cost':entry}]
         self.data['cash']=900.0
     def test_stop_loss(self):
         self.hold()
