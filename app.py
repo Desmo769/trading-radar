@@ -1030,10 +1030,13 @@ class H(BaseHTTPRequestHandler):
     if sym in fav: fav.remove(sym)
     else: fav.append(sym)
    elif self.path=='/api/management':
-    b=self.body();sym=str(b.get('symbol','')).upper();enabled=b.get('enabled')
+    b=self.body();sym=str(b.get('symbol','')).upper();enabled=b.get('enabled');lot_index=b.get('lot_index')
     if not isinstance(enabled,bool): raise ValueError('Ungültige Verwaltungseinstellung.')
     lots=[p for p in d['positions'] if p['symbol']==sym]
     if not lots: raise ValueError('Position nicht gefunden.')
+    if lot_index is not None:
+     if not isinstance(lot_index,int) or not 0<=lot_index<len(lots): raise ValueError('Ungültige Kaufposition.')
+     lots=[lots[lot_index]]
     for p in lots:p['auto_manage']=enabled
     log_event(d,('Automatik freigegeben' if enabled else 'Selbstverwaltung aktiviert')+' für '+sym,'SYSTEM')
    elif self.path=='/api/buy':
@@ -1046,6 +1049,7 @@ class H(BaseHTTPRequestHandler):
          math.isfinite(float(live.get('price',0))) and float(live['price'])>0):
       x=live
     if not x: raise ValueError('Kein ausreichend frischer Börsenkurs. Bitte später erneut prüfen.')
+    # Manual buying intentionally does not depend on scanner score; instrument and quote checks remain mandatory.
     invested=sum(p['cost'] for p in d['positions']);amt=min(d['per_trade'],d['cash'],max(0,d['budget']-invested))
     if amt<1: raise ValueError('Nicht genügend freies Kapital oder Budget.')
     if not product_is_allowed(sym,d): raise ValueError('Kauf gesperrt: Hebelprodukt oder Produktart nicht verifiziert.')
