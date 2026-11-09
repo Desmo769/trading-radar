@@ -29,7 +29,7 @@ class LivePaperTests(unittest.TestCase):
         app.LIVE_QUOTES[symbol]={'price':price,'seen':time.time()+seconds}
         app.live_paper_step()
     def hold(self,entry=100.0):
-        self.data['positions']=[{'symbol':'AAPL','entry':entry,'qty':1.0,'cost':entry}]
+        self.data['positions']=[{'symbol':'AAPL','entry':entry,'peak_price':entry,'qty':1.0,'cost':entry}]
         self.data['cash']=900.0
     def test_stop_loss(self):
         self.hold()
@@ -37,9 +37,13 @@ class LivePaperTests(unittest.TestCase):
         self.assertEqual(self.data['positions'],[])
         self.assertAlmostEqual(self.data['cash'],995.0)
         self.assertEqual(len(self.saved),1)
-    def test_take_profit(self):
+    def test_profit_runs_until_trailing_stop(self):
         self.hold()
         self.tick(108.0)
+        self.assertEqual(len(self.data['positions']),1)
+        self.assertEqual(self.data['positions'][0]['peak_price'],108.0)
+        time.sleep(0.02)
+        self.tick(104.0)
         self.assertEqual(self.data['positions'],[])
     def test_no_trade_on_disconnected(self):
         self.hold()
