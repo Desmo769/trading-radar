@@ -12,7 +12,7 @@ UNIVERSE=['AAPL','MSFT','NVDA','AMZN','META','GOOGL','AVGO','TSLA','AMD','NFLX',
 DISCOVERY_SYMBOLS=['ADP', 'ABT', 'ACN', 'AEP', 'AFL', 'AIG', 'ALL', 'AME', 'AMP', 'AMT', 'ANET', 'AON', 'APD', 'APO', 'APP', 'APTV', 'ARE', 'ARM', 'ASML', 'ATO', 'AVB', 'AXP', 'AZN', 'BABA', 'BAX', 'BBY', 'BDX', 'BEN', 'BIIB', 'BLK', 'BMY', 'BNTX', 'BR', 'BRK.B', 'BSX', 'C', 'CAG', 'CARR', 'CB', 'CBOE', 'CDNS', 'CEG', 'CF', 'CHD', 'CHRW', 'CHTR', 'CI', 'CL', 'CLX', 'CMCSA', 'CME', 'CMI', 'CNC', 'COF', 'COP', 'COR', 'CPB', 'CPRT', 'CRH', 'CSCO', 'CSX', 'CTAS', 'CTSH', 'CTVA', 'CVS', 'CVX', 'D', 'DAL', 'DD', 'DELL', 'DG', 'DGX', 'DHI', 'DHR', 'DIS', 'DLR', 'DLTR', 'DOCU', 'DOV', 'DOW', 'DPZ', 'DRI', 'DTE', 'DUK', 'DVN', 'DXCM', 'EA', 'EBAY', 'ECL', 'ED', 'EFX', 'EL', 'EMR', 'ENPH', 'EOG', 'EQIX', 'EQR', 'EQT', 'ERIE', 'ES', 'ESS', 'ETN', 'EW', 'EXC', 'EXPD', 'EXPE', 'F', 'FANG', 'FAST', 'FCX', 'FDX', 'FE', 'FICO', 'FIS', 'FISV', 'FITB', 'FMC', 'FOXA', 'FSLR', 'FTNT', 'GD', 'GDDY', 'GILD', 'GIS', 'GL', 'GPN', 'GRMN', 'GWW', 'HAL', 'HAS', 'HBAN', 'HCA', 'HES', 'HIG', 'HLT', 'HOLX', 'HON', 'HPQ', 'HRL', 'HSY', 'HUM', 'HWM', 'IBM', 'ICE', 'IDXX', 'IEX', 'ILMN', 'INCY', 'IP', 'IPG', 'IQV', 'IR', 'IRM', 'ISRG', 'IT', 'ITW', 'IVZ', 'J', 'JAZZ', 'JBHT', 'JCI', 'JKHY', 'K', 'KDP', 'KEY', 'KEYS', 'KHC', 'KIM', 'KKR', 'KMB', 'KMI', 'KMX', 'KR', 'KVUE', 'LEN', 'LH', 'LKQ', 'LMT', 'LNT', 'LRCX', 'LVS', 'LW', 'LYB', 'LYV', 'MAR', 'MAS', 'MCHP', 'MCK', 'MCO', 'MDB', 'MDT', 'MET', 'MGM', 'MKC', 'MKTX', 'MLM', 'MMC', 'MMM', 'MO', 'MOS', 'MPC', 'MPWR', 'MRNA', 'MSI', 'MTB', 'MTCH', 'MTD', 'NDAQ', 'NDSN', 'NEM', 'NET', 'NOC', 'NRG', 'NSC', 'NTAP', 'NTRS', 'NUE', 'NVR', 'NWSA', 'O', 'ODFL', 'OKE', 'OMC', 'ON', 'ORLY', 'OTIS', 'OXY', 'PAYC', 'PAYX', 'PCAR', 'PCG', 'PEG', 'PFE', 'PFG', 'PH', 'PHM', 'PKG', 'PNC', 'PNR', 'PPG', 'PPL', 'PRU', 'PSA', 'PTC', 'PWR', 'PYPL', 'Q', 'RCL', 'REG', 'REGN', 'RF', 'RHI', 'RMD', 'ROK', 'ROL', 'ROP', 'ROST', 'RSG', 'RTO', 'RVTY', 'SBAC', 'SCHW', 'SHW', 'SJM', 'SLB', 'SMCI', 'SNA', 'SNPS', 'SO', 'SPG', 'SPGI', 'SRE', 'STE', 'STLD', 'STT', 'STX', 'STZ', 'SWK', 'SWKS', 'SYF', 'SYK', 'SYY', 'T', 'TAP', 'TDG', 'TDY', 'TECH', 'TEL', 'TER', 'TFC', 'TGT', 'TJX', 'TMO', 'TMUS', 'TPR', 'TRGP', 'TRMB', 'TROW', 'TRV', 'TSCO', 'TSN', 'TT', 'TTC', 'TTD', 'TYL', 'UAL', 'UDR', 'UHS', 'ULTA', 'UNP', 'UPS', 'URI', 'USB', 'VICI', 'VLO', 'VMC', 'VRSK', 'VRSN', 'VRTX', 'VTR', 'VTRS', 'VZ', 'WAB', 'WAT', 'WBA', 'WBD', 'WDC', 'WELL', 'WFC', 'WM', 'WMB', 'WMT', 'WRB', 'WST', 'WTW', 'WY', 'WYNN', 'XEL', 'XYL', 'YUM', 'ZBH', 'ZBRA', 'ZS']
 DISCOVERY_UNIVERSE=list(dict.fromkeys(UNIVERSE+DISCOVERY_SYMBOLS))
 KNOWN_NAMES={'AAPL': 'Apple Inc.', 'MSFT': 'Microsoft Corporation', 'NVDA': 'NVIDIA Corporation', 'AMZN': 'Amazon.com Inc.', 'META': 'Meta Platforms Inc.', 'GOOGL': 'Alphabet Inc.', 'AVGO': 'Broadcom Inc.', 'TSLA': 'Tesla Inc.', 'AMD': 'Advanced Micro Devices Inc.', 'NFLX': 'Netflix Inc.', 'ORCL': 'Oracle Corporation', 'CRM': 'Salesforce Inc.', 'ADBE': 'Adobe Inc.', 'INTC': 'Intel Corporation', 'QCOM': 'Qualcomm Inc.', 'TXN': 'Texas Instruments Inc.', 'MU': 'Micron Technology Inc.', 'AMAT': 'Applied Materials Inc.', 'LRCX': 'Lam Research Corporation', 'KLAC': 'KLA Corporation', 'PANW': 'Palo Alto Networks Inc.', 'CRWD': 'CrowdStrike Holdings Inc.', 'NOW': 'ServiceNow Inc.', 'PLTR': 'Palantir Technologies Inc.', 'UBER': 'Uber Technologies Inc.', 'ABNB': 'Airbnb Inc.', 'BKNG': 'Booking Holdings Inc.', 'JPM': 'JPMorgan Chase & Co.', 'BAC': 'Bank of America Corporation', 'GS': 'Goldman Sachs Group Inc.', 'MS': 'Morgan Stanley', 'V': 'Visa Inc.', 'MA': 'Mastercard Incorporated', 'AXP': 'American Express Company', 'WMT': 'Walmart Inc.', 'COST': 'Costco Wholesale Corporation', 'HD': 'Home Depot Inc.', 'LOW': "Lowe's Companies Inc.", 'NKE': 'Nike Inc.', 'MCD': "McDonald's Corporation", 'SBUX': 'Starbucks Corporation', 'KO': 'Coca-Cola Company', 'PEP': 'PepsiCo Inc.', 'PG': 'Procter & Gamble Company', 'JNJ': 'Johnson & Johnson', 'LLY': 'Eli Lilly and Company', 'MRK': 'Merck & Co. Inc.', 'ABBV': 'AbbVie Inc.', 'UNH': 'UnitedHealth Group Incorporated', 'XOM': 'Exxon Mobil Corporation', 'CVX': 'Chevron Corporation', 'CAT': 'Caterpillar Inc.', 'GE': 'GE Aerospace', 'BA': 'Boeing Company', 'RTX': 'RTX Corporation', 'DE': 'Deere & Company', 'NEE': 'NextEra Energy Inc.', 'LIN': 'Linde plc', 'BTC/USD': 'Bitcoin / US-Dollar', 'ETH/USD': 'Ethereum / US-Dollar', 'MNQ1!': 'Micro E-mini Nasdaq-100 Future'}
-DEFAULT={"cash":100.0,"start":100.0,"budget":100.0,"per_trade":20.0,"positions":[],"history":[],"watch":DISCOVERY_UNIVERSE,"key":"","auto":False,"last_auto_check":"Noch nie","next_auto_check":"–","scan_index":0,"scan_results":{},"scanned_total":0,"version":"V8.3.16","weak_trend_checks":{},"rocket_cooldown":{},"mnq_contracts":1,"event_log":[],"favorites":[],"names":KNOWN_NAMES.copy(),"alerts":[]}
+DEFAULT={"cash":100.0,"start":100.0,"budget":100.0,"per_trade":20.0,"positions":[],"history":[],"watch":DISCOVERY_UNIVERSE,"key":"","auto":False,"last_auto_check":"Noch nie","next_auto_check":"–","scan_index":0,"scan_results":{},"scanned_total":0,"version":"V8.3.17","weak_trend_checks":{},"rocket_cooldown":{},"mnq_contracts":1,"event_log":[],"favorites":[],"names":KNOWN_NAMES.copy(),"alerts":[]}
 # Supabase ist die maßgebliche Speicherung, wenn beide Render-Variablen gesetzt sind.
 # Bei Netzwerkfehlern niemals stillschweigend auf einen leeren lokalen Zustand zurückfallen.
 SUPABASE_URL=os.environ.get('SUPABASE_URL','').strip().rstrip('/')
@@ -47,9 +47,10 @@ def load():
     for sym in DISCOVERY_UNIVERSE:
         if sym not in d['watch']: d['watch'].append(sym)
     d.setdefault('names',{}).update({k:v for k,v in KNOWN_NAMES.items() if k not in d.get('names',{})})
-    d['version']='V8.3.16';d['mnq_contracts']=4
+    d['version']='V8.3.17';d['mnq_contracts']=4
     for pos in d.get('positions',[]):
         if pos.get('symbol')=='MNQ1!': pos.setdefault('contracts',4)
+        pos.setdefault('peak_price',pos.get('entry',0))
     return d
 
 def save(d):
@@ -293,7 +294,7 @@ nav.tabs{display:flex;gap:9px;overflow-x:auto;margin:18px 0 14px;padding-bottom:
 .depot-full{overflow-x:visible}.holdings{white-space:normal;table-layout:fixed;font-size:12px}.holdings th,.holdings td{padding:7px 4px;overflow-wrap:anywhere}.holdings button{padding:5px 6px;margin:2px;font-size:11px}.depot-actions{display:flex;flex-wrap:wrap;gap:2px}.depot-actions button{flex:1 1 42%}.signal-hot{font-weight:900;color:#ffdf57;background:#6b3700;border:2px solid #ffa500;padding:6px;border-radius:8px;display:inline-block}.signal-rocket{font-weight:900;color:#b6ffe0;background:#0c5b38;border:2px solid #2effa1;padding:6px;border-radius:8px;display:inline-block}.chart-modal[hidden]{display:none}.chart-modal{position:fixed;inset:0;z-index:100;background:#000b;display:flex;align-items:center;justify-content:center;padding:15px}.chart-window{background:#102238;border:2px solid #456c91;border-radius:16px;padding:18px;width:min(850px,96vw);max-height:90vh;overflow-y:auto}#chanceSortPanel label{display:block;margin:9px 0}@media(max-width:850px){.holdings thead{display:none}.holdings,.holdings tbody,.holdings tr,.holdings td{display:block;width:100%;box-sizing:border-box}.holdings tr{border:1px solid #35516c;border-radius:10px;margin:10px 0;padding:8px}.holdings td{display:flex;justify-content:space-between;align-items:center;gap:8px}.holdings td:before{content:attr(data-label);font-weight:600;color:#9db0c7}.depot-actions{min-width:190px}}
 </style><style>
 .pro-monitor{overflow-x:auto}.pro-table{border-collapse:collapse;width:100%;font-size:13px}.pro-table th,.pro-table td{padding:10px 12px;border-bottom:1px solid #25405b;text-align:left;white-space:nowrap}.pro-table th{color:#9db0c7;font-size:11px;letter-spacing:.05em}.pro-table tbody tr:hover{background:#19314a}.pro-table button{font-size:12px;padding:7px}.pro-toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.pro-toolbar input,.pro-toolbar select{background:#0a1a2d;color:#fff;max-width:200px}.pro-link{background:none;border:0;color:#73baff;padding:2px}.pro-link:hover{text-decoration:underline}.pro-table small{display:block;color:#9db0c7}
-</style></head><body><header><b>📈 Trading Radar V8.3.16</b> <span class="muted">Paper-Trading · kein Echtgeld</span></header><div class="wrap">
+</style></head><body><header><b>📈 Trading Radar V8.3.17</b> <span class="muted">Paper-Trading · kein Echtgeld</span></header><div class="wrap">
 <nav class="tabs" aria-label="Bereiche" style="position:sticky;top:0;z-index:100;background:#081525;padding:8px 0;overflow-x:auto;flex-wrap:nowrap"><button class="tab active" onclick="showTab('depot')">📊 Depot</button><button class="tab" onclick="showTab('scanner')">🔎 Top-Chancen</button><button class="tab" onclick="showTab('rocket')">🚀 Raketen-Radar</button><button class="tab" onclick="showTab('log')">📋 Protokoll</button><button class="tab" onclick="showTab('settings')">⚙️ Einstellungen</button></nav>
 <div class="card controlbar"><span>Automatik: <b id="quickAuto">AUS</b></span><span class="muted">Automatisch nach US-Börsenzeiten</span><span>Prüfung in <strong id="countdown">--:--</strong></span><span id="freshness">Kurse noch nicht geprüft</span><span id="quickScan">Scanner –</span></div>
 <div id="status" class="muted statusline">Bereit.</div>
@@ -429,7 +430,7 @@ async function quickSell(sym){const x=(S.position_rows||[]).find(p=>p.symbol===s
 let openChartSymbol=null,openChartRange='1T';let liveChartPoints={};
 function closeChart(){document.getElementById('chartModal').hidden=true;openChartSymbol=null}
 function chartRange(v){openChartRange=v;drawChartModal()}
-function drawChartModal(){if(!openChartSymbol)return;const sym=openChartSymbol;const x=(S.scan_results||{})[sym]||(S.market||[]).find(y=>y.symbol===sym)||{};const q=LIVE_QUOTES_UI[sym];const fresh=q&&Date.now()/1000-Number(q.seen||0)<=20;if(fresh){const arr=liveChartPoints[sym]||(liveChartPoints[sym]=[]);if(!arr.length||arr[arr.length-1].t!==q.seen){arr.push({t:q.seen,p:Number(q.price)});if(arr.length>100)arr.shift()}}document.getElementById('modalChartTitle').textContent='📈 '+sym;document.getElementById('modalLive').textContent=fresh?'Alpaca IEX · '+euro(q.price)+' · vor '+Math.round(Date.now()/1000-q.seen)+' s':'Kein aktueller IEX-Livekurs verfügbar';const a=(x.chart||[]).map(Number).filter(v=>Number.isFinite(v)&&v>0);const liveSeries=(liveChartPoints[sym]||[]).map(v=>v.p).filter(v=>Number.isFinite(v)&&v>0);const note=document.getElementById('modalChartNote');const svg=document.getElementById('modalChartSvg');note.textContent=openChartRange==='1T'?'15-Minuten-Kerzen · soweit vorhanden':'Für '+openChartRange+' liegen derzeit keine vollständigen historischen Daten vor; gezeigt werden nur verfügbare 15-Minuten-Kerzen';if(a.length<2){svg.innerHTML='<text x="20" y="90" fill="#eaf1ff">Keine historischen Kursdaten verfügbar.</text>';return}if(liveSeries.length>1){a.splice(0,a.length,...liveSeries);note.textContent='Live-Verlauf aus Alpaca-IEX-Ticks seit Öffnen dieser Sitzung · '+a.length+' Kurswerte; historische Zeiträume separat nicht vollständig verfügbar'}const entry=Number((S.position_rows||[]).find(p=>p.symbol===sym)?.entry||0);const lo=Math.min(...a,entry>0?entry:Infinity),hi=Math.max(...a,entry>0?entry:0),r=hi-lo||1;const points=a.map((v,i)=>(45+i*530/(a.length-1))+','+(145-(v-lo)/r*115)).join(' ');const ey=145-(entry-lo)/r*115;svg.innerHTML='<polyline points="'+points+'" fill="none" stroke="#42df91" stroke-width="3"/>'+(entry>0?'<line x1="45" x2="575" y1="'+ey+'" y2="'+ey+'" stroke="#ffd15c" stroke-dasharray="6 4"/>':'')}
+function drawChartModal(){if(!openChartSymbol)return;const sym=openChartSymbol;const x=(S.scan_results||{})[sym]||(S.market||[]).find(y=>y.symbol===sym)||{};const q=LIVE_QUOTES_UI[sym];const fresh=q&&Date.now()/1000-Number(q.seen||0)<=20;if(fresh){const arr=liveChartPoints[sym]||(liveChartPoints[sym]=[]);if(!arr.length||arr[arr.length-1].t!==q.seen){arr.push({t:q.seen,p:Number(q.price)});if(arr.length>100)arr.shift()}}document.getElementById('modalChartTitle').textContent='📈 '+sym;document.getElementById('modalLive').textContent=fresh?'Alpaca IEX · '+euro(q.price)+' · vor '+Math.round(Date.now()/1000-q.seen)+' s':'Kein aktueller IEX-Livekurs verfügbar';const a=(x.chart||[]).map(Number).filter(v=>Number.isFinite(v)&&v>0);const liveSeries=(liveChartPoints[sym]||[]).map(v=>v.p).filter(v=>Number.isFinite(v)&&v>0);const note=document.getElementById('modalChartNote');const svg=document.getElementById('modalChartSvg');note.textContent=openChartRange==='1T'?'15-Minuten-Kerzen · soweit vorhanden':'Für '+openChartRange+' liegen derzeit keine vollständigen historischen Daten vor; gezeigt werden nur verfügbare 15-Minuten-Kerzen';if(liveSeries.length>1){a.splice(0,a.length,...liveSeries);note.textContent='Live-Verlauf aus Alpaca-IEX-Ticks seit Öffnen dieser Sitzung · '+a.length+' Kurswerte; historische Zeiträume separat nicht vollständig verfügbar'}if(a.length===1){a.push(a[0]);note.textContent+=' · Bisher nur ein Kurswert'}if(a.length<2){svg.innerHTML='<text x="20" y="90" fill="#eaf1ff">Noch keine Kursdaten verfügbar.</text>';return}const entry=Number((S.position_rows||[]).find(p=>p.symbol===sym)?.entry||0);const lo=Math.min(...a,entry>0?entry:Infinity),hi=Math.max(...a,entry>0?entry:0),r=hi-lo||1;const points=a.map((v,i)=>(45+i*530/(a.length-1))+','+(145-(v-lo)/r*115)).join(' ');const ey=145-(entry-lo)/r*115;svg.innerHTML='<polyline points="'+points+'" fill="none" stroke="#42df91" stroke-width="3"/>'+(entry>0?'<line x1="45" x2="575" y1="'+ey+'" y2="'+ey+'" stroke="#ffd15c" stroke-dasharray="6 4"/>':'')}
 function chart(s){openChartSymbol=s;openChartRange='1T';document.getElementById('chartModal').hidden=false;drawChartModal();return;const x=(S.market||[]).find(x=>x.symbol===s)||((S.scan_results||{})[s]);chartTitle.textContent=s+' · '+((S.names||{})[s]||'')+' · letzte bis zu 30 Kurspunkte';const a=x?.chart||[];if(a.length<2){priceChart.innerHTML='';chartTitle.textContent+=' · Noch kein Kursverlauf verfügbar';return}const lo=Math.min(...a),hi=Math.max(...a),r=hi-lo||1;const points=a.map((v,i)=>`${50+i*535/(a.length-1)},${145-(v-lo)/r*115}`).join(' ');const step=15;priceChart.innerHTML=`<line x1="50" y1="30" x2="50" y2="145" stroke="#9db0c7"/><line x1="50" y1="145" x2="585" y2="145" stroke="#9db0c7"/><text x="2" y="34" fill="#eaf1ff" font-size="11">${hi.toFixed(2)}</text><text x="2" y="145" fill="#eaf1ff" font-size="11">${lo.toFixed(2)}</text><text x="50" y="170" fill="#eaf1ff" font-size="11">älter</text><text x="530" y="170" fill="#eaf1ff" font-size="11">aktuell</text><polyline points="${points}" fill="none" stroke="#42df91" stroke-width="3"/>`+a.map((v,i)=>`<circle cx="${50+i*535/(a.length-1)}" cy="${145-(v-lo)/r*115}" r="6" fill="transparent"><title>Kerze ${i+1}/${a.length}: ${v.toFixed(3)} · Abstand zum neuesten Punkt ${(a.length-i-1)*15} Min.</title></circle>`).join('');}
 function showDepotChart(sym){
  const x=(S.scan_results||{})[sym]||(S.market||[]).find(y=>y.symbol===sym);
@@ -684,13 +685,9 @@ def live_paper_step():
                 qty=sum(float(p['qty']) for p in lots)
                 if cost<=0 or qty<=0: continue
                 entry=cost/qty
-                peak=max(LIVE_PEAKS.get(sym,entry),price)
-                LIVE_PEAKS[sym]=peak
-                change=price/entry-1
-                trailing=(peak>=entry*1.03 and price<=peak*.97)
-                reason=('Stop-Loss bei -4 %' if change<=-.04 else
-                        'Gewinnziel bei +7 %' if change>=.07 else
-                        'Trailing-Stop: 3 % unter Hoch' if trailing else None)
+                reason=trailing_exit(lots,price)
+                # Persist highs even if no transaction occurs.
+                changed=True
                 if reason:
                     execute_sell(d,sym,price,'IEX Live-Automatik',1.0,reason=reason,auto_only=True)
                     cooldown[sym]=now
@@ -824,9 +821,9 @@ def auto_step(d):
               float(x.get('mom',0))<0)
         weak[sym]=min(2,weak.get(sym,0)+1) if down else 0
         reason=None
-        if ch<=-.04: reason='Stop-Loss bei -4 %'
-        elif ch>=.07: reason='Gewinnziel bei +7 %'
-        elif weak[sym]>=2: reason='Score unter 45 und Abwärtstrend zweimal bestätigt'
+        reason=trailing_exit(lots,x['price'])
+        if reason is None and weak[sym]>=2 and ch<0:
+            reason='Score unter 45 und Abwärtstrend zweimal bestätigt'
         if reason:
             execute_sell(d,sym,x['price'],'Automatik',1.0,reason=reason,auto_only=True)
             weak.pop(sym,None)
@@ -853,6 +850,30 @@ def auto_step(d):
             if rocket: cooldown[sym]=time.time()
             invested+=amt
 
+def trailing_exit(lots, price):
+    """Persist the high-water mark per automatically managed lot.
+    No fixed +7% profit-taking. Initial -4% stop remains active.
+    Profit protection starts at +7%, with 3% peak drawdown;
+    strong momentum above +12% receives 4% breathing room.
+    """
+    if not lots or not math.isfinite(float(price)) or price<=0:
+        return None
+    for lot in lots:
+        entry=float(lot['entry'])
+        if entry<=0: continue
+        lot['peak_price']=max(entry,float(lot.get('peak_price') or entry),float(price))
+    entry=sum(float(p['cost']) for p in lots)/sum(float(p['qty']) for p in lots)
+    if price<=entry*.96: return 'Stop-Loss bei -4 %'
+    armed=[p for p in lots if float(p.get('peak_price',0))>=float(p['entry'])*1.07]
+    if not armed: return None
+    # Use the highest *aggregate* portfolio entry, avoiding unrelated manual lots.
+    peak=sum(float(p['peak_price'])*float(p['qty']) for p in lots)/sum(float(p['qty']) for p in lots)
+    gap=.04 if peak>=entry*1.12 else .03
+    if price<=peak*(1-gap):
+        return f'Nachgezogene Gewinnsicherung: {gap*100:.0f} % unter Hoch'
+    return None
+
+
 def execute_buy(d,sym,price,amt,src='Manuell'):
     if not product_is_allowed(sym,d):
         raise ValueError('Kauf gesperrt: Hebelprodukt oder nicht eindeutig als ungehebelte Aktie/Spot-Krypto geprüft.')
@@ -860,7 +881,7 @@ def execute_buy(d,sym,price,amt,src='Manuell'):
     amt=min(float(amt),d['cash'])
     if amt<=0:return
     contracts=4 if sym=='MNQ1!' else None
-    d['positions'].append({'symbol':sym,'entry':price,'qty':amt/price,'cost':amt,'source':src,'auto_manage':src!='Manuell',**({'contracts':contracts} if contracts else {})});d['cash']-=amt
+    d['positions'].append({'symbol':sym,'entry':price,'peak_price':price,'qty':amt/price,'cost':amt,'source':src,'auto_manage':src!='Manuell',**({'contracts':contracts} if contracts else {})});d['cash']-=amt
     desc=f'{src}: KAUF {sym} · {amt:.2f} € @ {price:.2f}'+(' · 4 MNQ-Kontrakte (Paper, 2 USD/Punkt/Kontrakt)' if sym=='MNQ1!' else '')
     d['history'].append({'time':time.strftime('%d.%m.%Y %H:%M'),'text':desc}); log_event(d,desc,'TRADE')
 
