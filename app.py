@@ -1,4 +1,4 @@
-import json, os, math, time, urllib.parse, urllib.request, copy, threading, html, re
+import json, os, math, time, urllib.parse, urllib.request, urllib.error, copy, threading, html, re
 from datetime import datetime
 from zoneinfo import ZoneInfo
 from http.server import BaseHTTPRequestHandler, HTTPServer
