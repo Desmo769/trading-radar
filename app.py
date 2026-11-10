@@ -64,6 +64,9 @@ def load():
     for pos in d.get('positions',[]):
         if pos.get('symbol')=='MNQ1!': pos.setdefault('contracts',4)
         pos.setdefault('peak_price',pos.get('entry',0))
+    if REMOTE_ENABLED:
+        # Compare against the normalized snapshot, not the pre-migration JSON.
+        with REMOTE_CACHE_LOCK: REMOTE_CACHE['data']=copy.deepcopy(d)
     return d
 
 def save(d):
