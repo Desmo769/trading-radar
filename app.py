@@ -12,7 +12,7 @@ UNIVERSE=['AAPL','MSFT','NVDA','AMZN','META','GOOGL','AVGO','TSLA','AMD','NFLX',
 DISCOVERY_SYMBOLS=['ADP', 'ABT', 'ACN', 'AEP', 'AFL', 'AIG', 'ALL', 'AME', 'AMP', 'AMT', 'ANET', 'AON', 'APD', 'APO', 'APP', 'APTV', 'ARE', 'ARM', 'ASML', 'ATO', 'AVB', 'AXP', 'AZN', 'BABA', 'BAX', 'BBY', 'BDX', 'BEN', 'BIIB', 'BLK', 'BMY', 'BNTX', 'BR', 'BRK.B', 'BSX', 'C', 'CAG', 'CARR', 'CB', 'CBOE', 'CDNS', 'CEG', 'CF', 'CHD', 'CHRW', 'CHTR', 'CI', 'CL', 'CLX', 'CMCSA', 'CME', 'CMI', 'CNC', 'COF', 'COP', 'COR', 'CPB', 'CPRT', 'CRH', 'CSCO', 'CSX', 'CTAS', 'CTSH', 'CTVA', 'CVS', 'CVX', 'D', 'DAL', 'DD', 'DELL', 'DG', 'DGX', 'DHI', 'DHR', 'DIS', 'DLR', 'DLTR', 'DOCU', 'DOV', 'DOW', 'DPZ', 'DRI', 'DTE', 'DUK', 'DVN', 'DXCM', 'EA', 'EBAY', 'ECL', 'ED', 'EFX', 'EL', 'EMR', 'ENPH', 'EOG', 'EQIX', 'EQR', 'EQT', 'ERIE', 'ES', 'ESS', 'ETN', 'EW', 'EXC', 'EXPD', 'EXPE', 'F', 'FANG', 'FAST', 'FCX', 'FDX', 'FE', 'FICO', 'FIS', 'FISV', 'FITB', 'FMC', 'FOXA', 'FSLR', 'FTNT', 'GD', 'GDDY', 'GILD', 'GIS', 'GL', 'GPN', 'GRMN', 'GWW', 'HAL', 'HAS', 'HBAN', 'HCA', 'HES', 'HIG', 'HLT', 'HOLX', 'HON', 'HPQ', 'HRL', 'HSY', 'HUM', 'HWM', 'IBM', 'ICE', 'IDXX', 'IEX', 'ILMN', 'INCY', 'IP', 'IPG', 'IQV', 'IR', 'IRM', 'ISRG', 'IT', 'ITW', 'IVZ', 'J', 'JAZZ', 'JBHT', 'JCI', 'JKHY', 'K', 'KDP', 'KEY', 'KEYS', 'KHC', 'KIM', 'KKR', 'KMB', 'KMI', 'KMX', 'KR', 'KVUE', 'LEN', 'LH', 'LKQ', 'LMT', 'LNT', 'LRCX', 'LVS', 'LW', 'LYB', 'LYV', 'MAR', 'MAS', 'MCHP', 'MCK', 'MCO', 'MDB', 'MDT', 'MET', 'MGM', 'MKC', 'MKTX', 'MLM', 'MMC', 'MMM', 'MO', 'MOS', 'MPC', 'MPWR', 'MRNA', 'MSI', 'MTB', 'MTCH', 'MTD', 'NDAQ', 'NDSN', 'NEM', 'NET', 'NOC', 'NRG', 'NSC', 'NTAP', 'NTRS', 'NUE', 'NVR', 'NWSA', 'O', 'ODFL', 'OKE', 'OMC', 'ON', 'ORLY', 'OTIS', 'OXY', 'PAYC', 'PAYX', 'PCAR', 'PCG', 'PEG', 'PFE', 'PFG', 'PH', 'PHM', 'PKG', 'PNC', 'PNR', 'PPG', 'PPL', 'PRU', 'PSA', 'PTC', 'PWR', 'PYPL', 'Q', 'RCL', 'REG', 'REGN', 'RF', 'RHI', 'RMD', 'ROK', 'ROL', 'ROP', 'ROST', 'RSG', 'RTO', 'RVTY', 'SBAC', 'SCHW', 'SHW', 'SJM', 'SLB', 'SMCI', 'SNA', 'SNPS', 'SO', 'SPG', 'SPGI', 'SRE', 'STE', 'STLD', 'STT', 'STX', 'STZ', 'SWK', 'SWKS', 'SYF', 'SYK', 'SYY', 'T', 'TAP', 'TDG', 'TDY', 'TECH', 'TEL', 'TER', 'TFC', 'TGT', 'TJX', 'TMO', 'TMUS', 'TPR', 'TRGP', 'TRMB', 'TROW', 'TRV', 'TSCO', 'TSN', 'TT', 'TTC', 'TTD', 'TYL', 'UAL', 'UDR', 'UHS', 'ULTA', 'UNP', 'UPS', 'URI', 'USB', 'VICI', 'VLO', 'VMC', 'VRSK', 'VRSN', 'VRTX', 'VTR', 'VTRS', 'VZ', 'WAB', 'WAT', 'WBA', 'WBD', 'WDC', 'WELL', 'WFC', 'WM', 'WMB', 'WMT', 'WRB', 'WST', 'WTW', 'WY', 'WYNN', 'XEL', 'XYL', 'YUM', 'ZBH', 'ZBRA', 'ZS']
 DISCOVERY_UNIVERSE=list(dict.fromkeys(UNIVERSE+DISCOVERY_SYMBOLS))
 KNOWN_NAMES={'AAPL': 'Apple Inc.', 'MSFT': 'Microsoft Corporation', 'NVDA': 'NVIDIA Corporation', 'AMZN': 'Amazon.com Inc.', 'META': 'Meta Platforms Inc.', 'GOOGL': 'Alphabet Inc.', 'AVGO': 'Broadcom Inc.', 'TSLA': 'Tesla Inc.', 'AMD': 'Advanced Micro Devices Inc.', 'NFLX': 'Netflix Inc.', 'ORCL': 'Oracle Corporation', 'CRM': 'Salesforce Inc.', 'ADBE': 'Adobe Inc.', 'INTC': 'Intel Corporation', 'QCOM': 'Qualcomm Inc.', 'TXN': 'Texas Instruments Inc.', 'MU': 'Micron Technology Inc.', 'AMAT': 'Applied Materials Inc.', 'LRCX': 'Lam Research Corporation', 'KLAC': 'KLA Corporation', 'PANW': 'Palo Alto Networks Inc.', 'CRWD': 'CrowdStrike Holdings Inc.', 'NOW': 'ServiceNow Inc.', 'PLTR': 'Palantir Technologies Inc.', 'UBER': 'Uber Technologies Inc.', 'ABNB': 'Airbnb Inc.', 'BKNG': 'Booking Holdings Inc.', 'JPM': 'JPMorgan Chase & Co.', 'BAC': 'Bank of America Corporation', 'GS': 'Goldman Sachs Group Inc.', 'MS': 'Morgan Stanley', 'V': 'Visa Inc.', 'MA': 'Mastercard Incorporated', 'AXP': 'American Express Company', 'WMT': 'Walmart Inc.', 'COST': 'Costco Wholesale Corporation', 'HD': 'Home Depot Inc.', 'LOW': "Lowe's Companies Inc.", 'NKE': 'Nike Inc.', 'MCD': "McDonald's Corporation", 'SBUX': 'Starbucks Corporation', 'KO': 'Coca-Cola Company', 'PEP': 'PepsiCo Inc.', 'PG': 'Procter & Gamble Company', 'JNJ': 'Johnson & Johnson', 'LLY': 'Eli Lilly and Company', 'MRK': 'Merck & Co. Inc.', 'ABBV': 'AbbVie Inc.', 'UNH': 'UnitedHealth Group Incorporated', 'XOM': 'Exxon Mobil Corporation', 'CVX': 'Chevron Corporation', 'CAT': 'Caterpillar Inc.', 'GE': 'GE Aerospace', 'BA': 'Boeing Company', 'RTX': 'RTX Corporation', 'DE': 'Deere & Company', 'NEE': 'NextEra Energy Inc.', 'LIN': 'Linde plc', 'BTC/USD': 'Bitcoin / US-Dollar', 'ETH/USD': 'Ethereum / US-Dollar', 'MNQ1!': 'Micro E-mini Nasdaq-100 Future'}
-DEFAULT={"cash":100.0,"start":100.0,"budget":100.0,"per_trade":20.0,"positions":[],"history":[],"watch":DISCOVERY_UNIVERSE,"key":"","auto":False,"last_auto_check":"Noch nie","next_auto_check":"–","scan_index":0,"scan_results":{},"scanned_total":0,"version":"V8.3.18","weak_trend_checks":{},"rocket_cooldown":{},"mnq_contracts":1,"event_log":[],"favorites":[],"names":KNOWN_NAMES.copy(),"alerts":[]}
+DEFAULT={"cash":100.0,"start":100.0,"budget":100.0,"per_trade":20.0,"positions":[],"history":[],"watch":DISCOVERY_UNIVERSE,"key":"","auto":False,"last_auto_check":"Noch nie","next_auto_check":"–","scan_index":0,"scan_results":{},"scanned_total":0,"version":"V8.3.19","weak_trend_checks":{},"rocket_cooldown":{},"mnq_contracts":1,"event_log":[],"favorites":[],"names":KNOWN_NAMES.copy(),"alerts":[]}
 # Supabase ist die maßgebliche Speicherung, wenn beide Render-Variablen gesetzt sind.
 # Bei Netzwerkfehlern niemals stillschweigend auf einen leeren lokalen Zustand zurückfallen.
 SUPABASE_URL=os.environ.get('SUPABASE_URL','').strip().rstrip('/')
@@ -21,7 +21,17 @@ REMOTE_ENABLED=bool(SUPABASE_URL and SUPABASE_SECRET_KEY)
 if bool(SUPABASE_URL)!=bool(SUPABASE_SECRET_KEY):
     raise RuntimeError('SUPABASE_URL und SUPABASE_SECRET_KEY müssen beide gesetzt sein')
 
+# Fail closed on quota restrictions; never queue or replay writes automatically.
+REMOTE_QUOTA_LOCK=threading.RLock()
+REMOTE_QUOTA_UNTIL=0.0
+REMOTE_QUOTA_PAUSE_SECONDS=15*60
+
 def remote_request(method, payload=None):
+    global REMOTE_QUOTA_UNTIL
+    with REMOTE_QUOTA_LOCK:
+        if time.monotonic()<REMOTE_QUOTA_UNTIL:
+            raise RuntimeError('Supabase-Kontingent gesperrt (HTTP 402). Nächster Versuch frühestens in 15 Minuten.')
+
     url=SUPABASE_URL+'/rest/v1/trading_radar_state'
     if method=='GET': url+='?id=eq.1&select=data'
     else: url+='?on_conflict=id'
@@ -30,8 +40,17 @@ def remote_request(method, payload=None):
     if method!='GET': headers['Prefer']='resolution=merge-duplicates,return=minimal'
     body=None if payload is None else json.dumps(payload,ensure_ascii=False).encode('utf-8')
     req=urllib.request.Request(url,data=body,headers=headers,method=method)
-    with urllib.request.urlopen(req,timeout=15) as response:
-        return json.loads(response.read() or b'null') if method=='GET' else None
+    try:
+        with urllib.request.urlopen(req,timeout=15) as response:
+            result=json.loads(response.read() or b'null') if method=='GET' else None
+        with REMOTE_QUOTA_LOCK: REMOTE_QUOTA_UNTIL=0.0
+        return result
+    except urllib.error.HTTPError as exc:
+        if exc.code==402:
+            with REMOTE_QUOTA_LOCK:
+                REMOTE_QUOTA_UNTIL=time.monotonic()+REMOTE_QUOTA_PAUSE_SECONDS
+            raise RuntimeError('Supabase-Kontingent gesperrt (HTTP 402). Automatische Abfragen 15 Minuten pausiert.') from exc
+        raise
 
 # One process, one in-memory snapshot. Never treat failed Supabase reads as an
 # empty database: doing so could overwrite the user's existing portfolio.
@@ -60,7 +79,7 @@ def load():
     for sym in DISCOVERY_UNIVERSE:
         if sym not in d['watch']: d['watch'].append(sym)
     d.setdefault('names',{}).update({k:v for k,v in KNOWN_NAMES.items() if k not in d.get('names',{})})
-    d['version']='V8.3.18';d['mnq_contracts']=4
+    d['version']='V8.3.19';d['mnq_contracts']=4
     for pos in d.get('positions',[]):
         if pos.get('symbol')=='MNQ1!': pos.setdefault('contracts',4)
         pos.setdefault('peak_price',pos.get('entry',0))
@@ -318,7 +337,7 @@ nav.tabs{display:flex;gap:9px;overflow-x:auto;margin:18px 0 14px;padding-bottom:
 .depot-full{overflow-x:visible}.holdings{white-space:normal;table-layout:fixed;font-size:12px}.holdings th,.holdings td{padding:7px 4px;overflow-wrap:anywhere}.holdings button{padding:5px 6px;margin:2px;font-size:11px}.depot-actions{display:flex;flex-wrap:wrap;gap:2px}.depot-actions button{flex:1 1 42%}.signal-hot{font-weight:900;color:#ffdf57;background:#6b3700;border:2px solid #ffa500;padding:6px;border-radius:8px;display:inline-block}.signal-rocket{font-weight:900;color:#b6ffe0;background:#0c5b38;border:2px solid #2effa1;padding:6px;border-radius:8px;display:inline-block}.chart-modal[hidden]{display:none}.chart-modal{position:fixed;inset:0;z-index:100;background:#000b;display:flex;align-items:center;justify-content:center;padding:15px}.chart-window{background:#102238;border:2px solid #456c91;border-radius:16px;padding:18px;width:min(850px,96vw);max-height:90vh;overflow-y:auto}#chanceSortPanel label{display:block;margin:9px 0}@media(max-width:850px){.holdings thead{display:none}.holdings,.holdings tbody,.holdings tr,.holdings td{display:block;width:100%;box-sizing:border-box}.holdings tr{border:1px solid #35516c;border-radius:10px;margin:10px 0;padding:8px}.holdings td{display:flex;justify-content:space-between;align-items:center;gap:8px}.holdings td:before{content:attr(data-label);font-weight:600;color:#9db0c7}.depot-actions{min-width:190px}}
 </style><style>
 .pro-monitor{overflow-x:auto}.pro-table{border-collapse:collapse;width:100%;font-size:13px}.pro-table th,.pro-table td{padding:10px 12px;border-bottom:1px solid #25405b;text-align:left;white-space:nowrap}.pro-table th{color:#9db0c7;font-size:11px;letter-spacing:.05em}.pro-table tbody tr:hover{background:#19314a}.pro-table button{font-size:12px;padding:7px}.pro-toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.pro-toolbar input,.pro-toolbar select{background:#0a1a2d;color:#fff;max-width:200px}.pro-link{background:none;border:0;color:#73baff;padding:2px}.pro-link:hover{text-decoration:underline}.pro-table small{display:block;color:#9db0c7}
-</style></head><body><header><b>📈 Trading Radar V8.3.18</b> <span class="muted">Paper-Trading · kein Echtgeld</span></header><div class="wrap">
+</style></head><body><header><b>📈 Trading Radar V8.3.19</b> <span class="muted">Paper-Trading · kein Echtgeld</span></header><div class="wrap">
 <nav class="tabs" aria-label="Bereiche" style="position:sticky;top:0;z-index:100;background:#081525;padding:8px 0;overflow-x:auto;flex-wrap:nowrap"><button class="tab active" onclick="showTab('depot')">📊 Depot</button><button class="tab" onclick="showTab('scanner')">🔎 Top-Chancen</button><button class="tab" onclick="showTab('rocket')">🚀 Raketen-Radar</button><button class="tab" onclick="showTab('log')">📋 Protokoll</button><button class="tab" onclick="showTab('settings')">⚙️ Einstellungen</button></nav>
 <div class="card controlbar"><span>Automatik: <b id="quickAuto">AUS</b></span><span class="muted">Automatisch nach US-Börsenzeiten</span><span>Prüfung in <strong id="countdown">--:--</strong></span><span id="freshness">Kurse noch nicht geprüft</span><span id="quickScan">Scanner –</span></div>
 <div id="status" class="muted statusline">Bereit.</div>
@@ -797,11 +816,11 @@ def run_auto_check(force=False):
 
 def scheduler_loop():
     while True:
-        try: run_auto_check(False)
+        try:
+            # No portfolio reads when the US exchange is closed.
+            if in_auto_window(): run_auto_check(False)
         except Exception as e:
-            try:
-                d=load(); log_event(d,'Auto-Check Fehler: '+str(e),'FEHLER'); save(d)
-            except Exception: pass
+            # Never perform an additional GET/POST just to log a failed GET.
             print('Auto-Check:',e)
         time.sleep(60)
 
