@@ -6,10 +6,13 @@ import app
 
 class QuotaCircuitTests(unittest.TestCase):
     def setUp(self):
+        self.url_patch=patch.object(app,'SUPABASE_URL','https://example.invalid')
+        self.url_patch.start()
         self.old=app.REMOTE_QUOTA_UNTIL
         app.REMOTE_QUOTA_UNTIL=0.
     def tearDown(self):
         app.REMOTE_QUOTA_UNTIL=self.old
+        self.url_patch.stop()
     def test_402_pauses_requests(self):
         exc=urllib.error.HTTPError('https://example.invalid',402,'quota',{},io.BytesIO(b''))
         with patch.object(app.urllib.request,'urlopen',side_effect=exc) as req:
