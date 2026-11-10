@@ -1,8 +1,8 @@
-name: Validate V8.3.18
+name: Validate V8.3.19
 on:
   pull_request:
   push:
-    branches: [fix/v8-3-18-supabase-bandwidth]
+    branches: [fix/v8-3-19-supabase-402-cooldown]
 jobs:
   checks:
     runs-on: ubuntu-latest
@@ -23,8 +23,8 @@ jobs:
           s=Path('app.py').read_text()
           js=s.split('<script>',1)[1].split('</script>',1)[0]
           Path('/tmp/trading-radar-ui.js').write_text(js)
-          assert s.count('V8.3.18')>=3, 'Versionsangaben stimmen nicht überein'
+          assert s.count('V8.3.19')>=3, 'Versionsangaben stimmen nicht überein'
           PY
           node --check /tmp/trading-radar-ui.js
       - name: Check manual trade protection
-        run: python -m unittest discover -s tests -p 'test_v8316.py' && python -m unittest discover -s tests -p 'test_v8317.py' && python -m unittest discover -s tests -p 'test_v8318.py' -v
+        run: python -m unittest discover -s tests -p 'test_v8316.py' && python -m unittest discover -s tests -p 'test_v8317.py' && python -m unittest discover -s tests -p 'test_v8318.py' && python -m unittest discover -s tests -p 'test_v8319.py' -v
