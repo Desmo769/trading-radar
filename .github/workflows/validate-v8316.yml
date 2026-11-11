@@ -1,4 +1,4 @@
-name: Validate V8.3.19
+name: Validate V8.3.20
 on:
   pull_request:
   push:
@@ -23,8 +23,8 @@ jobs:
           s=Path('app.py').read_text()
           js=s.split('<script>',1)[1].split('</script>',1)[0]
           Path('/tmp/trading-radar-ui.js').write_text(js)
-          assert s.count('V8.3.19')>=3, 'Versionsangaben stimmen nicht überein'
+          assert s.count('V8.3.20')>=3, 'Versionsangaben stimmen nicht überein'
           PY
           node --check /tmp/trading-radar-ui.js
       - name: Check manual trade protection
-        run: python -m unittest discover -s tests -p 'test_v8316.py' && python -m unittest discover -s tests -p 'test_v8317.py' && python -m unittest discover -s tests -p 'test_v8318.py' && python -m unittest discover -s tests -p 'test_v8319.py' -v
+        run: python -m unittest discover -s tests -p 'test_v8316.py' && python -m unittest discover -s tests -p 'test_v8317.py' && python -m unittest discover -s tests -p 'test_v8318.py' && python -m unittest discover -s tests -p 'test_v8319.py' && python -m unittest discover -s tests -p 'test_v8320.py' -v
