@@ -27,4 +27,4 @@ jobs:
           PY
           node --check /tmp/trading-radar-ui.js
       - name: Check manual trade protection
-        run: python -m unittest discover -s tests -p 'test_v8316.py' && python -m unittest discover -s tests -p 'test_v8317.py' && python -m unittest discover -s tests -p 'test_v8318.py' && python -m unittest discover -s tests -p 'test_v8319.py' && python -m unittest discover -s tests -p 'test_v8320.py' && python -m unittest discover -s tests -p 'test_v8321.py' -v
+        run: python -m unittest discover -s tests -p 'test_v8316.py' && python -m unittest discover -s tests -p 'test_v8317.py' && python -m unittest discover -s tests -p 'test_v8318.py' && python -m unittest discover -s tests -p 'test_v8319.py' && python -m unittest discover -s tests -p 'test_v8320.py' && python -m unittest discover -s tests -p 'test_v8321.py' -v && python -m unittest discover -s tests -p 'test_v8321_complete.py' -v
