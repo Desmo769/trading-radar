@@ -1,5 +1,5 @@
 import json, os, math, time, urllib.parse, urllib.request, urllib.error, copy, threading, html, re
-from datetime import datetime
+from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from pathlib import Path
@@ -151,7 +151,7 @@ def quote_symbol(sym,key):
     score=max(0,min(100,round(score)))
     risk='Niedrig' if vol<2 else ('Mittel' if vol<4 else 'Hoch')
     signal='KAUFEN' if score>=75 else ('BEOBACHTEN' if score>=55 else 'MEIDEN')
-    return add_momentum_labels({'symbol':sym,'price':p,'score':score,'risk':risk,'signal':signal,'mom':round(mom,2),'vol':round(vol,2),'seen':time.time(),'candle_ts':candle_ts}, closes)
+    return add_momentum_labels({'symbol':sym,'price':p,'score':score,'risk':risk,'signal':signal,'mom':round(mom,2),'vol':round(vol,2),'dollar_volume':sum(float(v.get('volume') or 0)*float(v['close']) for v in vals[1:5])/max(1,len(vals[1:5])),'seen':time.time(),'candle_ts':candle_ts}, closes)
 
 
 def log_event(d, text, kind='INFO'):
@@ -252,15 +252,17 @@ def market(d):
     universe=[s for s in (d.get('watch') or DISCOVERY_UNIVERSE) if product_is_allowed(s,d)]
     if not universe: universe=[s for s in DISCOVERY_UNIVERSE if product_is_allowed(s,d)]
     # Basic Twelve Data accounts are easily rate-limited. Keep each cycle at max. 7 requests.
-    slots=max(1,8-min(7,len(set(held))))
+    slots=max(1,7-min(6,len(set(held))))
     i=int(d.get('scan_index',0))%len(universe)
     batch=[]
-    while len(batch)<slots and len(batch)<len(universe):
+    attempts=0
+    while len(batch)<slots and attempts<len(universe):
+        attempts+=1
         s=universe[i%len(universe)]; i+=1
         if s not in held and s not in batch: batch.append(s)
     priority=sorted((x for x in d.get('scan_results',{}).values() if live_candidate(x)),key=lambda x:(x['score'],x['mom']),reverse=True)
     revisit=[x['symbol'] for x in priority if x.get('symbol') not in held and x.get('symbol') not in batch]
-    symbols=list(dict.fromkeys(held[:7]+revisit[:min(2,max(0,slots-1))]+batch))[:8]
+    symbols=list(dict.fromkeys(held[:6]+['SPY']+revisit[:min(2,max(0,slots-1))]+batch))[:8]
     # Hebelprodukte werden nicht mehr als neue Scanner-Kandidaten ergänzt.
     results=dict(d.get('scan_results',{}))
     for sym in symbols:
@@ -435,6 +437,7 @@ function render(s){
   const closed=(s.history||[]).filter(x=>typeof x.pnl==='number'); const wins=closed.filter(x=>x.pnl>0);const net=closed.reduce((a,x)=>a+x.pnl,0);
   const today=new Date().toLocaleDateString('de-DE');const todays=closed.filter(x=>x.time&&x.time.startsWith(today));const dailyNet=todays.reduce((a,x)=>a+x.pnl,0);const dailyWins=todays.filter(x=>x.pnl>0).length;const dailyInfo='Heute: '+todays.length+' Verkäufe · '+dailyWins+' Gewinne · '+(todays.length?(100*dailyWins/todays.length).toFixed(1):'–')+' % Trefferquote · '+euro(dailyNet)+' | ';stats.textContent=dailyInfo+(closed.length?`${closed.length} abgeschlossene Trades · ${wins.length} Gewinne · Trefferquote ${(100*wins.length/closed.length).toFixed(1)} % · Ergebnis ${euro(net)}`:'Noch keine abgeschlossenen Trades mit Ergebnisdaten.');
 
+ const ss=s.strategy_stats;if(ss){stats.textContent+=' | '+Object.entries(ss.periods).map(([k,v])=>k+': '+euro(v.net)+' ('+v.n+' Verkäufe)').join(' · ')+' | '+ss.advice+' '+Object.entries(ss.groups).map(([k,v])=>k+': '+euro(v.net)+' ('+v.wins+'/'+v.n+' Gewinne)').join(' · ');}
  const rows=[...(s.position_rows||[])]; const sortBy=document.getElementById('depotSort').value;
  if(sortBy==='name')rows.sort((a,b)=>a.symbol.localeCompare(b.symbol)); else if(sortBy==='score')rows.sort((a,b)=>(b.score??-1)-(a.score??-1));else rows.sort((a,b)=>b.pnlpct-a.pnlpct);
  depotCount.textContent=rows.length;
@@ -781,9 +784,9 @@ def live_paper_step():
             prior=[p for t,p in samples if now-t>=10]
             breakout=bool(prior) and price>=min(prior)*1.003
             if not breakout or float(x.get('score',0))<75 or float(x.get('mom',0))<=0: continue
-            if daily_buy_blocked(d): continue
+            if daily_buy_blocked(d) or not strategy_gate(d,x): continue
             invested=sum(float(p['cost']) for p in d['positions'])
-            amt=min(float(d['per_trade']),float(d['cash']),max(0,float(d['budget'])-invested))
+            amt=min(risk_amount(d,x),float(d['cash']),max(0,float(d['budget'])-invested))
             if amt<5: continue
             execute_buy(d,sym,price,amt,'IEX Live-Signal')
             LIVE_LAST_ACTION[sym]=now
@@ -872,7 +875,7 @@ def view(d, refresh=False):
     d['next_auto_check']=next_check_text(d)
     if refresh: CACHE=market(d)
     val,rows=portfolio(d,list(d.get('scan_results',{}).values()))
-    return {**d,'leveraged_positions':[p['symbol'] for p in d.get('positions',[]) if product_is_leveraged(p.get('symbol'),d)],'allowed_symbols':[x for x in set(d.get('scan_results',{}))|set(d.get('favorites',[])) if product_is_allowed(x,d)],'unverified_positions':[p['symbol'] for p in d.get('positions',[]) if not product_is_allowed(p.get('symbol'),d) and not product_is_leveraged(p.get('symbol'),d)],'key':'***' if effective_key(d) else '', 'value':val,'position_rows':rows,'market':[x for x in CACHE if product_is_allowed(x.get('symbol'),d)],'server_time':time.time(),'auto_interval':AUTO_INTERVAL,'storage_source':'Supabase' if REMOTE_ENABLED else 'Lokal','api_key_source':'Render' if (os.environ.get('TWELVE_DATA_API_KEY') or os.environ.get('twelve_data_api_key')) else ('App' if d.get('key') else 'Fehlt')}
+    return {**d,'strategy_stats':strategy_stats(d),'leveraged_positions':[p['symbol'] for p in d.get('positions',[]) if product_is_leveraged(p.get('symbol'),d)],'allowed_symbols':[x for x in set(d.get('scan_results',{}))|set(d.get('favorites',[])) if product_is_allowed(x,d)],'unverified_positions':[p['symbol'] for p in d.get('positions',[]) if not product_is_allowed(p.get('symbol'),d) and not product_is_leveraged(p.get('symbol'),d)],'key':'***' if effective_key(d) else '', 'value':val,'position_rows':rows,'market':[x for x in CACHE if product_is_allowed(x.get('symbol'),d)],'server_time':time.time(),'auto_interval':AUTO_INTERVAL,'storage_source':'Supabase' if REMOTE_ENABLED else 'Lokal','api_key_source':'Render' if (os.environ.get('TWELVE_DATA_API_KEY') or os.environ.get('twelve_data_api_key')) else ('App' if d.get('key') else 'Fehlt')}
 
 def quote_is_fresh(x):
     if not isinstance(x,dict) or x.get('fetch_error') or 'price' not in x: return False
@@ -927,7 +930,8 @@ def auto_step(d):
         if not (rocket or standard): continue
         # Do not immediately repurchase a rocket repeatedly after an automatic exit.
         if rocket and time.time()-float(cooldown.get(sym,0))<24*3600: continue
-        amt=min(d['per_trade'],d['cash'],max(0,d['budget']-invested))
+        if daily_buy_blocked(d) or not strategy_gate(d,x): continue
+        amt=min(risk_amount(d,x),d['cash'],max(0,d['budget']-invested))
         if amt>=5:
             if sym=='MNQ1!':
                 try: usd_eur_rate(d)
@@ -935,6 +939,33 @@ def auto_step(d):
             execute_buy(d,sym,x['price'],amt,'Raketen-Radar' if rocket else 'Automatik')
             if rocket: cooldown[sym]=time.time()
             invested+=amt
+
+def strategy_gate(d,x):
+    q=d.get('scan_results',{}).get('SPY',{})
+    return quote_is_fresh(q) and float(q.get('mom',0))>=-0.5 and float(x.get('dollar_volume',0))>=1000000
+
+def risk_amount(d,x):
+    return min(50.,float(d['per_trade']))*(0.5 if x.get('risk')=='Mittel' else 1.)
+
+def strategy_stats(d):
+    today=berlin_now().date()
+    starts={'Tag':today,'Woche':today-timedelta(days=today.weekday()),'Monat':today.replace(day=1),'Jahr':today.replace(month=1,day=1)}
+    rows=[]
+    for h in d.get('history',[]):
+        if not isinstance(h.get('pnl'),(int,float)): continue
+        try: day=datetime.strptime(h['time'][:10],'%d.%m.%Y').date()
+        except (KeyError,ValueError,TypeError): continue
+        rows.append((day,h))
+    def metrics(items):
+        return {'n':len(items),'wins':sum(h['pnl']>0 for h in items),'net':round(sum(h['pnl'] for h in items),2)}
+    periods={k:metrics([h for day,h in rows if start<=day<=today]) for k,start in starts.items()}
+    groups={}
+    for day,h in rows: groups.setdefault(h.get('strategy') or 'Historisch / unbekannt',[]).append(h)
+    analysis={k:metrics(v) for k,v in groups.items()}
+    eligible=[(k,v) for k,v in analysis.items() if v['n']>=20 and k!='Historisch / unbekannt']
+    best=max(eligible,key=lambda kv:kv[1]['net']/kv[1]['n'])[0] if eligible else None
+    advice='Mindestens 100 Verkaufsdatensätze sammeln.' if len(rows)<100 else ('Beste Gruppe nach mittlerem Nettoergebnis: '+best if best else 'Noch keine ausreichend große Signalgruppe.')
+    return {'periods':periods,'groups':analysis,'sample':len(rows),'advice':advice+' Keine automatische Regeländerung.'}
 
 def trailing_exit(lots, price):
     """Persist the high-water mark per automatically managed lot.
@@ -949,7 +980,8 @@ def trailing_exit(lots, price):
         if entry<=0: continue
         lot['peak_price']=max(entry,float(lot.get('peak_price') or entry),float(price))
     entry=sum(float(p['cost']) for p in lots)/sum(float(p['qty']) for p in lots)
-    if price<=entry*.96: return 'Stop-Loss bei -4 %'
+    stop=min(float(p.get('stop_pct',4)) for p in lots)/100
+    if price<=entry*(1-stop): return f'Stop-Loss bei -{stop*100:g} %'
     armed=[p for p in lots if float(p.get('peak_price',0))>=float(p['entry'])*1.07]
     if not armed: return None
     # Use the highest *aggregate* portfolio entry, avoiding unrelated manual lots.
@@ -966,7 +998,11 @@ def execute_buy(d,sym,price,amt,src='Manuell'):
     if not math.isfinite(float(price)) or float(price)<=0: raise ValueError('Ungültiger Kaufkurs.')
     amt=min(float(amt),d['cash'])
     if amt<=0:return
-    d['positions'].append({'symbol':sym,'entry':price,'peak_price':price,'qty':amt/price,'cost':amt,'source':src,'auto_manage':src!='Manuell'});d['cash']-=amt
+    x=d.get('scan_results',{}).get(sym,{})
+    simulated=src!='Manuell' and sym!='MNQ1!'
+    fee=amt*.001 if simulated else 0
+    price=price*1.0005 if simulated else price
+    d['positions'].append({'stop_pct':max(2.,min(4.,2*float(x.get('vol',2)))) if simulated else 4.,'strategy':src+' / '+str(x.get('risk','unbekannt')),'simulated_costs':simulated,'symbol':sym,'entry':price,'peak_price':price,'qty':(amt-fee)/price,'cost':amt,'source':src,'auto_manage':src!='Manuell'});d['cash']-=amt
     desc=f'{src}: KAUF {sym} · {amt:.2f} € @ {price:.2f}'
     d['history'].append({'time':time.strftime('%d.%m.%Y %H:%M'),'text':desc}); log_event(d,desc,'TRADE')
 
@@ -979,7 +1015,7 @@ def execute_sell(d,sym,price,src='Manuell',fraction=1.0,reason=None,auto_only=Fa
     total_qty=sum(p['qty'] for p in lots)
     sold_qty=total_qty*fraction
     sold_cost=total_cost*fraction
-    proceeds=sold_qty*price
+    proceeds=sum(p['qty']*fraction*price*(.9995*.999 if p.get('simulated_costs') else 1.) for p in lots)
     if sym=='MNQ1!':
         pnl=sum((price-float(p['entry']))*2*int(p.get('contracts',4))*usd_eur_rate(d) for p in lots)*fraction
         proceeds=sold_cost+pnl
@@ -996,7 +1032,7 @@ def execute_sell(d,sym,price,src='Manuell',fraction=1.0,reason=None,auto_only=Fa
     pct=pnl/sold_cost*100 if sold_cost else 0
     desc=f'{src}: {"TEILVERKAUF" if fraction<1 else "VERKAUF"} {sym} ({fraction*100:.1f} %) @ {price:.2f} · Erlös {proceeds:.2f} € · Ergebnis {pnl:+.2f} € ({pct:+.2f} %)'
     if reason: desc+=' · Grund: '+reason
-    d['history'].append({'time':berlin_now().strftime('%d.%m.%Y %H:%M'),'text':desc,'pnl':pnl,'pnlpct':pct,'symbol':sym,'proceeds':proceeds,'cost':sold_cost,'fraction':fraction})
+    d['history'].append({'time':berlin_now().strftime('%d.%m.%Y %H:%M'),'text':desc,'pnl':pnl,'pnlpct':pct,'symbol':sym,'proceeds':proceeds,'cost':sold_cost,'fraction':fraction,'strategy':lots[0].get('strategy','Historisch / unbekannt') if len(set(p.get('strategy') for p in lots))==1 else 'Gemischt'})
     log_event(d,desc,'TRADE')
 
 
