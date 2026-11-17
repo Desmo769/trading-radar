@@ -12,7 +12,7 @@ UNIVERSE=['AAPL','MSFT','NVDA','AMZN','META','GOOGL','AVGO','TSLA','AMD','NFLX',
 DISCOVERY_SYMBOLS=['ADP', 'ABT', 'ACN', 'AEP', 'AFL', 'AIG', 'ALL', 'AME', 'AMP', 'AMT', 'ANET', 'AON', 'APD', 'APO', 'APP', 'APTV', 'ARE', 'ARM', 'ASML', 'ATO', 'AVB', 'AXP', 'AZN', 'BABA', 'BAX', 'BBY', 'BDX', 'BEN', 'BIIB', 'BLK', 'BMY', 'BNTX', 'BR', 'BRK.B', 'BSX', 'C', 'CAG', 'CARR', 'CB', 'CBOE', 'CDNS', 'CEG', 'CF', 'CHD', 'CHRW', 'CHTR', 'CI', 'CL', 'CLX', 'CMCSA', 'CME', 'CMI', 'CNC', 'COF', 'COP', 'COR', 'CPB', 'CPRT', 'CRH', 'CSCO', 'CSX', 'CTAS', 'CTSH', 'CTVA', 'CVS', 'CVX', 'D', 'DAL', 'DD', 'DELL', 'DG', 'DGX', 'DHI', 'DHR', 'DIS', 'DLR', 'DLTR', 'DOCU', 'DOV', 'DOW', 'DPZ', 'DRI', 'DTE', 'DUK', 'DVN', 'DXCM', 'EA', 'EBAY', 'ECL', 'ED', 'EFX', 'EL', 'EMR', 'ENPH', 'EOG', 'EQIX', 'EQR', 'EQT', 'ERIE', 'ES', 'ESS', 'ETN', 'EW', 'EXC', 'EXPD', 'EXPE', 'F', 'FANG', 'FAST', 'FCX', 'FDX', 'FE', 'FICO', 'FIS', 'FISV', 'FITB', 'FMC', 'FOXA', 'FSLR', 'FTNT', 'GD', 'GDDY', 'GILD', 'GIS', 'GL', 'GPN', 'GRMN', 'GWW', 'HAL', 'HAS', 'HBAN', 'HCA', 'HES', 'HIG', 'HLT', 'HOLX', 'HON', 'HPQ', 'HRL', 'HSY', 'HUM', 'HWM', 'IBM', 'ICE', 'IDXX', 'IEX', 'ILMN', 'INCY', 'IP', 'IPG', 'IQV', 'IR', 'IRM', 'ISRG', 'IT', 'ITW', 'IVZ', 'J', 'JAZZ', 'JBHT', 'JCI', 'JKHY', 'K', 'KDP', 'KEY', 'KEYS', 'KHC', 'KIM', 'KKR', 'KMB', 'KMI', 'KMX', 'KR', 'KVUE', 'LEN', 'LH', 'LKQ', 'LMT', 'LNT', 'LRCX', 'LVS', 'LW', 'LYB', 'LYV', 'MAR', 'MAS', 'MCHP', 'MCK', 'MCO', 'MDB', 'MDT', 'MET', 'MGM', 'MKC', 'MKTX', 'MLM', 'MMC', 'MMM', 'MO', 'MOS', 'MPC', 'MPWR', 'MRNA', 'MSI', 'MTB', 'MTCH', 'MTD', 'NDAQ', 'NDSN', 'NEM', 'NET', 'NOC', 'NRG', 'NSC', 'NTAP', 'NTRS', 'NUE', 'NVR', 'NWSA', 'O', 'ODFL', 'OKE', 'OMC', 'ON', 'ORLY', 'OTIS', 'OXY', 'PAYC', 'PAYX', 'PCAR', 'PCG', 'PEG', 'PFE', 'PFG', 'PH', 'PHM', 'PKG', 'PNC', 'PNR', 'PPG', 'PPL', 'PRU', 'PSA', 'PTC', 'PWR', 'PYPL', 'Q', 'RCL', 'REG', 'REGN', 'RF', 'RHI', 'RMD', 'ROK', 'ROL', 'ROP', 'ROST', 'RSG', 'RTO', 'RVTY', 'SBAC', 'SCHW', 'SHW', 'SJM', 'SLB', 'SMCI', 'SNA', 'SNPS', 'SO', 'SPG', 'SPGI', 'SRE', 'STE', 'STLD', 'STT', 'STX', 'STZ', 'SWK', 'SWKS', 'SYF', 'SYK', 'SYY', 'T', 'TAP', 'TDG', 'TDY', 'TECH', 'TEL', 'TER', 'TFC', 'TGT', 'TJX', 'TMO', 'TMUS', 'TPR', 'TRGP', 'TRMB', 'TROW', 'TRV', 'TSCO', 'TSN', 'TT', 'TTC', 'TTD', 'TYL', 'UAL', 'UDR', 'UHS', 'ULTA', 'UNP', 'UPS', 'URI', 'USB', 'VICI', 'VLO', 'VMC', 'VRSK', 'VRSN', 'VRTX', 'VTR', 'VTRS', 'VZ', 'WAB', 'WAT', 'WBA', 'WBD', 'WDC', 'WELL', 'WFC', 'WM', 'WMB', 'WMT', 'WRB', 'WST', 'WTW', 'WY', 'WYNN', 'XEL', 'XYL', 'YUM', 'ZBH', 'ZBRA', 'ZS']
 DISCOVERY_UNIVERSE=list(dict.fromkeys(UNIVERSE+DISCOVERY_SYMBOLS))
 KNOWN_NAMES={'AAPL': 'Apple Inc.', 'MSFT': 'Microsoft Corporation', 'NVDA': 'NVIDIA Corporation', 'AMZN': 'Amazon.com Inc.', 'META': 'Meta Platforms Inc.', 'GOOGL': 'Alphabet Inc.', 'AVGO': 'Broadcom Inc.', 'TSLA': 'Tesla Inc.', 'AMD': 'Advanced Micro Devices Inc.', 'NFLX': 'Netflix Inc.', 'ORCL': 'Oracle Corporation', 'CRM': 'Salesforce Inc.', 'ADBE': 'Adobe Inc.', 'INTC': 'Intel Corporation', 'QCOM': 'Qualcomm Inc.', 'TXN': 'Texas Instruments Inc.', 'MU': 'Micron Technology Inc.', 'AMAT': 'Applied Materials Inc.', 'LRCX': 'Lam Research Corporation', 'KLAC': 'KLA Corporation', 'PANW': 'Palo Alto Networks Inc.', 'CRWD': 'CrowdStrike Holdings Inc.', 'NOW': 'ServiceNow Inc.', 'PLTR': 'Palantir Technologies Inc.', 'UBER': 'Uber Technologies Inc.', 'ABNB': 'Airbnb Inc.', 'BKNG': 'Booking Holdings Inc.', 'JPM': 'JPMorgan Chase & Co.', 'BAC': 'Bank of America Corporation', 'GS': 'Goldman Sachs Group Inc.', 'MS': 'Morgan Stanley', 'V': 'Visa Inc.', 'MA': 'Mastercard Incorporated', 'AXP': 'American Express Company', 'WMT': 'Walmart Inc.', 'COST': 'Costco Wholesale Corporation', 'HD': 'Home Depot Inc.', 'LOW': "Lowe's Companies Inc.", 'NKE': 'Nike Inc.', 'MCD': "McDonald's Corporation", 'SBUX': 'Starbucks Corporation', 'KO': 'Coca-Cola Company', 'PEP': 'PepsiCo Inc.', 'PG': 'Procter & Gamble Company', 'JNJ': 'Johnson & Johnson', 'LLY': 'Eli Lilly and Company', 'MRK': 'Merck & Co. Inc.', 'ABBV': 'AbbVie Inc.', 'UNH': 'UnitedHealth Group Incorporated', 'XOM': 'Exxon Mobil Corporation', 'CVX': 'Chevron Corporation', 'CAT': 'Caterpillar Inc.', 'GE': 'GE Aerospace', 'BA': 'Boeing Company', 'RTX': 'RTX Corporation', 'DE': 'Deere & Company', 'NEE': 'NextEra Energy Inc.', 'LIN': 'Linde plc', 'BTC/USD': 'Bitcoin / US-Dollar', 'ETH/USD': 'Ethereum / US-Dollar', 'MNQ1!': 'Micro E-mini Nasdaq-100 Future'}
-DEFAULT={"cash":100.0,"start":100.0,"budget":100.0,"per_trade":20.0,"positions":[],"history":[],"watch":DISCOVERY_UNIVERSE,"key":"","auto":False,"last_auto_check":"Noch nie","next_auto_check":"–","scan_index":0,"scan_results":{},"scanned_total":0,"version":"V8.3.20","weak_trend_checks":{},"rocket_cooldown":{},"mnq_contracts":1,"event_log":[],"favorites":[],"names":KNOWN_NAMES.copy(),"alerts":[]}
+DEFAULT={"cash":100.0,"start":100.0,"budget":100.0,"per_trade":20.0,"positions":[],"history":[],"watch":DISCOVERY_UNIVERSE,"key":"","auto":False,"last_auto_check":"Noch nie","next_auto_check":"–","scan_index":0,"scan_results":{},"scanned_total":0,"version":"V8.3.21","weak_trend_checks":{},"rocket_cooldown":{},"mnq_contracts":1,"event_log":[],"favorites":[],"names":KNOWN_NAMES.copy(),"alerts":[]}
 # Supabase ist die maßgebliche Speicherung, wenn beide Render-Variablen gesetzt sind.
 # Bei Netzwerkfehlern niemals stillschweigend auf einen leeren lokalen Zustand zurückfallen.
 SUPABASE_URL=os.environ.get('SUPABASE_URL','').strip().rstrip('/')
@@ -79,7 +79,7 @@ def load():
     for sym in DISCOVERY_UNIVERSE:
         if sym not in d['watch']: d['watch'].append(sym)
     d.setdefault('names',{}).update({k:v for k,v in KNOWN_NAMES.items() if k not in d.get('names',{})})
-    d['version']='V8.3.20';d['mnq_contracts']=4
+    d['version']='V8.3.21';d['mnq_contracts']=4
     for pos in d.get('positions',[]):
         if pos.get('symbol')=='MNQ1!': pos.setdefault('contracts',4)
         pos.setdefault('peak_price',pos.get('entry',0))
@@ -258,7 +258,9 @@ def market(d):
     while len(batch)<slots and len(batch)<len(universe):
         s=universe[i%len(universe)]; i+=1
         if s not in held and s not in batch: batch.append(s)
-    symbols=list(dict.fromkeys(held[:7]+batch))[:8]
+    priority=sorted((x for x in d.get('scan_results',{}).values() if live_candidate(x)),key=lambda x:(x['score'],x['mom']),reverse=True)
+    revisit=[x['symbol'] for x in priority if x.get('symbol') not in held and x.get('symbol') not in batch]
+    symbols=list(dict.fromkeys(held[:7]+revisit[:min(2,max(0,slots-1))]+batch))[:8]
     # Hebelprodukte werden nicht mehr als neue Scanner-Kandidaten ergänzt.
     results=dict(d.get('scan_results',{}))
     for sym in symbols:
@@ -343,7 +345,7 @@ nav.tabs{display:flex;gap:9px;overflow-x:auto;margin:18px 0 14px;padding-bottom:
 .depot-full{overflow-x:visible}.holdings{white-space:normal;table-layout:fixed;font-size:12px}.holdings th,.holdings td{padding:7px 4px;overflow-wrap:anywhere}.holdings button{padding:5px 6px;margin:2px;font-size:11px}.depot-actions{display:flex;flex-wrap:wrap;gap:2px}.depot-actions button{flex:1 1 42%}.signal-hot{font-weight:900;color:#ffdf57;background:#6b3700;border:2px solid #ffa500;padding:6px;border-radius:8px;display:inline-block}.signal-rocket{font-weight:900;color:#b6ffe0;background:#0c5b38;border:2px solid #2effa1;padding:6px;border-radius:8px;display:inline-block}.chart-modal[hidden]{display:none}.chart-modal{position:fixed;inset:0;z-index:100;background:#000b;display:flex;align-items:center;justify-content:center;padding:15px}.chart-window{background:#102238;border:2px solid #456c91;border-radius:16px;padding:18px;width:min(850px,96vw);max-height:90vh;overflow-y:auto}#chanceSortPanel label{display:block;margin:9px 0}@media(max-width:850px){.holdings thead{display:none}.holdings,.holdings tbody,.holdings tr,.holdings td{display:block;width:100%;box-sizing:border-box}.holdings tr{border:1px solid #35516c;border-radius:10px;margin:10px 0;padding:8px}.holdings td{display:flex;justify-content:space-between;align-items:center;gap:8px}.holdings td:before{content:attr(data-label);font-weight:600;color:#9db0c7}.depot-actions{min-width:190px}}
 </style><style>
 .pro-monitor{overflow-x:auto}.pro-table{border-collapse:collapse;width:100%;font-size:13px}.pro-table th,.pro-table td{padding:10px 12px;border-bottom:1px solid #25405b;text-align:left;white-space:nowrap}.pro-table th{color:#9db0c7;font-size:11px;letter-spacing:.05em}.pro-table tbody tr:hover{background:#19314a}.pro-table button{font-size:12px;padding:7px}.pro-toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.pro-toolbar input,.pro-toolbar select{background:#0a1a2d;color:#fff;max-width:200px}.pro-link{background:none;border:0;color:#73baff;padding:2px}.pro-link:hover{text-decoration:underline}.pro-table small{display:block;color:#9db0c7}
-</style></head><body><header><b>📈 Trading Radar V8.3.20</b> <span class="muted">Paper-Trading · kein Echtgeld</span></header><div class="wrap">
+</style></head><body><header><b>📈 Trading Radar V8.3.21</b> <span class="muted">Paper-Trading · kein Echtgeld</span></header><div class="wrap">
 <nav class="tabs" aria-label="Bereiche" style="position:sticky;top:0;z-index:100;background:#081525;padding:8px 0;overflow-x:auto;flex-wrap:nowrap"><button class="tab active" onclick="showTab('depot')">📊 Depot</button><button class="tab" onclick="showTab('scanner')">🔎 Top-Chancen</button><button class="tab" onclick="showTab('rocket')">🚀 Raketen-Radar</button><button class="tab" onclick="showTab('log')">📋 Protokoll</button><button class="tab" onclick="showTab('settings')">⚙️ Einstellungen</button></nav>
 <div class="card controlbar"><span>Automatik: <b id="quickAuto">AUS</b></span><span class="muted">Automatisch nach US-Börsenzeiten</span><span>Prüfung in <strong id="countdown">--:--</strong></span><span id="freshness">Kurse noch nicht geprüft</span><span id="quickScan">Scanner –</span></div>
 <div id="status" class="muted statusline">Bereit.</div>
@@ -571,17 +573,33 @@ LIVE_STATUS={'connected':False,'message':'Verbinde ...','updated':0}
 LIVE_MAX_SYMBOLS=30
 LIVE_SUBSCRIBED=[]
 
+def live_candidate(x):
+    return (quote_is_fresh(x) and x.get('risk')!='Hoch'
+            and isinstance(x.get('score'),(int,float)) and x['score']>=75
+            and isinstance(x.get('mom'),(int,float)) and x['mom']>0)
+
+def select_live_symbols(d):
+    candidates=sorted((x for x in d.get('scan_results',{}).values() if live_candidate(x)),
+                      key=lambda x:(x['score'],x['mom'],x.get('seen',0)),reverse=True)
+    symbols=[p.get('symbol') for p in d.get('positions',[])]+[x.get('symbol') for x in candidates]+d.get('favorites',[])+d.get('watch',[])
+    return list(dict.fromkeys(x for x in symbols if isinstance(x,str) and product_is_allowed(x,d)
+                             and '/' not in x and x not in SPOT_CRYPTO))[:LIVE_MAX_SYMBOLS]
+
 def alpaca_symbols():
     try:
-        d=load()
-        held=[p.get('symbol') for p in d.get('positions',[])]
-        favorites=d.get('favorites',[])
-        watch=d.get('watch',[])
-        return list(dict.fromkeys(x for x in held+favorites+watch
-                                  if isinstance(x,str) and product_is_allowed(x,d)
-                                  and '/' not in x and x!='MNQ1!' and x not in SPOT_CRYPTO))[:LIVE_MAX_SYMBOLS]
+        return select_live_symbols(load())
     except Exception:
-        return ['AAPL','MSFT','NVDA','TSLA']
+        with LIVE_LOCK: return list(LIVE_SUBSCRIBED) or ['AAPL','MSFT','NVDA','TSLA']
+
+def daily_risk(d):
+    day=berlin_now().strftime('%d.%m.%Y')
+    realized=sum(float(h.get('pnl',0) or 0) for h in d.get('history',[]) if str(h.get('time','')).startswith(day))
+    limit=max(0,float(d.get('cash',0))+sum(float(p['cost']) for p in d.get('positions',[]))-realized)*.03
+    return realized,limit
+
+def daily_buy_blocked(d):
+    realized,limit=daily_risk(d)
+    return realized<0 and -realized>=limit
 
 def ws_send(sock, obj):
     payload=json.dumps(obj,separators=(',',':')).encode()
@@ -636,9 +654,8 @@ def alpaca_stream_loop():
             sock.settimeout(30)
             ws_send(sock,{'action':'auth','key':key,'secret':secret})
             symbols=alpaca_symbols()
-            ws_send(sock,{'action':'subscribe','trades':symbols})
-            subscribed=tuple(symbols)
-            with LIVE_LOCK: LIVE_SUBSCRIBED[:]=symbols
+            subscribed=()
+            with LIVE_LOCK: LIVE_SUBSCRIBED.clear()
             LIVE_STATUS.update(connected=False,message='IEX-Authentifizierung läuft')
             last_update=time.time()
             while True:
@@ -656,7 +673,11 @@ def alpaca_stream_loop():
                 if not isinstance(messages,list): messages=[messages]
                 for msg in messages:
                     if msg.get('T')=='error': raise ConnectionError(str(msg.get('msg','Alpaca-Fehler')))
-                    if msg.get('T')=='success' and msg.get('msg')=='authenticated': LIVE_STATUS.update(connected=True,message='Alpaca IEX authentifiziert')
+                    if msg.get('T')=='success' and msg.get('msg')=='authenticated':
+                        LIVE_STATUS.update(connected=True,message='Alpaca IEX authentifiziert')
+                        ws_send(sock,{'action':'subscribe','trades':symbols})
+                        subscribed=tuple(symbols)
+                        with LIVE_LOCK: LIVE_SUBSCRIBED[:]=symbols
                     if msg.get('T')!='t': continue
                     sym=msg.get('S')
                     price=msg.get('p')
@@ -666,11 +687,13 @@ def alpaca_stream_loop():
                     except Exception: seen=time.time()
                     with LIVE_LOCK: LIVE_QUOTES[sym]={'price':price,'seen':seen,'source':'Alpaca IEX'}
                     LIVE_STATUS['updated']=time.time()
-                if time.time()-last_update>20:
+                if LIVE_STATUS.get('connected') and time.time()-last_update>60:
                     new=tuple(alpaca_symbols())
                     if new!=subscribed:
-                        ws_send(sock,{'action':'unsubscribe','trades':list(subscribed)})
-                        ws_send(sock,{'action':'subscribe','trades':list(new)})
+                        removed=[x for x in subscribed if x not in new]
+                        added=[x for x in new if x not in subscribed]
+                        if removed: ws_send(sock,{'action':'unsubscribe','trades':removed})
+                        if added: ws_send(sock,{'action':'subscribe','trades':added})
                         subscribed=new
                         with LIVE_LOCK: LIVE_SUBSCRIBED[:]=new
                     last_update=time.time()
@@ -758,6 +781,7 @@ def live_paper_step():
             prior=[p for t,p in samples if now-t>=10]
             breakout=bool(prior) and price>=min(prior)*1.003
             if not breakout or float(x.get('score',0))<75 or float(x.get('mom',0))<=0: continue
+            if daily_buy_blocked(d): continue
             invested=sum(float(p['cost']) for p in d['positions'])
             amt=min(float(d['per_trade']),float(d['cash']),max(0,float(d['budget'])-invested))
             if amt<5: continue
@@ -812,6 +836,17 @@ def run_auto_check(force=False):
             # Display countdown is calculated in view(); do not upload state every minute.
             return d
         CACHE.clear(); CACHE.extend(market(d)); log_event(d,'Automatischer Markt-Scan ausgeführt.','SCAN')
+        candidates=[x['symbol'] for x in d.get('scan_results',{}).values() if live_candidate(x)]
+        status=live_view()
+        watched=set(status['subscribed'])
+        fresh=set(status['quotes'])
+        realized,limit=daily_risk(d)
+        reasons={'Kandidaten':len(candidates),'Nicht abonniert':sum(x not in watched for x in candidates),
+                 'Abonniert ohne frischen Tick':sum(x in watched and x not in fresh for x in candidates),
+                 'Mit frischem Tick':sum(x in fresh for x in candidates)}
+        log_event(d,'Kaufdiagnose: '+', '.join(f'{k} {v}' for k,v in reasons.items())+
+                  f' · IEX {status["message"]} · Tages-P/L {realized:+.2f} € · Verlustgrenze {limit:.2f} €'+
+                  (' · Kaufsperre aktiv' if daily_buy_blocked(d) else ''),'WARN' if not status['connected'] or not fresh else 'SCAN')
         # Live paper trades are processed on fresh IEX ticks by live_paper_loop.
         # Do not place stale-candle automatic orders here.
         d['_last_auto_ts']=time.time()
